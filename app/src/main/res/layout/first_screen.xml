@@ -51,7 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#913283a7"
-            app:srcCompat="@drawable/surround" />
+            app:srcCompat="@drawable/surround"
+            android:onClick="onClick"/>
 
         <ImageButton
             android:id="@+id/name_b"
@@ -59,7 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/name" />
+            app:srcCompat="@drawable/name"
+            android:onClick="onClick"/>
 
     </LinearLayout>
 </LinearLayout>
