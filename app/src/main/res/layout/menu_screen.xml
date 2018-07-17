@@ -54,5 +54,13 @@
         android:text="  튜토리얼"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:background="@color/menu_tab" />
+        android:visibility="visible"
+        tools:background="#b9b9b9" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/pictogram" />
+
 </LinearLayout>
