@@ -16,10 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FirstScreen">
-
-        </activity>
-        <activity android:name=".MenuScreen"></activity>
+        <activity android:name=".FirstScreen"></activity>
+        <activity android:name=".MenuScreen" />
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>
