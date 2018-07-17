@@ -55,12 +55,13 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"
-        tools:background="#b9b9b9" />
+        android:background="@color/menu_tab" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@drawable/pictogram"
         tools:background="@drawable/pictogram" />
 
     <Button
@@ -78,15 +79,12 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"
-        tools:background="#b9b9b9" />
+        android:background="@color/menu_tab" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <Button
+        android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:text="            v 2.0 최신버전입니다."
-        android:textStyle="bold"
-        tools:textColor="#6c6c6c" />
+        android:background="@drawable/version" />
 
 </LinearLayout>

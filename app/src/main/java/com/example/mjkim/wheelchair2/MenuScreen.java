@@ -20,7 +20,7 @@ public class MenuScreen extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFirstScreen();
+                finish();
             }
         });
     }

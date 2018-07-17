@@ -16,9 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FirstScreen"></activity>
+        <activity android:name=".FirstScreen" />
         <activity android:name=".MenuScreen" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".GoogleMapActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDuH8fcKX1vkp-2x7K4hZcLrS_-llzAkws" />
     </application>
 
 </manifest>
