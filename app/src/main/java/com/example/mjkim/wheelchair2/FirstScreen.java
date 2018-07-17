@@ -30,7 +30,8 @@ public class FirstScreen extends AppCompatActivity {
 
     public void onClick(View view){
         if(view.getId()==R.id.surround_b){
-
+            Intent intent=new Intent(this,GoogleMapActivity.class);
+            startActivity(intent);
         }
         if(view.getId()==R.id.name_b){
             Intent intent=new Intent(this,SearchActivity.class);
