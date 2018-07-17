@@ -24,8 +24,19 @@ public class FirstScreen extends AppCompatActivity {
                 openMenuTab();
             }
         });
+
+
     }
 
+    public void onClick(View view){
+        if(view.getId()==R.id.surround_b){
+
+        }
+        if(view.getId()==R.id.name_b){
+            Intent intent=new Intent(this,SearchActivity.class);
+            startActivity(intent);
+        }
+    }
     public void openMenuTab(){
         Intent intent = new Intent(this, MenuScreen.class);
         startActivity(intent);
