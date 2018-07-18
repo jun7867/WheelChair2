@@ -41,4 +41,9 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuScreen.class);
         startActivity(intent);
     }
+
+    public void searchClick(View view){
+        Intent intent = new Intent(this, GoogleMapActivity.class);
+        startActivity(intent);
+    }
 }
