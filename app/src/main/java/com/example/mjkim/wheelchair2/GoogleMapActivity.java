@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
     ImageButton back_button;
+    ImageButton menu_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +26,21 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
         supportMapFragment.getMapAsync(this);
 
         back_button = (ImageButton)findViewById(R.id.back_b);
+        menu_button = (ImageButton)findViewById(R.id.menu_b);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFirstScreen();
+                finish();
             }
         });
-    }
-    public void openFirstScreen(){
-        Intent intent = new Intent(this, FirstScreen.class);
-        startActivity(intent);
+
+        menu_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                openMenuTab();
+            }
+        });
     }
 
     //36.103245, 129.388664
@@ -46,5 +51,10 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
 
         googleMap.addMarker(new MarkerOptions().position(HGU).title("HGU"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HGU, 12));
+    }
+
+    public void openMenuTab(){
+        Intent intent = new Intent(this, MenuScreen.class);
+        startActivity(intent);
     }
 }
