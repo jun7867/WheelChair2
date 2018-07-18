@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 public class FirstScreen extends AppCompatActivity {
 
     ImageButton menu_button;
+    private BackPressCloseHandler backPressCloseHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class FirstScreen extends AppCompatActivity {
                 openMenuTab();
             }
         });
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
 
 
@@ -43,4 +47,9 @@ public class FirstScreen extends AppCompatActivity {
         Intent intent = new Intent(this, MenuScreen.class);
         startActivity(intent);
     }
+
+    public void onBackPressed(){
+        backPressCloseHandler.onBackPressed();
+    }
+
 }
