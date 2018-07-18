@@ -29,8 +29,9 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:text="내 주변으로 검색"
-            android:textSize="30dp" />
+            android:text="지도 검색"
+            android:textSize="30dp"
+            android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/menu_b"
