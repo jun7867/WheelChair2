@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 public class SearchActivity extends AppCompatActivity {
 
     ImageButton back_button;
+    ImageButton menu_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +22,23 @@ public class SearchActivity extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFirstScreen();
+                finish();
+            }
+        });
+
+        menu_button = (ImageButton)findViewById(R.id.menu_b);
+
+        menu_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuTab();
             }
         });
     }
-    public void openFirstScreen(){
-        Intent intent = new Intent(this, FirstScreen.class);
+
+
+    public void openMenuTab(){
+        Intent intent = new Intent(this, MenuScreen.class);
         startActivity(intent);
     }
 }
