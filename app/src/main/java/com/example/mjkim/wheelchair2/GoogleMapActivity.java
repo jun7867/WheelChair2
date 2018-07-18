@@ -1,8 +1,10 @@
 package com.example.mjkim.wheelchair2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,7 +13,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
+    ImageButton back_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +23,20 @@ class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback 
 
         SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         supportMapFragment.getMapAsync(this);
+
+        back_button = (ImageButton)findViewById(R.id.back_b);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFirstScreen();
+            }
+        });
     }
-
-
+    public void openFirstScreen(){
+        Intent intent = new Intent(this, FirstScreen.class);
+        startActivity(intent);
+    }
 
     //36.103245, 129.388664
 
@@ -31,6 +45,6 @@ class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback 
         LatLng HGU = new LatLng(36.103245, 129.388664);
 
         googleMap.addMarker(new MarkerOptions().position(HGU).title("HGU"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HGU, 10));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HGU, 12));
     }
 }
