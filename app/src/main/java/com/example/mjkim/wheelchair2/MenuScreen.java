@@ -29,4 +29,9 @@ public class MenuScreen extends AppCompatActivity {
         Intent intent = new Intent(this, FirstScreen.class);
         startActivity(intent);
     }
+
+    public void picto(View v){
+        Intent intent = new Intent(this,PictogramActivity.class);
+        startActivity(intent);
+    }
 }
