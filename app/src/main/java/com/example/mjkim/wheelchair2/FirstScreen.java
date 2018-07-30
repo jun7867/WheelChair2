@@ -34,17 +34,18 @@ public class FirstScreen extends AppCompatActivity {
     }
 
     public void onClick(View view){
-        if(view.getId()==R.id.surround_b){
+        if(view.getId()== R.id.surround_b){
             Intent intent=new Intent(this,GoogleMapActivity.class);
             startActivity(intent);
         }
-        if(view.getId()==R.id.name_b){
+        if(view.getId()== R.id.name_b){
             Intent intent=new Intent(this,SearchActivity.class);
             startActivity(intent);
         }
-        if(view.getId()==R.id.review_b){
-            Intent intent=new Intent(this, ReviewSearch.class);
+        if(view.getId() == R.id.review_b){
+            Intent intent=new Intent(this,ReviewSearch.class);
             startActivity(intent);
+
         }
     }
     public void openMenuTab(){

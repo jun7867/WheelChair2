@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationSearch;
 
@@ -27,7 +26,6 @@ public class ReviewSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_search);
 
-        naverLocationSearch = new NaverLocationSearch();
 
         //버튼 선언
         back_button = (ImageButton)findViewById(R.id.back_b);
@@ -62,9 +60,9 @@ public class ReviewSearch extends AppCompatActivity {
 
         naverLocationSearch = new NaverLocationSearch();
 
-        TextView t1 = (TextView)findViewById(R.id.textView);
+        //TextView t1 = (TextView)findViewById(R.id.textView);
         EditText e1 = (EditText)findViewById(R.id.review_search);
-        ListView l1 = (ListView)findViewById(R.id.list_item);
+        //ListView l1 = (ListView)findViewById(R.id.list_item);
 
 
 
