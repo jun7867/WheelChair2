@@ -3,6 +3,10 @@
     package="com.example.mjkim.wheelchair2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -28,6 +32,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDuH8fcKX1vkp-2x7K4hZcLrS_-llzAkws" />
 
+        <activity android:name=".PictogramActivity"></activity>
+
+        <activity android:name=".NaverMapTestActivity" />
         <activity android:name=".PictogramActivity" />
         <activity android:name=".ReviewSearch"></activity>
     </application>
