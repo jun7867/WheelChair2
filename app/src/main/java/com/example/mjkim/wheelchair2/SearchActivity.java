@@ -42,7 +42,7 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void searchClick(View view){
+    public void searchClick(View v){
         Intent intent = new Intent(this, GoogleMapActivity.class);
         startActivity(intent);
     }

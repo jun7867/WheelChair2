@@ -62,7 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/pictogram"
-        tools:background="@drawable/pictogram" />
+        tools:background="@drawable/pictogram"
+        android:onClick="picto"/>
 
     <Button
         android:id="@+id/button4"

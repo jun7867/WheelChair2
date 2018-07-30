@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class FirstScreen extends AppCompatActivity {
 
     ImageButton menu_button;
     private BackPressCloseHandler backPressCloseHandler;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +29,8 @@ public class FirstScreen extends AppCompatActivity {
 
 
 
+
+
     }
 
     public void onClick(View view){
@@ -42,6 +42,10 @@ public class FirstScreen extends AppCompatActivity {
             Intent intent=new Intent(this,SearchActivity.class);
             startActivity(intent);
         }
+        if(view.getId()==R.id.review_b){
+            Intent intent=new Intent(this, ReviewSearch.class);
+            startActivity(intent);
+        }
     }
     public void openMenuTab(){
         Intent intent = new Intent(this, MenuScreen.class);
@@ -51,5 +55,6 @@ public class FirstScreen extends AppCompatActivity {
     public void onBackPressed(){
         backPressCloseHandler.onBackPressed();
     }
+
 
 }
