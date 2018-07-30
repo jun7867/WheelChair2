@@ -25,7 +25,6 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
     @Override
     protected ArrayList<NaverLocationList> doInBackground(String... strings) {
 
-        System.out.println("안되나요????????");
 
         String result = getJson(strings[0]);
 
@@ -89,7 +88,6 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
         //파서기 끝
         System.out.println(sb.toString());
-        System.out.println("안되나요????????");
         return naverLocationList;
 
     }
@@ -114,7 +112,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
         try {
 
-            String text = URLEncoder.encode("포항 양덕 맛집", "UTF-8");
+            String text = URLEncoder.encode(string, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text + "&display=" + display + "&"; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
             URL url = new URL(apiURL);
