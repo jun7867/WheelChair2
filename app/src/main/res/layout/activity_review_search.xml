@@ -4,30 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstScreen"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ReviewSearch">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:background="#5DCDFF"
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/login_b"
+            android:id="@+id/back_b"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:background="@color/colorAccent"
             android:visibility="visible"
-            app:srcCompat="@drawable/login" />
+            app:srcCompat="@drawable/back_arrow" />
 
-        <ImageView
+        <TextView
             android:id="@+id/logo"
-            android:layout_width="wrap_content"
+            android:layout_width="235dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorAccent"
-            app:srcCompat="@drawable/logo" />
+            android:gravity="center"
+            android:text="검색"
+            android:textSize="30dp" />
 
         <ImageButton
             android:id="@+id/menu_b"
@@ -36,48 +39,50 @@
             android:layout_weight="2"
             android:background="@color/colorAccent"
             app:srcCompat="@drawable/menu" />
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/beach"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/surround_b"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/review_search"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="#913283a7"
-            android:onClick="onClick"
-            android:scaleType="fitXY"
-            android:visibility="visible"
-            app:srcCompat="@drawable/surround" />
+            android:background="@drawable/back"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="예) 농협 하나로 마트 포항점"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
 
-        <ImageButton
-            android:id="@+id/name_b"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/search_b"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:background="#00ed6565"
-            android:onClick="onClick"
-            android:scaleType="fitXY"
-            android:visibility="visible"
-            app:srcCompat="@drawable/name" />
-
-        <ImageButton
-            android:id="@+id/review_b"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#7d9de1ff"
-            android:onClick="onClick"
-            android:scaleType="fitXY"
-            android:visibility="visible"
-            app:srcCompat="@drawable/review" />
-
+            android:onClick="onSearch"
+            android:text="검색"
+            tools:background="@color/colorPrimary" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/review_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </LinearLayout>
