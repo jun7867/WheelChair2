@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingTop="16dp"
-    android:paddingRight="16dp"
-    tools:context="com.example.mjkim.wheelchair2.NaverMapTestActivity"
-    android:id="@+id/mainLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="606dp"
+        android:orientation="vertical">
 
-    <com.nhn.android.maps.NMapView
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent" 
-    android:text="@string/hello"
-    android:id="@+id/mapView"/>
-</RelativeLayout>
+        <Button
+            android:id="@+id/currentLocationButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="450dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/current_location_image"
+            android:onClick="gpsClick" />
+
+
+        <!--<fragment-->
+        <!--android:id="@+id/map"-->
+        <!--android:name="com.nhn.android.maps.NMapView"-->
+
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="2" />-->
+        <com.nhn.android.maps.NMapView
+            android:id="@+id/fMapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
+</LinearLayout>
