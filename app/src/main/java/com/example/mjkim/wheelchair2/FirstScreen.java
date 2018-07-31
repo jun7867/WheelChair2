@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.mjkim.wheelchair2.naver_map_fragment.FragmentMapActivity;
+
 public class FirstScreen extends AppCompatActivity {
 
     ImageButton menu_button;

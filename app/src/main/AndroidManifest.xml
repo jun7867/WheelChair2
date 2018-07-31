@@ -32,11 +32,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDuH8fcKX1vkp-2x7K4hZcLrS_-llzAkws" />
 
-        <activity android:name=".PictogramActivity"></activity>
-
+        <activity android:name=".PictogramActivity" />
         <activity android:name=".NaverMapTestActivity" />
         <activity android:name=".PictogramActivity" />
-        <activity android:name=".ReviewSearch"></activity>
+        <activity android:name=".ReviewSearch" />
+        <activity android:name=".naver_map_fragment.FragmentMapActivity"></activity>
     </application>
 
 </manifest>

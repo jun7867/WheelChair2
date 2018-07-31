@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.example.mjkim.wheelchair2.R;
-
 class MyAdapter extends BaseAdapter {
     Context context;
     int layout;
