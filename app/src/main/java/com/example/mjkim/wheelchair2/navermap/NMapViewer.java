@@ -105,9 +105,9 @@ public class NMapViewer extends NMapActivity {
 		super.onCreate(savedInstanceState);
 
 		if (USE_XML_LAYOUT) {
-			setContentView(R.layout.fragment_naver_map);
+			setContentView(R.layout.activity_fragment_map);
 
-			mMapView = (NMapView)findViewById(R.id.mapView);
+			mMapView = (NMapView)findViewById(R.id.mapLayout);
 		} else {
 			// create map view
 			mMapView = new NMapView(this);

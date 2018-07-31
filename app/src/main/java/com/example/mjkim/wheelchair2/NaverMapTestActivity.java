@@ -99,9 +99,8 @@ public class NaverMapTestActivity extends NMapActivity {
 
         mMapViewerResourceProvider = new NMapViewerResourceProvider(this);
         mapOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
-
-
     }
+
 
     private void init(){
 
@@ -152,15 +151,21 @@ public class NaverMapTestActivity extends NMapActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                setMarker();
-                //startMyLocation();
+//                setMarker();
+                startMyLocation();
             }
         }, 100);
     }
 
     //이미지버튼 누르면 현재위치로 이동하는 이벤트
     public void gpsClick(View v) {
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                setMarker();
+                startMyLocation();
+            }
+        }, 100);
     }
 
     //설정메뉴로 가기
@@ -270,6 +275,27 @@ public class NaverMapTestActivity extends NMapActivity {
     };
 
     private void startMyLocation() {
+
+
+        // create overlay manager
+        mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
+        // register callout overlay listener to customize it.
+        mOverlayManager.setOnCalloutOverlayListener(onCalloutOverlayListener);
+        // register callout overlay view listener to customize it.
+        mOverlayManager.setOnCalloutOverlayViewListener(onCalloutOverlayViewListener);
+
+        // location manager
+        mMapLocationManager = new NMapLocationManager(this);
+        mMapLocationManager.setOnLocationChangeListener(onMyLocationChangeListener);
+
+        // compass manager
+        mMapCompassManager = new NMapCompassManager(this);
+
+        // create my location overlay
+        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager);
+
+
+
 
         if (mMyLocationOverlay != null) {
             if (!mOverlayManager.hasOverlay(mMyLocationOverlay)) {
