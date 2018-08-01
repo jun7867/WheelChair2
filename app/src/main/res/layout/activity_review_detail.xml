@@ -34,7 +34,7 @@
                 android:layout_weight="1"
                 android:background="@color/colorAccent"
                 android:gravity="center"
-                android:text="검색"
+                android:text="장소 정보"
                 android:textSize="30dp" />
 
             <ImageButton
@@ -50,39 +50,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/sample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="장소명, 주소, 등의 단어를 입력해 주세요"
-        android:padding="10dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="10dp"/>
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/back"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="예) 농협 하나로 마트 포항점"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"/>
-
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="243dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="#6ec1f7"
-        android:gravity="center"
-        android:onClick="searchClick"
-        android:text="검색" />
+        android:text="TextView" />
 
 
 </LinearLayout>

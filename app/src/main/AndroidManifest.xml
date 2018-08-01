@@ -34,9 +34,10 @@
 
         <activity android:name=".PictogramActivity" />
         <activity android:name=".NaverMapTestActivity" />
-        <activity android:name=".PictogramActivity" />
         <activity android:name=".ReviewSearch" />
-        <activity android:name=".naver_map_fragment.FragmentMapActivity"></activity>
+        <activity android:name=".naver_map_fragment.FragmentMapActivity" />
+        <activity android:name=".ReviewDetail" />
+        <activity android:name=".Login.LoginScreen"></activity>
     </application>
 
 </manifest>

@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.mjkim.wheelchair2.Login.LoginScreen;
 import com.example.mjkim.wheelchair2.naver_map_fragment.FragmentMapActivity;
 
 public class FirstScreen extends AppCompatActivity {
 
     ImageButton menu_button;
+    ImageButton login_button;
     private BackPressCloseHandler backPressCloseHandler;
 
     @Override
@@ -24,6 +26,15 @@ public class FirstScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openMenuTab();
+            }
+        });
+
+        login_button = (ImageButton)findViewById(R.id.login_b);
+
+        login_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                openLoginTab();
             }
         });
 
@@ -52,6 +63,11 @@ public class FirstScreen extends AppCompatActivity {
     }
     public void openMenuTab(){
         Intent intent = new Intent(this, MenuScreen.class);
+        startActivity(intent);
+    }
+
+    public void openLoginTab(){
+        Intent intent = new Intent(this, LoginScreen.class);
         startActivity(intent);
     }
 
