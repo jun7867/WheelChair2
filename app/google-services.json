@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "610231080724",
+    "firebase_url": "https://wheelchair2-c40ae.firebaseio.com",
+    "project_id": "wheelchair2-c40ae",
+    "storage_bucket": "wheelchair2-c40ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610231080724:android:8d5df3c38c984e9d",
+        "android_client_info": {
+          "package_name": "com.example.mjkim.wheelchair2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610231080724-av20r4qo3bho2ptsvm4ooshe8sso7v16.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mjkim.wheelchair2",
+            "certificate_hash": "ff6eafab48f2cf16d5a5d519ab2107c599f32fc0"
+          }
+        },
+        {
+          "client_id": "610231080724-0avqr6hqivrcekdvlfddjakj4gvmglbq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx8Fomdebw__YxmE-hJ_WeXgtoGRpxiUk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610231080724-0avqr6hqivrcekdvlfddjakj4gvmglbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

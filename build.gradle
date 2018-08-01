@@ -9,7 +9,8 @@ buildscript {
     dependencies {
         //이거 버젼 네이버맵 하려면 3.0.0해야하는 것같다. 딴거하니까 다 오류뜸 (희석)
         classpath 'com.android.tools.build:gradle:3.0.0'
-        
+        // 파이어베이스 설정 (준영)
+        classpath 'com.google.gms:google-services:4.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

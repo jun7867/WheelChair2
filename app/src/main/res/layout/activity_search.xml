@@ -76,14 +76,13 @@
     <Button
         android:id="@+id/button"
         android:layout_width="243dp"
-        android:onClick="searchClick"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:background="#6ec1f7"
         android:gravity="center"
-        android:text="검색"
-        android:layout_marginTop="30dp"
-        />
+        android:onClick="searchClick"
+        android:text="검색" />
 
 
 </LinearLayout>

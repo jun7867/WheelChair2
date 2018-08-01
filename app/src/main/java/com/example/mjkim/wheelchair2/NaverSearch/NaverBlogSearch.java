@@ -12,14 +12,15 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<NaverLocationList>> {
+public class NaverBlogSearch extends AsyncTask<String, Void, ArrayList<NaverBlogList>> {
 
     final static String clientId = "3StaOAzcpbFU3A798Ahq";//애플리케이션 클라이언트 아이디값";
     final static String clientSecret = "NIwOzZz_Ot";//애플리케이션 클라이언트 시크릿값";
     public static int total_num = 0;
+    public static int display = 0;
 
 
-    private ArrayList<String> location_result;
+    private ArrayList<String> blog_result;
 
 
     @Override
@@ -27,7 +28,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
 
     @Override
-    protected ArrayList<NaverLocationList> doInBackground(String... strings) {
+    protected ArrayList<NaverBlogList> doInBackground(String... strings) {
 
 
         String result = getJson(strings[0]);
@@ -35,17 +36,14 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
         String name;
         String link;
         String description;
-        String telephone;
-        String address;
-        String road_address;
-        int mapx;
-        int mapy;
+        String bloggerlink;
+        String postdate;
 
 
 
         //파서기 시작
-        location_result = new ArrayList<String>();
-        ArrayList<NaverLocationList> naverLocationList = new ArrayList<NaverLocationList>();
+        blog_result = new ArrayList<String>();
+        ArrayList<NaverBlogList> naverBlogLists = new ArrayList<NaverBlogList>();
 
         try {
 
@@ -64,14 +62,11 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
                 name = Html.fromHtml(name).toString();
                 link = obj.getString("link");
                 description = obj.getString("description");
-                telephone = obj.getString("telephone");
-                address = obj.getString("address");
-                road_address = obj.getString("roadAddress");
-                mapx = obj.getInt("mapx");
-                mapy = obj.getInt("mapy");
+                bloggerlink = obj.getString("bloggerlink");
+                postdate = obj.getString("postdate");
 
 
-                naverLocationList.add(num++, new NaverLocationList(name, link, description, telephone, address, road_address, mapx, mapy));
+                naverBlogLists.add(num++, new NaverBlogList(name, link, description, bloggerlink, postdate));
 
 
             }
@@ -83,7 +78,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
 
         //파서기 끝
-        return naverLocationList;
+        return naverBlogLists;
 
     }
 
@@ -93,7 +88,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
     protected void onProgressUpdate(Void...params){ }
 
     @Override
-    protected void onPostExecute(ArrayList<NaverLocationList> result){
+    protected void onPostExecute(ArrayList<NaverBlogList> result){
         super.onPostExecute(result);
     }
 
@@ -105,9 +100,9 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
         String response = "";
 
         try {
-            int display = 50; //총 결과물 갯수
+            display = 5; //총 결과물 갯수
             String text = URLEncoder.encode(string, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text + "&display=" + display + "&"; // json 결과
+            String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text + "&display=" + display + "&"; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();

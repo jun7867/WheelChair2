@@ -6,6 +6,8 @@ import android.os.HardwarePropertiesManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.mjkim.wheelchair2.Login.LoginScreen;
+
 public class LoadingScreen extends AppCompatActivity {
 
     @Override
@@ -17,7 +19,7 @@ public class LoadingScreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(LoadingScreen.this,FirstScreen.class);
+                Intent intent=new Intent(LoadingScreen.this,LoginScreen.class);
                 startActivity(intent);
                 finish();
             }

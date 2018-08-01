@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MenuScreen">
+
+    <EditText
+        android:id="@+id/id_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="아이디를 입력하세요"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/pass_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:ems="10"
+        android:hint="비밀번호를 입력하세요"
+        android:inputType="textPersonName" />
+
+    <ImageButton
+        android:id="@+id/login_b2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/login_button"
+        android:background="@android:color/transparent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/create_User"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="email 회원가입" />
+
+        <Button
+            android:id="@+id/findid_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="아이디 찾기" />
+
+        <Button
+            android:id="@+id/findpass_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="비밀번호 찾기" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/or" />
+
+    <Button
+        android:id="@+id/login_btn_google"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f2c9c9"
+        android:text="구글로 로그인하기"/>
+
+    <Button
+        android:id="@+id/no_login"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#84c0eaef"
+        android:layout_marginTop="10dp"
+        android:text="로그인 없이 사용하기."/>
+
+
+
+</LinearLayout>
