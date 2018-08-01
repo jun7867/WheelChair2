@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.mjkim.wheelchair2.Login.LoginScreen;
+import com.example.mjkim.wheelchair2.Login.User;
 import com.example.mjkim.wheelchair2.naver_map_fragment.FragmentMapActivity;
 
 public class FirstScreen extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class FirstScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openLoginTab();
+
             }
         });
 

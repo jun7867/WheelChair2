@@ -37,7 +37,8 @@
         <activity android:name=".ReviewSearch" />
         <activity android:name=".naver_map_fragment.FragmentMapActivity" />
         <activity android:name=".ReviewDetail" />
-        <activity android:name=".Login.LoginScreen"></activity>
+        <activity android:name=".Login.LoginScreen" />
+        <activity android:name=".Login.EmailActivity"></activity>
     </application>
 
 </manifest>

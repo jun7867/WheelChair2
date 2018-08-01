@@ -34,4 +34,6 @@ public class MenuScreen extends AppCompatActivity {
         Intent intent = new Intent(this,PictogramActivity.class);
         startActivity(intent);
     }
+
+
 }

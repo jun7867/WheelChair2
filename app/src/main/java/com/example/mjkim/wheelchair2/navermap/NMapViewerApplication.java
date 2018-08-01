@@ -18,7 +18,7 @@ package com.example.mjkim.wheelchair2.navermap;
 import android.app.Application;
 
 /**
- * @author SeJin Lee 
+ * @author SeJin Lee
  */
 public class NMapViewerApplication extends Application {
 
