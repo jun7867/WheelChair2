@@ -7,49 +7,6 @@
     android:orientation="vertical"
     tools:context=".MenuScreen">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#5DCDFF"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@color/colorAccent"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/menu" />
-
-            <TextView
-                android:id="@+id/logo"
-                android:layout_width="235dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/colorAccent"
-                android:gravity="center"
-                android:text="로그인"
-                android:textSize="30dp" />
-
-            <ImageButton
-                android:id="@+id/back_b"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@color/colorAccent"
-                android:rotation="180"
-                android:visibility="visible"
-                app:srcCompat="@drawable/back_arrow" />
-
-
-        </LinearLayout>
-    </LinearLayout>
-
     <EditText
         android:id="@+id/id_text"
         android:layout_width="match_parent"
@@ -88,13 +45,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/register_b"
+            android:id="@+id/create_User"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="회원가입     " />
+            android:text="email 회원가입" />
 
         <Button
             android:id="@+id/findid_b"
@@ -122,6 +79,24 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
         app:srcCompat="@drawable/or" />
+
+    <Button
+        android:id="@+id/login_btn_google"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f2c9c9"
+        android:text="구글로 로그인하기"/>
+
+    <Button
+        android:id="@+id/no_login"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#84c0eaef"
+        android:layout_marginTop="10dp"
+        android:text="로그인 없이 사용하기."/>
+
 
 
 </LinearLayout>

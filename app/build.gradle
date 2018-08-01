@@ -40,4 +40,10 @@ dependencies {
     api 'com.android.support:support-media-compat:28.0.0-alpha3'
     api 'com.android.support:support-v4:28.0.0-alpha3'
 
+    //파이어베이스 설정(준영)
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-auth:16.0.2'
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
 }
+apply plugin: 'com.google.gms.google-services' // 파이어베이스 설정.
+
