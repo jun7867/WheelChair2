@@ -7,13 +7,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
-
 public class ReviewDetail extends AppCompatActivity {
 
-    ImageButton back_button;
-    ImageButton menu_button;
-    TextView text;
+    ImageButton back_button, menu_button, more_blog;
+    TextView location_name, address_name, phone_number;
+    String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +34,24 @@ public class ReviewDetail extends AppCompatActivity {
         });
 
 
-        text = (TextView) findViewById(R.id.sample);
+        location_name = (TextView) findViewById(R.id.location_name);
+        address_name = (TextView) findViewById(R.id.address_name);
+        phone_number = (TextView) findViewById(R.id.telephone_number);
+
+        more_blog = (ImageButton)findViewById(R.id.blogmore_b);
+        more_blog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openBlogTab();
+            }
+        });
 
 
         Intent intent = getIntent();
-        text.setText(intent.getExtras().getString("NAME") + "\n" +
-                intent.getExtras().getString("LINK") + "\n" +
-                intent.getExtras().getString("DESCRIPTION") + "\n" +
-                intent.getExtras().getString("ADDRESS") + "\n" +
-                intent.getExtras().getString("ROAD_ADDRESS") + "\n" +
-                intent.getExtras().getInt("MAPX") + "\n" +
-                intent.getExtras().getInt("MAPY") + "\n");
 
+        location_name.setText(intent.getExtras().getString("NAME"));
+        name = intent.getExtras().getString("NAME");
+        address_name.setText(intent.getExtras().getString("ROAD_ADDRESS"));
+        phone_number.setText(intent.getExtras().getString("TELEPHONE"));
 
 
     }
@@ -55,5 +59,13 @@ public class ReviewDetail extends AppCompatActivity {
     public void openMenuTab(){
         Intent intent = new Intent(this, MenuScreen.class);
         startActivity(intent);
+    }
+
+    public void openBlogTab(){
+        Intent intent = new Intent(this, BlogSearch.class);
+        intent.putExtra("BLOGNAME", name);
+        startActivity(intent);
+
+
     }
 }

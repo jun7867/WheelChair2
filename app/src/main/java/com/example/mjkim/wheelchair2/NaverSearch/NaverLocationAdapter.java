@@ -43,20 +43,15 @@ public class NaverLocationAdapter extends BaseAdapter {
         if(convertView == null){
 
             int res = 0;
-
             res = R.layout.naver_location_list;
-
             convertView = mInflater.inflate(res, parent, false);
 
         }
 
 
         TextView title = (TextView)convertView.findViewById(R.id.vi_name);
-
-        TextView address = (TextView)convertView.findViewById(R.id.vi_address);
-
+        TextView road_address = (TextView)convertView.findViewById(R.id.vi_address);
         TextView telephone = (TextView)convertView.findViewById(R.id.vi_telephone);
-
         LinearLayout layout_view =  (LinearLayout)convertView.findViewById(R.id.vi_view);
 
         //int resId=  m_activity.getResources().getIdentifier(arr.get(position)., "drawable", m_activity.getPackageName());
@@ -64,9 +59,7 @@ public class NaverLocationAdapter extends BaseAdapter {
         //imView.setBackgroundResource(resId);
 
         title.setText(arr.get(position).getName());
-
-        address.setText(arr.get(position).getAddress());
-
+        road_address.setText(arr.get(position).getRoad_address());
         telephone.setText(arr.get(position).getTelephone());
 
         /*  버튼에 이벤트처리를 하기위해선 setTag를 이용해서 사용할 수 있습니다.
