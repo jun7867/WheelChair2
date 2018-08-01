@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -13,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.navermap.NMapCalloutCustomOldOverlay;
 import com.example.mjkim.wheelchair2.navermap.NMapCalloutCustomOverlayView;
 import com.example.mjkim.wheelchair2.navermap.NMapPOIflagType;
-import com.example.mjkim.wheelchair2.navermap.NMapViewer;
 import com.example.mjkim.wheelchair2.navermap.NMapViewerResourceProvider;
 import com.nhn.android.maps.NMapActivity;
 import com.nhn.android.maps.NMapCompassManager;
@@ -45,11 +44,13 @@ import java.util.ArrayList;
    들이 이용된다.
  */
 
-public class NaverMapTestActivity extends NMapActivity {
+public class NaverMapActivity extends NMapActivity {
 
     //상단 버튼들
     ImageButton back_button;
     ImageButton menu_button;
+
+    ArrayList<NaverLocationList> mNaverLocationList;
 
     private final String TAG = "지도검색";
 
@@ -72,11 +73,13 @@ public class NaverMapTestActivity extends NMapActivity {
     private NMapLocationManager mMapLocationManager;
     private NMapCompassManager mMapCompassManager;
 
+    private NGeoPoint mGeoPoint;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_naver_map_test);
+        setContentView(R.layout.activity_naver_map);
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         menu_button = (ImageButton)findViewById(R.id.menu_b);
@@ -94,34 +97,6 @@ public class NaverMapTestActivity extends NMapActivity {
                 openMenuTab();
             }
         });
-
-        init();
-
-        mMapViewerResourceProvider = new NMapViewerResourceProvider(this);
-        mapOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
-    }
-
-
-    private void init(){
-
-//        // create overlay manager
-//        mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
-//        // register callout overlay listener to customize it.
-//        mOverlayManager.setOnCalloutOverlayListener(onCalloutOverlayListener);
-//        // register callout overlay view listener to customize it.
-//        mOverlayManager.setOnCalloutOverlayViewListener(onCalloutOverlayViewListener);
-//
-//        // location manager
-//        mMapLocationManager = new NMapLocationManager(this);
-//        mMapLocationManager.setOnLocationChangeListener(onMyLocationChangeListener);
-//
-//        // compass manager
-//        mMapCompassManager = new NMapCompassManager(this);
-//
-//        // create my location overlay
-//        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager);
-
-
 
         mapLayout = findViewById(R.id.mapLayout);
 
@@ -146,27 +121,18 @@ public class NaverMapTestActivity extends NMapActivity {
         //지도 객체로부터 컨트롤러 추출
         mMapController = mMapView.getMapController();
 
-        //처음 위치 잡아주기, 디폴트
-        //mMapController.setMapCenter(new NGeoPoint(126.978371, 37.5666091), 11);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-//                setMarker();
-                startMyLocation();
-            }
-        }, 100);
+        mMapViewerResourceProvider = new NMapViewerResourceProvider(this);
+        mapOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
+
+        //내 주변으로 검색
+        findNearLocation(mMapController);
+
+//        startMyLocation();
+//        mySetMarker();
+//        setMarker();
+
     }
 
-    //이미지버튼 누르면 현재위치로 이동하는 이벤트
-    public void gpsClick(View v) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-//                setMarker();
-                startMyLocation();
-            }
-        }, 100);
-    }
 
     //설정메뉴로 가기
     public void openMenuTab(){
@@ -174,6 +140,110 @@ public class NaverMapTestActivity extends NMapActivity {
         startActivity(intent2);
     }
 
+    //내 주변으로 검색 기능 메소드
+    //1. 내 위치 찾는다 - 되지만 반복해서 내 위치로 돌아감, 갱신을 없애야 함
+    //2. 내 위치 주변 리뷰 쓰인 곳을 데이터베이스에서 NaverLocationList 형태로 가져와 어레이리스트에 담는다. - 해야함
+    //3. 어레이리스트 안에 있는 장소들을 모두 마커를 달고 띄운다. - 아마 될 듯
+    private void findNearLocation(NMapController mMapController) {
+        // create overlay manager
+        mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
+        // register callout overlay listener to customize it.
+        mOverlayManager.setOnCalloutOverlayListener(onCalloutOverlayListener);
+        // register callout overlay view listener to customize it.
+        mOverlayManager.setOnCalloutOverlayViewListener(onCalloutOverlayViewListener);
+
+        // location manager
+        mMapLocationManager = new NMapLocationManager(this);
+        mMapLocationManager.setOnLocationChangeListener(onMyLocationChangeListener);
+
+        //mGeoPoint.set(mMapLocationManager.getMyLocation());
+
+        // compass manager
+        mMapCompassManager = new NMapCompassManager(this);
+
+        // create my location overlay
+        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager);
+
+        mMapContainerView = new MapContainerView(this);
+
+
+        if (mMyLocationOverlay != null) {
+            if (!mOverlayManager.hasOverlay(mMyLocationOverlay)) {
+                mOverlayManager.addOverlay(mMyLocationOverlay);
+            }
+            //gps 권한있으면 실행
+            if (mMapLocationManager.isMyLocationEnabled()) {
+
+                if (!mMapView.isAutoRotateEnabled()) {
+                    mMyLocationOverlay.setCompassHeadingVisible(true);
+
+                    mMapCompassManager.enableCompass();
+
+                    mMapView.setAutoRotateEnabled(true, false);
+
+                    mMapContainerView.requestLayout();
+                } else {
+                    stopMyLocation();
+                }
+                mMapView.postInvalidate();
+
+            //권한없으면 환경설정 들어감
+            } else {
+                boolean isMyLocationEnabled = mMapLocationManager.enableMyLocation(true);
+                if (!isMyLocationEnabled) {
+                    Toast.makeText(NaverMapActivity.this, "환경설정에서 위치 정보 권한을 앱에 부여해주세요.",
+                            Toast.LENGTH_LONG).show();
+
+                    Intent goToSettings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(goToSettings);
+
+                    return;
+                }
+            }
+        }
+
+
+        //마커다는 파트
+        int markerId = NMapPOIflagType.PIN;
+//        ArrayList<NMapPOIdata> locations = new ArrayList<NMapPOIdata>();
+
+        // 리뷰단 장소들의 NaverLocationList 어레이리스트로 사용, db에서 받아와야함
+        mNaverLocationList = new ArrayList<NaverLocationList>();
+
+
+//         어레이리스트에 있는 정보로 마커 띄우기
+//        NMapPOIdata poiData = new NMapPOIdata(mNaverLocationList.size(), mMapViewerResourceProvider);
+//        poiData.beginPOIdata(mNaverLocationList.size());
+//        for (int i = 0; i < mNaverLocationList.size(); i++) {
+//            poiData.addPOIitem(mNaverLocationList.get(i).getMapx(), mNaverLocationList.get(i).getMapy(), mNaverLocationList.get(i).getName(), markerId, 0);
+//        }
+//        poiData.endPOIdata();
+//        // create POI data overlay
+//        NMapPOIdataOverlay poiDataOverlay = mapOverlayManager.createPOIdataOverlay(poiData, null);
+//        poiDataOverlay.showAllPOIdata(0);
+//        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
+//        mMapController.setMapCenter(mMapLocationManager.getMyLocation(), 12);
+
+        // set POI data
+        NMapPOIdata poiData = new NMapPOIdata(2, mMapViewerResourceProvider);
+        poiData.beginPOIdata(2);
+        poiData.addPOIitem(129.398522, 36.082113, "하나로클럽 포항점", markerId, 0);
+        poiData.addPOIitem(129.397848, 36.081324, "바벤", markerId, 0);
+        poiData.endPOIdata();
+
+//        NGeoPoint nGeoPoint = new NGeoPoint((36.082113 + 36.081324) / 2, (129.398522 + 129.397848) / 2);
+
+        // create POI data overlay
+        NMapPOIdataOverlay poiDataOverlay = mapOverlayManager.createPOIdataOverlay(poiData, null);
+        poiDataOverlay.showAllPOIdata(0);
+        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
+//        mMapController.setMapCenter(mMapLocationManager.getMyLocation(), 12);
+//        mMapController.setMapCenter(129.398185,36.0817185, 12);
+        mMapController.setZoomLevel(12);
+    }
+
+
+    //마커다는 기본예제
     private void setMarker(){
 
         int markerId = NMapPOIflagType.PIN;
@@ -181,8 +251,8 @@ public class NaverMapTestActivity extends NMapActivity {
 
 
         // set current POI data
-        NMapPOIdata currentPoiData = new NMapPOIdata(1, mMapViewerResourceProvider);
-        currentPoiData.beginPOIdata(1);
+//        NMapPOIdata currentPoiData = new NMapPOIdata(1, mMapViewerResourceProvider);
+//        currentPoiData.beginPOIdata(1);
         //currentPoiData.addPOIitem()
 
         // set POI data
@@ -195,7 +265,51 @@ public class NaverMapTestActivity extends NMapActivity {
         // create POI data overlay
         NMapPOIdataOverlay poiDataOverlay = mapOverlayManager.createPOIdataOverlay(poiData, null);
         poiDataOverlay.showAllPOIdata(0);
-        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스
+        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
+    }
+
+
+    //내 위치 기반으로 (150m, 구현해야함) 미만의 리뷰가 등록된 곳에 마커가 뜬다.
+    private void mySetMarker(){
+        int markerId = NMapPOIflagType.PIN;
+//        ArrayList<NMapPOIdata> locations = new ArrayList<NMapPOIdata>();
+
+        // NaverLocationList 어레이리스트로 사용, db에서 받아와야함
+        mNaverLocationList = new ArrayList<NaverLocationList>();
+
+        // set current POI data
+//        NMapPOIdata currentPoiData = new NMapPOIdata(1, mMapViewerResourceProvider);
+//        currentPoiData.beginPOIdata(1);
+//        currentPoiData.addPOIitem()
+
+
+//         어레이리스트에 있는 정보로 마커 띄우기
+//        NMapPOIdata poiData = new NMapPOIdata(mNaverLocationList.size(), mMapViewerResourceProvider);
+//        poiData.beginPOIdata(mNaverLocationList.size());
+//        for (int i = 0; i < mNaverLocationList.size(); i++) {
+//            poiData.addPOIitem(mNaverLocationList.get(i).getMapx(), mNaverLocationList.get(i).getMapy(), mNaverLocationList.get(i).getName(), markerId, 0);
+//        }
+//        poiData.endPOIdata();
+//        // create POI data overlay
+//        NMapPOIdataOverlay poiDataOverlay = mapOverlayManager.createPOIdataOverlay(poiData, null);
+//        poiDataOverlay.showAllPOIdata(0);
+//        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
+
+
+        // set POI data
+        NMapPOIdata poiData = new NMapPOIdata(2, mMapViewerResourceProvider);
+        poiData.beginPOIdata(2);
+        poiData.addPOIitem(129.398522, 36.082113, "하나로클럽 포항점", markerId, 0);
+        poiData.addPOIitem(129.397848, 36.081324, "바벤", markerId, 0);
+        poiData.endPOIdata();
+
+//        NGeoPoint nGeoPoint = new NGeoPoint((36.082113 + 36.081324) / 2, (129.398522 + 129.397848) / 2);
+
+        // create POI data overlay
+        NMapPOIdataOverlay poiDataOverlay = mapOverlayManager.createPOIdataOverlay(poiData, null);
+        poiDataOverlay.showAllPOIdata(0);
+        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
+        mMapController.setMapCenter(129.398185,36.0817185, 12);
     }
 
     private NMapPOIdataOverlay.OnStateChangeListener onPOIdataStateChangeListener = new NMapPOIdataOverlay.OnStateChangeListener() {
@@ -276,7 +390,6 @@ public class NaverMapTestActivity extends NMapActivity {
 
     private void startMyLocation() {
 
-
         // create overlay manager
         mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
         // register callout overlay listener to customize it.
@@ -294,14 +407,14 @@ public class NaverMapTestActivity extends NMapActivity {
         // create my location overlay
         mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager);
 
-
+        mMapContainerView = new MapContainerView(this);
 
 
         if (mMyLocationOverlay != null) {
             if (!mOverlayManager.hasOverlay(mMyLocationOverlay)) {
                 mOverlayManager.addOverlay(mMyLocationOverlay);
             }
-
+            //gps 권한있으면 실행
             if (mMapLocationManager.isMyLocationEnabled()) {
 
                 if (!mMapView.isAutoRotateEnabled()) {
@@ -317,10 +430,11 @@ public class NaverMapTestActivity extends NMapActivity {
                 }
 
                 mMapView.postInvalidate();
+            //권한없으면 환경설정 들어감
             } else {
                 boolean isMyLocationEnabled = mMapLocationManager.enableMyLocation(true);
                 if (!isMyLocationEnabled) {
-                    Toast.makeText(NaverMapTestActivity.this, "Please enable a My Location source in system settings",
+                    Toast.makeText(NaverMapActivity.this, "환경설정에서 위치 정보 권한을 앱에 부여해주세요.",
                             Toast.LENGTH_LONG).show();
 
                     Intent goToSettings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -346,6 +460,82 @@ public class NaverMapTestActivity extends NMapActivity {
                 mMapContainerView.requestLayout();
             }
         }
+    }
+
+
+    //이미지버튼 누르면 현재위치로 이동하는 이벤트
+    public void gpsClick(View v) {
+//        if (mMapController != null) {
+//            mMapController.animateTo(myLocation);
+//        }
+
+
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                startMyLocation();
+//            }
+//        }, 100);
+
+        startMyLocation();
+
+
+//        // create overlay manager
+//        mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
+//        // register callout overlay listener to customize it.
+//        mOverlayManager.setOnCalloutOverlayListener(onCalloutOverlayListener);
+//        // register callout overlay view listener to customize it.
+//        mOverlayManager.setOnCalloutOverlayViewListener(onCalloutOverlayViewListener);
+//
+//        // location manager
+//        mMapLocationManager = new NMapLocationManager(this);
+//        mMapLocationManager.setOnLocationChangeListener(onMyLocationChangeListener);
+//
+//        // get geo point of current position
+//        mGeoPoint = new NGeoPoint();
+//        mGeoPoint.set(mMapLocationManager.getMyLocation());
+//
+//        // compass manager
+//        mMapCompassManager = new NMapCompassManager(this);
+//
+//        // create my location overlay
+//        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager);
+//
+//
+//        if (mMyLocationOverlay != null) {
+//            if (!mOverlayManager.hasOverlay(mMyLocationOverlay)) {
+//                mOverlayManager.addOverlay(mMyLocationOverlay);
+//            }
+//
+//            if (mMapLocationManager.isMyLocationEnabled()) {
+//
+//                if (!mMapView.isAutoRotateEnabled()) {
+//                    mMyLocationOverlay.setCompassHeadingVisible(true);
+//
+//                    mMapCompassManager.enableCompass();
+//
+//                    mMapView.setAutoRotateEnabled(true, false);
+//
+//                    mMapContainerView.requestLayout();
+//                } else {
+//                    stopMyLocation();
+//                }
+//
+//                mMapView.postInvalidate();
+//            } else {
+//                boolean isMyLocationEnabled = mMapLocationManager.enableMyLocation(true);
+//                if (!isMyLocationEnabled) {
+//                    Toast.makeText(NaverMapActivity.this, "환경설정에서 위치 정보 권한을 앱에 부여해주세요.",
+//                            Toast.LENGTH_LONG).show();
+//
+//                    Intent goToSettings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//                    startActivity(goToSettings);
+//
+//                    return;
+//                }
+//            }
+//        }
+
     }
 
     /**
@@ -433,7 +623,7 @@ public class NaverMapTestActivity extends NMapActivity {
 
                     if (countOfOverlappedItems > 1) {
                         String text = countOfOverlappedItems + " overlapped items for " + overlayItem.getTitle();
-                        Toast.makeText(NaverMapTestActivity.this, text, Toast.LENGTH_LONG).show();
+                        Toast.makeText(NaverMapActivity.this, text, Toast.LENGTH_LONG).show();
                         return null;
                     }
                 }
@@ -452,8 +642,8 @@ public class NaverMapTestActivity extends NMapActivity {
             // use custom callout overlay
             return new NMapCalloutCustomOverlay(itemOverlay, overlayItem, itemBounds, mMapViewerResourceProvider);
 
-            // set basic callout overlay
-            //return new NMapCalloutBasicOverlay(itemOverlay, overlayItem, itemBounds);
+//            // set basic callout overlay
+//            return new NMapCalloutBasicOverlay(itemOverlay, overlayItem, itemBounds);
         }
 
     };
@@ -475,20 +665,20 @@ public class NaverMapTestActivity extends NMapActivity {
         public void onLocationUpdateTimeout(NMapLocationManager locationManager) {
 
              //stop location updating
-            			Runnable runnable = new Runnable() {
-            				public void run() {
-            					stopMyLocation();
-            				}
-            			};
-            			runnable.run();
+//            			Runnable runnable = new Runnable() {
+//            				public void run() {
+//            					stopMyLocation();
+//            				}
+//            			};
+//            			runnable.run();
 
-            Toast.makeText(NaverMapTestActivity.this, "Your current location is temporarily unavailable.", Toast.LENGTH_LONG).show();
+            Toast.makeText(NaverMapActivity.this, "현재 위치를 일시적으로 확인할 수 없습니다.", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onLocationUnavailableArea(NMapLocationManager locationManager, NGeoPoint myLocation) {
 
-            Toast.makeText(NaverMapTestActivity.this, "Your current location is unavailable area.", Toast.LENGTH_LONG).show();
+            Toast.makeText(NaverMapActivity.this, "현재 위치가 탐지되지 않는 지역입니다.", Toast.LENGTH_LONG).show();
 
             stopMyLocation();
         }
@@ -504,7 +694,7 @@ public class NaverMapTestActivity extends NMapActivity {
                 // [TEST] 말풍선 오버레이를 뷰로 설정함
                 String title = overlayItem.getTitle();
                 if (title != null && title.length() > 5) {
-                    return new NMapCalloutCustomOverlayView(NaverMapTestActivity.this, itemOverlay, overlayItem, itemBounds);
+                    return new NMapCalloutCustomOverlayView(NaverMapActivity.this, itemOverlay, overlayItem, itemBounds);
                 }
             }
 

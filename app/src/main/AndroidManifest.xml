@@ -33,7 +33,7 @@
             android:value="AIzaSyDuH8fcKX1vkp-2x7K4hZcLrS_-llzAkws" />
 
         <activity android:name=".PictogramActivity" />
-        <activity android:name=".NaverMapTestActivity" />
+        <activity android:name=".NaverMapActivity" />
         <activity android:name=".ReviewSearch" />
         <activity android:name=".naver_map_fragment.FragmentMapActivity" />
         <activity android:name=".ReviewDetail" />

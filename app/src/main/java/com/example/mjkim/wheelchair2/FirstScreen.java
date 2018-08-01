@@ -50,7 +50,7 @@ public class FirstScreen extends AppCompatActivity {
 
     public void onClick(View view){
         if(view.getId()== R.id.surround_b){
-            Intent intent=new Intent(this,NaverMapTestActivity.class);
+            Intent intent=new Intent(this,NaverMapActivity.class);
             startActivity(intent);
         }
         if(view.getId()== R.id.name_b){
