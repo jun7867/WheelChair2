@@ -1,6 +1,8 @@
 package com.example.mjkim.wheelchair2.NaverSearch;
 
 import android.os.AsyncTask;
+import android.text.Html;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -14,6 +16,8 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
     final static String clientId = "3StaOAzcpbFU3A798Ahq";//애플리케이션 클라이언트 아이디값";
     final static String clientSecret = "NIwOzZz_Ot";//애플리케이션 클라이언트 시크릿값";
+    public static int total_num = 0;
+
 
     private ArrayList<String> location_result;
 
@@ -41,7 +45,6 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
         //파서기 시작
         location_result = new ArrayList<String>();
-        StringBuffer sb = new StringBuffer();
         ArrayList<NaverLocationList> naverLocationList = new ArrayList<NaverLocationList>();
 
         try {
@@ -50,10 +53,15 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
             JSONObject jsonObj = new JSONObject(new_response);
 
             JSONArray items = jsonObj.getJSONArray("items");
+            total_num = jsonObj.getInt("total");
+
+            int num = 0;
 
             for (int i = 0; i < items.length(); i++) {
+
                 JSONObject obj = items.getJSONObject(i);
                 name = obj.getString("title");
+                name = Html.fromHtml(name).toString();
                 link = obj.getString("link");
                 description = obj.getString("description");
                 telephone = obj.getString("telephone");
@@ -63,19 +71,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
                 mapy = obj.getInt("mapy");
 
 
-                naverLocationList.add(new NaverLocationList(name, link, description, telephone, address, road_address, mapx, mapy));
-
-
-                sb.append(
-                        "제목: " + name +
-                                "\n링크: " + link +
-                                "\n설명: " + description +
-                                "\n번호: " + telephone +
-                                "\n주소: " + address +
-                                "\n도로주소: " + road_address +
-                                "\nX좌표: " + mapx +
-                                "\nY좌표: " + mapy + "\n\n"
-                );
+                naverLocationList.add(num++, new NaverLocationList(name, link, description, telephone, address, road_address, mapx, mapy));
 
 
             }
@@ -87,7 +83,6 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
 
         //파서기 끝
-        System.out.println(sb.toString());
         return naverLocationList;
 
     }
@@ -108,10 +103,9 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
     public String getJson(String string) {
 
         String response = "";
-        int display = 10;
 
         try {
-
+            int display = 50; //총 결과물 갯수
             String text = URLEncoder.encode(string, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text + "&display=" + display + "&"; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과

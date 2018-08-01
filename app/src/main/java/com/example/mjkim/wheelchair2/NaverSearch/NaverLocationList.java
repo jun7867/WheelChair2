@@ -11,6 +11,7 @@ public class NaverLocationList {
     private int mapx;
     private int mapy;
 
+
     public String getName() { return name; }
 
     public String getLink() { return link; }
@@ -39,4 +40,6 @@ public class NaverLocationList {
         this.mapx = mapx;
         this.mapy = mapy;
     }
+
+
 }
