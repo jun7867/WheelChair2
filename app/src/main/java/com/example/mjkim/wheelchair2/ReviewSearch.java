@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.example.mjkim.wheelchair2.NaverSearch.NaverCurrentLocation;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationSearch;

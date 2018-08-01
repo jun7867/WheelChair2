@@ -1,0 +1,37 @@
+package com.example.mjkim.wheelchair2.NaverSearch;
+
+public class NaverBlogList {
+
+    private String name;
+    private String link;
+    private String description;
+    private String bloggerlink;
+    private String postdate;
+
+
+
+    public String getName() { return name; }
+
+    public String getLink() { return link; }
+
+    public String getDescription() { return description; }
+
+    public String getBloggerlink() { return bloggerlink; }
+
+    public String getPostdate() { return postdate; }
+
+
+
+    public NaverBlogList(){}
+
+    public NaverBlogList(String name, String link, String description, String bloggerlink, String postdate){
+        this.name = name;
+        this.link = link;
+        this.description = description;
+        this.bloggerlink = bloggerlink;
+        this.postdate = postdate;
+
+    }
+
+
+}
