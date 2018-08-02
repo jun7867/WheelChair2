@@ -70,13 +70,26 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/review_b"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
+                <Button
+                    android:id="@+id/current_b"
+                    android:layout_width="1dp"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/review_icon" />
+                    android:background="@drawable/location_marker" />
+
+                <Button
+                    android:id="@+id/review_b"
+                    android:layout_width="5dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/review_icon" />
 
             </LinearLayout>
 
@@ -131,7 +144,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="5"
                     android:paddingRight="10dp"
-                    android:text="도로명 주소"
+                    android:text="전화번호"
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -144,6 +157,22 @@
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/review_line" />
 
+            <ListView
+                android:id="@+id/short_review_list"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:scrollbars="none" />
+
+            <ImageButton
+                android:id="@+id/reviewmore_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"
+                android:background="#00000000"
+                android:paddingRight="20dp"
+                app:srcCompat="@drawable/see_more" />
+
             <ImageView
                 android:id="@+id/blog_line"
                 android:layout_width="match_parent"
@@ -151,6 +180,12 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/blog_line" />
+
+            <ListView
+                android:id="@+id/short_blog_list"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:scrollbars="none" />
 
             <ImageButton
                 android:id="@+id/blogmore_b"
@@ -162,10 +197,6 @@
                 android:paddingRight="20dp"
                 app:srcCompat="@drawable/see_more" />
 
-            <ListView
-                android:id="@+id/blog_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
 

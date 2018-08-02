@@ -37,6 +37,7 @@ public class NaverBlogSearch extends AsyncTask<String, Void, ArrayList<NaverBlog
         String link;
         String description;
         String bloggerlink;
+        String bloggername;
         String postdate;
 
 
@@ -61,14 +62,15 @@ public class NaverBlogSearch extends AsyncTask<String, Void, ArrayList<NaverBlog
                 name = obj.getString("title");
                 name = Html.fromHtml(name).toString();
                 link = obj.getString("link");
+                link = Html.fromHtml(link).toString();
                 description = obj.getString("description");
+                description = Html.fromHtml(description).toString();
                 bloggerlink = obj.getString("bloggerlink");
+                bloggername = obj.getString("bloggername");
                 postdate = obj.getString("postdate");
 
 
-                naverBlogLists.add(num++, new NaverBlogList(name, link, description, bloggerlink, postdate));
-
-
+                naverBlogLists.add(num++, new NaverBlogList(name, link, description, bloggerlink,bloggername, postdate));
             }
 
 
@@ -100,7 +102,7 @@ public class NaverBlogSearch extends AsyncTask<String, Void, ArrayList<NaverBlog
         String response = "";
 
         try {
-            display = 5; //총 결과물 갯수
+            display = 20; //총 결과물 갯수
             String text = URLEncoder.encode(string, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text + "&display=" + display + "&"; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과

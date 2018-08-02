@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogSearch;
+import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationSearch;
 
@@ -18,17 +21,13 @@ public class BlogSearch extends AppCompatActivity {
 
     ImageButton back_button;
     ImageButton menu_button;
-    String blog_name;
-    public static ArrayList<NaverBlogList> bloglist;       // 네이버 지역 리스트
-    private NaverBlogSearch naverBlogSearch;
+    private NaverBlogAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_search);
 
-        bloglist = new ArrayList<NaverBlogList>();
-        naverBlogSearch = new NaverBlogSearch();
 
         //버튼 선언
         back_button = (ImageButton)findViewById(R.id.back_b);
@@ -48,17 +47,17 @@ public class BlogSearch extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-
-        blog_name = intent.getExtras().getString("BLOGNAME");
-
+        NaverBlogAdapter.select = 0;
 
 
 
-        try {
-            bloglist = naverBlogSearch.execute(blog_name).get();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        ListView lv = (ListView) findViewById(R.id.blog_list);
+
+
+        adapter = new NaverBlogAdapter(BlogSearch.this, ReviewDetail.bloglist);
+        lv.setAdapter(adapter);
+
+
 
 
 
