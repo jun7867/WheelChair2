@@ -69,7 +69,6 @@ public class FirstScreen extends AppCompatActivity {
             }
         });
 
-        backPressCloseHandler = new BackPressCloseHandler(this);
 
         mAuth=FirebaseAuth.getInstance();
   //      mTextMessage=(TextView)findViewById(R.id.message);
@@ -77,17 +76,17 @@ public class FirstScreen extends AppCompatActivity {
   //      navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
-    //로그인 되어있으면 currentUser 변수에 유저정보 할당. 아닌경우 login 페이지로 이동!
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        currentUser = mAuth.getCurrentUser();
-        if(currentUser == null){
-            startActivity(new Intent(FirstScreen.this, LoginScreen.class));
-            finish();
-        }
-    }
+//    //로그인 되어있으면 currentUser 변수에 유저정보 할당. 아닌경우 login 페이지로 이동!
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        currentUser = mAuth.getCurrentUser();
+//        if(currentUser == null){
+//            startActivity(new Intent(FirstScreen.this, LoginScreen.class));
+//            finish();
+//        }
+//    }
 
 
     public void onClick(View view){
@@ -113,10 +112,6 @@ public class FirstScreen extends AppCompatActivity {
     public void openLoginTab(){
         Intent intent = new Intent(this, LoginScreen.class);
         startActivity(intent);
-    }
-
-    public void onBackPressed(){
-        backPressCloseHandler.onBackPressed();
     }
 
 

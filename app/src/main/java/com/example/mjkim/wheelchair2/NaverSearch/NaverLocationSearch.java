@@ -73,7 +73,6 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
                 naverLocationList.add(num++, new NaverLocationList(name, link, description, telephone, address, road_address, mapx, mapy));
 
-
             }
 
 
