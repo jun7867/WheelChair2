@@ -19,6 +19,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.mjkim.wheelchair2.Convert.GeoTrans;
+import com.example.mjkim.wheelchair2.Convert.GeoTransPoint;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -137,11 +139,25 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
 //        boxMap.setVisibility(View.VISIBLE);
 
 
+        //선택한 장소 맵으로 보이기 (좌표를 불러온다)
 
-//        LatLng HGU = new LatLng(36.103245, 129.388664);
-//
-//        googleMap.addMarker(new MarkerOptions().position(HGU).title("HGU"));
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(HGU, 12));
+        Intent map_intent = getIntent();
+
+        GeoTransPoint oKA = new GeoTransPoint(map_intent.getExtras().getInt("MAPX"), map_intent.getExtras().getInt("MAPY"));
+        GeoTransPoint oGeo = GeoTrans.convert(GeoTrans.KATEC, GeoTrans.GEO, oKA);
+
+
+        double lat = oGeo.getY();
+
+        double lng = oGeo.getX();
+
+
+
+
+        LatLng location = new LatLng(lat, lng);
+
+        googleMap.addMarker(new MarkerOptions().position(location).title(map_intent.getExtras().getString("NAME")));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 18));
     }
 
     //나의 위치 요청

@@ -3,4 +3,14 @@
     <string name="hello">Hello World, NMapViewer!</string>
     <string name="str_done">완료</string>
     <string name="NAVER_CLIENT_ID">N2qSBJ_r4RNYczKPYnHJ</string>
+    <string name="title_activity_nivigation">NivigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">831297513744990</string>
+    <string name="fb_login_protocol_scheme">fb831297513744990</string>
+
 </resources>

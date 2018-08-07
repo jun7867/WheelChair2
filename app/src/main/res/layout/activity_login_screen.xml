@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MenuScreen">
+    tools:context=".MenuScreen"
+    >
 
     <EditText
         android:id="@+id/id_text"
@@ -79,7 +80,12 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
         app:srcCompat="@drawable/or" />
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    </com.google.android.gms.common.SignInButton>
     <Button
         android:id="@+id/login_btn_google"
         android:padding="10dp"
@@ -95,8 +101,16 @@
         android:layout_height="wrap_content"
         android:background="#84c0eaef"
         android:layout_marginTop="10dp"
-        android:text="로그인 없이 사용하기."/>
+        android:text="로그인 없이 사용하기."
+        android:layout_marginBottom="15dp"/>
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebook"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+    </com.facebook.login.widget.LoginButton>
 
 
 </LinearLayout>

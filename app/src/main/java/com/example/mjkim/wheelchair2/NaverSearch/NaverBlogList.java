@@ -6,6 +6,7 @@ public class NaverBlogList {
     private String link;
     private String description;
     private String bloggerlink;
+    private String bloggername;
     private String postdate;
 
 
@@ -20,15 +21,18 @@ public class NaverBlogList {
 
     public String getPostdate() { return postdate; }
 
+    public String getBloogername() { return bloggername; }
+
 
 
     public NaverBlogList(){}
 
-    public NaverBlogList(String name, String link, String description, String bloggerlink, String postdate){
+    public NaverBlogList(String name, String link, String description, String bloggerlink, String bloggername ,String postdate){
         this.name = name;
         this.link = link;
         this.description = description;
         this.bloggerlink = bloggerlink;
+        this.bloggername = bloggername;
         this.postdate = postdate;
 
     }
