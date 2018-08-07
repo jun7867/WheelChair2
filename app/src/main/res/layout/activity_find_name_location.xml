@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NaverMapActivity">
+    tools:context=".FindNameLocationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:text="주변으로 검색"
+            android:text="이름으로 검색"
             android:textSize="30dp"
             android:visibility="visible"/>
 
@@ -52,25 +52,8 @@
         android:layout_height="606dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/currentLocationButton"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="450dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/current_location_image"
-            android:onClick="gpsClick" />
-
-
-        <!--<fragment-->
-            <!--android:id="@+id/map"-->
-            <!--android:name="com.nhn.android.maps.NMapView"-->
-
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="2" />-->
         <com.nhn.android.maps.NMapView
-            android:id="@+id/mapLayout"
+            android:id="@+id/mapNameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

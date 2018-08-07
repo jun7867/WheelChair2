@@ -48,7 +48,6 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
         setContentView(R.layout.activity_google_map);
 
         getAppKeyHash();
-
 //        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 //        supportMapFragment.getMapAsync(this);
 
@@ -128,10 +127,10 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
         LatLng myPosition = new LatLng(mLatitude , mLongitude);
 
         //내위치 마커
-        googleMap.addMarker(new MarkerOptions().position(myPosition).title("Current Position"));
+        googleMap.addMarker(new MarkerOptions().position(myPosition).title("내 위치"));
 
         //화면중앙의 위치와 카메라 줌비율
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 12));
+        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13));
 
 
 

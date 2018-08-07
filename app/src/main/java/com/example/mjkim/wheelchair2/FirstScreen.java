@@ -1,8 +1,11 @@
 package com.example.mjkim.wheelchair2;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,6 +17,7 @@ import com.example.mjkim.wheelchair2.Login.LoginScreen;
 import com.example.mjkim.wheelchair2.Login.User;
 import com.example.mjkim.wheelchair2.Login.UserImformationActivity;
 import com.example.mjkim.wheelchair2.naver_map_fragment.FragmentMapActivity;
+import com.nhn.android.maps.NMapLocationManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,6 +28,10 @@ public class FirstScreen extends AppCompatActivity {
     ImageButton menu_button;
     ImageButton login_button;
     private BackPressCloseHandler backPressCloseHandler;
+
+
+    private LocationManager locationManager;
+
     private FirebaseAuth mAuth; // 이메일 비밀번호 로그인 모듈변수
     private FirebaseUser currentUser; //로그인 된 유저정보 변수
     private TextView mTextMessage;
@@ -71,6 +79,8 @@ public class FirstScreen extends AppCompatActivity {
             }
         });
 
+        backPressCloseHandler = new BackPressCloseHandler(this);
+
 
         mAuth=FirebaseAuth.getInstance();
   //      mTextMessage=(TextView)findViewById(R.id.message);
@@ -93,7 +103,7 @@ public class FirstScreen extends AppCompatActivity {
 
     public void onClick(View view){
         if(view.getId()== R.id.surround_b){
-            Intent intent=new Intent(this,NaverMapActivity.class);
+            Intent intent=new Intent(this,FindNearLocationActivity.class);
             startActivity(intent);
         }
         if(view.getId()== R.id.name_b){
