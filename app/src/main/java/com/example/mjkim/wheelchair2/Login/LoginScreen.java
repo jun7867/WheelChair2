@@ -51,7 +51,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
     private GoogleApiClient mGoogleApiClient;
     private FirebaseUser currentUser;
     private BackPressCloseHandler backPressCloseHandler;
-
+    private FirebaseAuth.AuthStateListener mAuthListener;
     Button pass_btn;  // 로그인없이 이동.
     Button login_btn_google; //구글 로그인 버튼
     Button createUser;  // 회원가입버튼
@@ -59,7 +59,8 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
     EditText pwTxt; // 비밀번호 텍스트
     ImageButton loginEmail;
     LoginButton loginButton;
-     CallbackManager mCallbackManager;
+    CallbackManager mCallbackManager;
+    public static int save = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +84,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                 String email=emailTxt.getText().toString();
                 String password=pwTxt.getText().toString();
 
-                loginStart(email,password); // 성공했을때 감사리스트 메인페이지로 보냄.
+                loginStart(email,password); // 성공했을때 메인페이지로 보냄.
             }
         });
         //구글 로그인 버튼을 눌렀을때
@@ -99,6 +100,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
         pass_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                save = 0;
                 Intent intent=new Intent(LoginScreen.this,FirstScreen.class);
                 startActivity(intent);
             }
@@ -156,6 +158,18 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
             }
         });
 
+
+        mAuthListener=new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user= firebaseAuth.getCurrentUser();
+                if(user!=null){  //
+
+                }else{
+
+                }
+            }
+        };
     }
     public void loginStart(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -175,7 +189,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                     }
                 } else {
 
-
+                    save = 0;
                     currentUser = mAuth.getCurrentUser();
 
                     Toast.makeText(LoginScreen.this, "로그인 성공", Toast.LENGTH_SHORT).show();
@@ -219,7 +233,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(LoginScreen.this,"구글 로그인완료.",Toast.LENGTH_SHORT).show();
-
+                            save = 1;
                             Intent intent=new Intent(LoginScreen.this, FirstScreen.class);
                             startActivity(intent);
                             updateUI(user);
@@ -248,6 +262,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(LoginScreen.this,"페이스북 로그인 성공",Toast.LENGTH_SHORT).show();
+                            save = 1;
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             Intent intent=new Intent(LoginScreen.this,FirstScreen.class); // 로그인 성공시 페이지 이동.
@@ -280,16 +295,17 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
     public void onBackPressed(){
         backPressCloseHandler.onBackPressed();
     }
-    //로그아웃 안했으면, 즉 로그인 되어있으면 자동으로 메인페이지로 이동시키기
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            startActivity(new Intent(LoginScreen.this, FirstScreen.class));
-//            finish();
-//        }
-//    }
+//    로그아웃 안했으면, 즉 로그인 되어있으면 자동으로 메인페이지로 이동시키기
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            save = 1;
+            startActivity(new Intent(LoginScreen.this, FirstScreen.class));
+            finish();
+        }
+    }
 
 }
