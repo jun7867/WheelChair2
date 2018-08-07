@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.mjkim.wheelchair2.Login.LoginScreen;
 import com.example.mjkim.wheelchair2.Login.User;
+import com.example.mjkim.wheelchair2.Login.UserImformationActivity;
 import com.example.mjkim.wheelchair2.naver_map_fragment.FragmentMapActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -64,7 +65,8 @@ public class FirstScreen extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                openLoginTab();
+                if(LoginScreen.save == 0) openLoginTab();
+                else if(LoginScreen.save == 1) openUserTab();
 
             }
         });
@@ -111,6 +113,11 @@ public class FirstScreen extends AppCompatActivity {
 
     public void openLoginTab(){
         Intent intent = new Intent(this, LoginScreen.class);
+        startActivity(intent);
+    }
+
+    public void openUserTab(){
+        Intent intent = new Intent(this, UserImformationActivity.class);
         startActivity(intent);
     }
 

@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
-
+// 회원가입하는 액티비티
 public class EmailActivity extends AppCompatActivity {
     private EditText email;
     private EditText name;
