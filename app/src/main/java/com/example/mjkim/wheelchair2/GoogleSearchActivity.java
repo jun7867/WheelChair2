@@ -30,7 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.security.MessageDigest;
 
-public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class GoogleSearchActivity extends AppCompatActivity implements OnMapReadyCallback {
     //상단 버튼
     ImageButton back_button;
     ImageButton menu_button;
@@ -45,7 +45,7 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google_map);
+        setContentView(R.layout.activity_google_search);
 
         getAppKeyHash();
 
@@ -57,12 +57,12 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
         locationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
 
         //GPS가 켜져있는지 체크
-        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Intent intent1 = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            intent1.addCategory(Intent.CATEGORY_DEFAULT);
-            startActivity(intent1);
-            finish();
-        }
+//        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+//            Intent intent1 = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//            intent1.addCategory(Intent.CATEGORY_DEFAULT);
+//            startActivity(intent1);
+//            finish();
+//        }
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         menu_button = (ImageButton)findViewById(R.id.menu_b);
@@ -82,21 +82,21 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
         });
 
         //마시멜로 이상이면 권한 요청하기
-        if(Build.VERSION.SDK_INT >= 23){
-            //권한이 없는 경우
-            if(ContextCompat.checkSelfPermission(GoogleMapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(GoogleMapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(GoogleMapActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION , Manifest.permission.ACCESS_FINE_LOCATION} , 1);
-            }
-            //권한이 있는 경우
-            else{
-                requestMyLocation();
-            }
-        }
-        //마시멜로 아래
-        else{
-            requestMyLocation();
-        }
+//        if(Build.VERSION.SDK_INT >= 23){
+//            //권한이 없는 경우
+//            if(ContextCompat.checkSelfPermission(GoogleSearchActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+//                    ContextCompat.checkSelfPermission(GoogleSearchActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+//                ActivityCompat.requestPermissions(GoogleSearchActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION , Manifest.permission.ACCESS_FINE_LOCATION} , 1);
+//            }
+//            //권한이 있는 경우
+//            else{
+//                requestMyLocation();
+//            }
+//        }
+//        //마시멜로 아래
+//        else{
+//            requestMyLocation();
+//        }
 
     }
 
@@ -161,45 +161,45 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     //나의 위치 요청
-    public void requestMyLocation(){
-        if(ContextCompat.checkSelfPermission(GoogleMapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(GoogleMapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            return;
-        }
-        //요청
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 10, locationListener);
-    }
-
-    //위치정보 구하기 리스너
-    LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            if(ContextCompat.checkSelfPermission(GoogleMapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(GoogleMapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                return;
-            }
-            //나의 위치를 한번만 가져오기 위해
-            locationManager.removeUpdates(locationListener);
-
-            //위도 경도
-            mLatitude = location.getLatitude();   //위도
-            mLongitude = location.getLongitude(); //경도
-
-            //맵생성
-            SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
-            //콜백클래스 설정
-            mapFragment.getMapAsync(GoogleMapActivity.this);
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) { Log.d("gps", "onStatusChanged"); }
-
-        @Override
-        public void onProviderEnabled(String provider) { }
-
-        @Override
-        public void onProviderDisabled(String provider) { }
-    };
+//    public void requestMyLocation(){
+//        if(ContextCompat.checkSelfPermission(GoogleSearchActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+//                ContextCompat.checkSelfPermission(GoogleSearchActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+//            return;
+//        }
+//        //요청
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 10, locationListener);
+//    }
+//
+//    //위치정보 구하기 리스너
+//    LocationListener locationListener = new LocationListener() {
+//        @Override
+//        public void onLocationChanged(Location location) {
+//            if(ContextCompat.checkSelfPermission(GoogleSearchActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+//                    ContextCompat.checkSelfPermission(GoogleSearchActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+//                return;
+//            }
+//            //나의 위치를 한번만 가져오기 위해
+//            locationManager.removeUpdates(locationListener);
+//
+//            //위도 경도
+//            mLatitude = location.getLatitude();   //위도
+//            mLongitude = location.getLongitude(); //경도
+//
+//            //맵생성
+//            SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
+//            //콜백클래스 설정
+//            mapFragment.getMapAsync(GoogleSearchActivity.this);
+//        }
+//
+//        @Override
+//        public void onStatusChanged(String provider, int status, Bundle extras) { Log.d("gps", "onStatusChanged"); }
+//
+//        @Override
+//        public void onProviderEnabled(String provider) { }
+//
+//        @Override
+//        public void onProviderDisabled(String provider) { }
+//    };
 
 
     //설정메뉴로 가기
