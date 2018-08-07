@@ -67,12 +67,19 @@ public class ReviewDetail extends AppCompatActivity {
             }
         });
 
+        review_button = (Button) findViewById(R.id.review_b);
+        review_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openReviewTab();
+            }
+        });
+
         bloglist = new ArrayList<NaverBlogList>();
         naverBlogSearch = new NaverBlogSearch();
 
         Intent intent = getIntent();
 
-        NaverBlogAdapter.select = 1;
+
 
         try {
             bloglist = naverBlogSearch.execute(intent.getExtras().getString("NAME")).get();
@@ -80,6 +87,7 @@ public class ReviewDetail extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        NaverBlogAdapter.select = 1;
 
         ListView lv = (ListView) findViewById(R.id.short_blog_list);
 
@@ -124,9 +132,15 @@ public class ReviewDetail extends AppCompatActivity {
     }
 
     public void openMapSearch(){
-        Intent intent = new Intent(this, GoogleMapActivity.class);
+        Intent intent = new Intent(this, GoogleSearchActivity.class);
+        intent.putExtra("NAME", name);
         intent.putExtra("MAPX", mapx);
         intent.putExtra("MAPY", mapy);
+        startActivity(intent);
+    }
+
+    public void openReviewTab(){
+        Intent intent = new Intent(this, ReviewScreen.class);
         startActivity(intent);
     }
 

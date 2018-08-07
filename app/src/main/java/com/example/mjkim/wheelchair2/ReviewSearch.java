@@ -90,12 +90,6 @@ public class ReviewSearch extends AppCompatActivity implements AbsListView.OnScr
 
 
 
-        //for( i = 0; i < 10; i++){
-        //    if(i >= naverLocationSearch.total_num) break;
-        //    naverLocationLists.add(arrayresult.get(i));
-        //}
-
-
 
         adapter = new NaverLocationAdapter(ReviewSearch.this, arrayresult);
         lv.setAdapter(adapter);
