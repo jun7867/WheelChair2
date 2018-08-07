@@ -43,7 +43,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void searchClick(View v){
-        Intent intent = new Intent(this, GoogleMapActivity.class);
+        Intent intent = new Intent(this, FindNameLocationActivity.class);
         startActivity(intent);
     }
 }
