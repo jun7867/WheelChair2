@@ -75,7 +75,7 @@ public class NameSearchActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ListView lv = (ListView) findViewById(R.id.location_list);
+        ListView lv = (ListView) findViewById(R.id.review_location_list);
 
 
         adapter = new NaverLocationAdapter(NameSearchActivity.this, arrayresult);

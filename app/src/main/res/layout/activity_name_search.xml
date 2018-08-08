@@ -84,7 +84,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/location_list"
+            android:id="@+id/review_location_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/progressBar"
