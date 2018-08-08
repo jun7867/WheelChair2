@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.mjkim.wheelchair2.Review.ReviewData;
 import com.example.mjkim.wheelchair2.Review.ReviewList;
 
 import java.io.File;
@@ -27,12 +28,13 @@ public class ReviewScreen extends AppCompatActivity {
     private static final int pick_from_camera = 0;
     private static final int pick_from_album = 1;
     private int id_view;
-    public static ReviewList reviewList = new ReviewList();
+    public ReviewList reviewList = new ReviewList();
+    ReviewData reviewData = new ReviewData();
 
 
-    float rating;
+    double rating;
     //Boolean tag[] = new Boolean[6];
-    int tag[] = new int[6];
+    Boolean tag1,tag2,tag3,tag4,tag5,tag6;
     String review;
 
 
@@ -88,9 +90,6 @@ public class ReviewScreen extends AppCompatActivity {
 
 
 
-
-
-
     }
 
 
@@ -133,25 +132,32 @@ public class ReviewScreen extends AppCompatActivity {
 
     public void onFinish(View view){
 
+        Intent review_intent = getIntent();
+
+        String name = review_intent.getExtras().getString("NAME");
+        double mapx = (double)review_intent.getExtras().getInt("MAPX");
+        double mapy = (double)review_intent.getExtras().getInt("MAPY");
+
         //리뷰 문장 받아오기
         review = review_text.getText().toString();
 
-        for(int i = 0; i < 6; i++){
-            if(chk[i].isChecked() == true) tag[i] = 1;
-            else tag[i] = 0;
-        }
+        if(chk[0].isChecked() == true) tag1 = true; else tag1 = false;
+        if(chk[1].isChecked() == true) tag2 = true; else tag2 = false;
+        if(chk[2].isChecked() == true) tag3 = true; else tag3 = false;
+        if(chk[3].isChecked() == true) tag4 = true; else tag4 = false;
+        if(chk[4].isChecked() == true) tag5 = true; else tag5 = false;
+        if(chk[5].isChecked() == true) tag6 = true; else tag6 = false;
 
-        reviewList = new ReviewList(rating, tag, review);
+
+        reviewList = new ReviewList(rating, tag1,tag2,tag3,tag4,tag5,tag6, review,mapx,mapy);
 
 
-        Toast.makeText(this, "리뷰가 등록되었습니다 " + rating
-                + tag[0]
-                + tag[1]
-                + tag[2]
-                + tag[3]
-                + tag[4]
-                + tag[5]
-                + review, Toast.LENGTH_SHORT).show();
+        reviewData.saveData(name, reviewList);
+
+
+
+
+        Toast.makeText(this, "리뷰가 등록되었습니다 ", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, FirstScreen.class);
         startActivity(intent);
 
