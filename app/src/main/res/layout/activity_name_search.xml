@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ReviewSearch">
+    tools:context=".NameSearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:text="검색"
+            android:text="이름으로 검색"
             android:textSize="30dp" />
 
         <ImageButton
@@ -84,7 +84,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/reivew_location_list"
+            android:id="@+id/location_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/progressBar"

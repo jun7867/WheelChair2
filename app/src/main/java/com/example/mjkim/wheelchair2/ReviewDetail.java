@@ -141,6 +141,9 @@ public class ReviewDetail extends AppCompatActivity {
 
     public void openReviewTab(){
         Intent intent = new Intent(this, ReviewScreen.class);
+        intent.putExtra("NAME", name);
+        intent.putExtra("MAPX", mapx);
+        intent.putExtra("MAPY", mapy);
         startActivity(intent);
     }
 
