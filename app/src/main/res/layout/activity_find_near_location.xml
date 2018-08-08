@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FindNearLocationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#5DCDFF"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:visibility="visible"
+            android:id="@+id/back_b"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/colorAccent"
+            app:srcCompat="@drawable/back_arrow" />
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="235dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="주변으로 검색"
+            android:textSize="30dp"
+            android:visibility="visible"/>
+
+
+        <ImageButton
+            android:visibility="visible"
+            android:id="@+id/menu_b"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/colorAccent"
+            app:srcCompat="@drawable/menu" />
+
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="606dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/currentLocationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:onClick="gpsClick"
+            android:textSize="17dp"
+            android:text="다시검색" />
+
+        <!--<Button-->
+            <!--android:id="@+id/currentLocationButton"-->
+            <!--android:layout_width="45dp"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_marginTop="450dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:background="@drawable/current_location_image"-->
+            <!--android:onClick="gpsClick" />-->
+
+
+        <!--<fragment-->
+            <!--android:id="@+id/map"-->
+            <!--android:name="com.nhn.android.maps.NMapView"-->
+
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="2" />-->
+        <com.nhn.android.maps.NMapView
+            android:id="@+id/mapNearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </FrameLayout>
+
+</LinearLayout>

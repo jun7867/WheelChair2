@@ -7,9 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-feature android:name="android.hardware.camera2" android:required="true"/>
-
-
 
     <application
         android:allowBackup="true"
@@ -26,23 +23,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FirstScreen" />
-        <activity android:name=".MenuScreen" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".GoogleMapActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDuH8fcKX1vkp-2x7K4hZcLrS_-llzAkws" />
 
+
+        <activity android:name=".FirstScreen" />
+        <activity android:name=".MenuScreen" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".GoogleMapActivity" />
         <activity android:name=".PictogramActivity" />
-        <activity android:name=".NaverMapActivity" />
+        <activity android:name=".FindNearLocationActivity" />
         <activity android:name=".ReviewSearch" />
         <activity android:name=".naver_map_fragment.FragmentMapActivity" />
         <activity android:name=".ReviewDetail" />
         <activity android:name=".BlogSearch" />
         <activity android:name=".Login.LoginScreen" />
         <activity android:name=".Login.EmailActivity" />
+        <activity android:name=".FindNameLocationActivity" />
+        <activity android:name=".Review.ReviewActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -64,7 +64,7 @@
         </activity>
         <activity android:name=".BlogDetail" />
         <activity android:name=".GoogleSearchActivity" />
-        <activity android:name=".ReviewScreen"></activity>
+        <activity android:name=".ReviewScreen" />
         <activity android:name=".Login.UserImformationActivity" />
     </application>
 

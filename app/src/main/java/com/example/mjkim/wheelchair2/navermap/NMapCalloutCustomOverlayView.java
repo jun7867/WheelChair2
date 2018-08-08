@@ -26,7 +26,7 @@ import com.nhn.android.maps.NMapOverlayItem;
 import com.nhn.android.maps.overlay.NMapPOIitem;
 
 public class NMapCalloutCustomOverlayView extends NMapCalloutOverlayView {
-
+	private NMapCalloutCustomOverlayView mapCalloutCustomOverlayView;
 	private View mCalloutView;
 	private TextView mCalloutText;
 	private View mRightArrow;
@@ -62,5 +62,4 @@ public class NMapCalloutCustomOverlayView extends NMapCalloutOverlayView {
 			}
 		}
 	};
-
 }
