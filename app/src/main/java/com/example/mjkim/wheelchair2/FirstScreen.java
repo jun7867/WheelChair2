@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mjkim.wheelchair2.Login.LoginScreen;
 import com.example.mjkim.wheelchair2.Login.User;
@@ -107,12 +108,13 @@ public class FirstScreen extends AppCompatActivity {
             startActivity(intent);
         }
         if(view.getId()== R.id.name_b){
-            Intent intent=new Intent(this,SearchActivity.class);
+            Intent intent=new Intent(this,NameSearchActivity.class);
             startActivity(intent);
         }
         if(view.getId() == R.id.review_b){
             Intent intent=new Intent(this,ReviewSearch.class);
-            startActivity(intent);
+            if(LoginScreen.save == 0) Toast.makeText(this, "로그인후 이용해주세요", Toast.LENGTH_SHORT).show();
+            else if(LoginScreen.save == 1) startActivity(intent);
 
         }
     }
