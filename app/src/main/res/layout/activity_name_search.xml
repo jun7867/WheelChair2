@@ -84,18 +84,12 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/location_list"
+            android:id="@+id/review_location_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/progressBar"
             android:layout_weight="1"></ListView>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            tools:visibility="visible" />
 
     </LinearLayout>
 </LinearLayout>

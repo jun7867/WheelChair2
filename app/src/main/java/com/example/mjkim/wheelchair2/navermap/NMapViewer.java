@@ -105,7 +105,7 @@ public class NMapViewer extends NMapActivity {
 		super.onCreate(savedInstanceState);
 
 		if (USE_XML_LAYOUT) {
-			setContentView(R.layout.activity_fragment_map);
+			setContentView(R.layout.activity_find_near_location);
 
 			mMapView = (NMapView)findViewById(R.id.mapNearLayout);
 		} else {

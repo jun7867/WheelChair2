@@ -132,7 +132,7 @@ public class ReviewDetail extends AppCompatActivity {
     }
 
     public void openMapSearch(){
-        Intent intent = new Intent(this, GoogleSearchActivity.class);
+        Intent intent = new Intent(this, WatchLocationActivity.class);
         intent.putExtra("NAME", name);
         intent.putExtra("MAPX", mapx);
         intent.putExtra("MAPY", mapy);

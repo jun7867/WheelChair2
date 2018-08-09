@@ -34,7 +34,7 @@ import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
 
 import java.util.ArrayList;
 
-public class FindNameLocationActivity extends NMapActivity{
+public class WatchLocationActivity extends NMapActivity{
     // gps관련
     double mLatitude, mLongitude;
 
@@ -60,13 +60,13 @@ public class FindNameLocationActivity extends NMapActivity{
 
     //현재위치
     private NMapOverlayManager mOverlayManager;
-    private FindNameLocationActivity.MapContainerView mMapContainerView;
+    private WatchLocationActivity.MapContainerView mMapContainerView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_name_location);
+        setContentView(R.layout.activity_watch_location);
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         menu_button = (ImageButton)findViewById(R.id.menu_b);
@@ -85,7 +85,7 @@ public class FindNameLocationActivity extends NMapActivity{
             }
         });
 
-        mapNearLayout = findViewById(R.id.mapNameLayout);
+        mapNearLayout = findViewById(R.id.mapWatchLayout);
 
 
         //네이버지도 객체 생성
@@ -116,9 +116,14 @@ public class FindNameLocationActivity extends NMapActivity{
         // 기본 위치(포항시청)
         mMapController.setMapCenter(129.343422, 36.019178, 11);
 
-
         goToLocation();
+    }
 
+
+    //설정메뉴로 가기
+    public void openMenuTab() {
+        Intent intent2 = new Intent(this, MenuScreen.class);
+        startActivity(intent2);
     }
 
 
@@ -145,12 +150,6 @@ public class FindNameLocationActivity extends NMapActivity{
 
     }
 
-
-    //설정메뉴로 가기
-    public void openMenuTab(){
-        Intent intent2 = new Intent(this, MenuScreen.class);
-        startActivity(intent2);
-    }
 
 
     private NMapPOIdataOverlay.OnStateChangeListener onPOIdataStateChangeListener = new NMapPOIdataOverlay.OnStateChangeListener() {
@@ -315,7 +314,7 @@ public class FindNameLocationActivity extends NMapActivity{
 
                     if (countOfOverlappedItems > 1) {
                         String text = countOfOverlappedItems + " overlapped items for " + overlayItem.getTitle();
-                        Toast.makeText(FindNameLocationActivity.this, text, Toast.LENGTH_LONG).show();
+                        Toast.makeText(WatchLocationActivity.this, text, Toast.LENGTH_LONG).show();
                         return null;
                     }
                 }

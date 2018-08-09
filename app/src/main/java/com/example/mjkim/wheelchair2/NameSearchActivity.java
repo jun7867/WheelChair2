@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.example.mjkim.wheelchair2.NameSearch.NameLocationAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationSearch;
@@ -24,7 +25,7 @@ public class NameSearchActivity extends AppCompatActivity {
     public static ArrayList<NaverLocationList> arrayresult;       // 네이버 지역 리스트
     ArrayList<NaverLocationList> naverLocationLists = new ArrayList<NaverLocationList>();
     private NaverLocationSearch naverLocationSearch;
-    private NaverLocationAdapter adapter;            // 리스트뷰의 네이버지역검색 아답터
+    private NameLocationAdapter adapter;            // 리스트뷰의 네이버지역검색 아답터
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +76,10 @@ public class NameSearchActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ListView lv = (ListView) findViewById(R.id.location_list);
+        ListView lv = (ListView) findViewById(R.id.review_location_list);
 
 
-        adapter = new NaverLocationAdapter(NameSearchActivity.this, arrayresult);
+        adapter = new NameLocationAdapter(NameSearchActivity.this, arrayresult);
         lv.setAdapter(adapter);
     }
 

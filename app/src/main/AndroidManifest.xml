@@ -28,6 +28,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDuH8fcKX1vkp-2x7K4hZcLrS_-llzAkws" />
 
+
         <activity android:name=".FirstScreen" />
         <activity android:name=".MenuScreen" />
         <activity android:name=".SearchActivity" />
@@ -35,12 +36,11 @@
         <activity android:name=".PictogramActivity" />
         <activity android:name=".FindNearLocationActivity" />
         <activity android:name=".ReviewSearch" />
-        <activity android:name=".naver_map_fragment.FragmentMapActivity" />
         <activity android:name=".ReviewDetail" />
         <activity android:name=".BlogSearch" />
         <activity android:name=".Login.LoginScreen" />
         <activity android:name=".Login.EmailActivity" />
-        <activity android:name=".FindNameLocationActivity" />
+        <activity android:name=".WatchLocationActivity" />
         <activity android:name=".Review.ReviewActivity" />
 
         <meta-data
@@ -67,7 +67,9 @@
         <activity android:name=".GoogleSearchActivity" />
         <activity android:name=".ReviewScreen" />
         <activity android:name=".Login.UserImformationActivity" />
-        <activity android:name=".NameSearchActivity"></activity>
+        <activity android:name=".NameSearchActivity" />
+        <activity android:name=".FindNameLocationActivity" />
+        <activity android:name=".WatchLocationActivity" />
     </application>
 
 </manifest>
