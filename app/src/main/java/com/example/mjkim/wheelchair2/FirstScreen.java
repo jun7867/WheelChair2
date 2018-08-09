@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.example.mjkim.wheelchair2.Login.LoginScreen;
 import com.example.mjkim.wheelchair2.Login.User;
 import com.example.mjkim.wheelchair2.Login.UserImformationActivity;
-import com.example.mjkim.wheelchair2.naver_map_fragment.FragmentMapActivity;
-import com.nhn.android.maps.NMapLocationManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

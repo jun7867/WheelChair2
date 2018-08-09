@@ -1,6 +1,5 @@
 package com.example.mjkim.wheelchair2;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,7 +42,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void searchClick(View v){
-        Intent intent = new Intent(this, FindNameLocationActivity.class);
+        Intent intent = new Intent(this, WatchLocationActivity.class);
         startActivity(intent);
     }
 }

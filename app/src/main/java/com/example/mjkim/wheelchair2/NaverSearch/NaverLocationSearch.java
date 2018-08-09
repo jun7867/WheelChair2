@@ -130,7 +130,6 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
             response = temp_response.toString();
 
 
-
         } catch (Exception e) {
         }
         return response;
