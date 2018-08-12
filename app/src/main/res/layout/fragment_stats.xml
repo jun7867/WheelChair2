@@ -30,18 +30,16 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="5"
                     android:paddingLeft="10dp"
-                    android:text="장소 이름"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/address_name"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="5"
                     android:paddingLeft="10dp"
-                    android:text="도로명 주소"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -61,6 +59,7 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:visibility="visible"
                     app:srcCompat="@drawable/phone" />
 
                 <ImageView
@@ -69,6 +68,7 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:visibility="visible"
                     app:srcCompat="@drawable/phone" />
 
                 <ImageView
@@ -77,15 +77,15 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/phone" />
-
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/review_icon" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
@@ -98,13 +98,14 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:text="전화번호"
-                    android:textColor="@android:color/background_dark"
+                    android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/watch_review_text"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
@@ -116,6 +117,7 @@
                     android:id="@+id/write_review_text"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
@@ -123,7 +125,6 @@
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp" />
             </LinearLayout>
-
 
 
         </LinearLayout>
