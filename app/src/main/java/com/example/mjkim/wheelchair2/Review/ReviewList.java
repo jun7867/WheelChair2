@@ -14,9 +14,25 @@ public class ReviewList {
     private String email;
     private double mapx;
     private double mapy;
+    private String imageUrl1;
+    private String imageUrl2;
+    private String imageUrl3;
+
+    public String getImageUrl2() { return imageUrl2; }
+
+    public void setImageUrl2(String imageUrl2) { this.imageUrl2 = imageUrl2; }
+
+    public String getImageUrl3() { return imageUrl3; }
+
+    public void setImageUrl3(String imageUrl3) { this.imageUrl3 = imageUrl3; }
+
+    public String getImageUrl1() { return imageUrl1; }
+
+    public void setImageUrl1(String imageUrl1) { this.imageUrl1 = imageUrl1; }
 
     public double getMapx() {
         return mapx;
+
     }
 
     public void setMapx(double mapx) {

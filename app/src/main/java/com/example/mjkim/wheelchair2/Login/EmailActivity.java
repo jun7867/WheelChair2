@@ -26,8 +26,8 @@ public class EmailActivity extends AppCompatActivity {
     private EditText password;
     private Button signup;
  //   private DialogFragment progressDialog;
-    private FirebaseAuth mAuth; //로그인 변수
-    private FirebaseUser currentUser;  // 정보 담을거.
+    FirebaseAuth mAuth; //로그인 변수
+    FirebaseUser currentUser;  // 정보 담을거.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
