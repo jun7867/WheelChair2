@@ -12,6 +12,7 @@ import com.example.mjkim.wheelchair2.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 public class UserImformationActivity extends AppCompatActivity {
     TextView name;
@@ -20,8 +21,7 @@ public class UserImformationActivity extends AppCompatActivity {
     TextView uid;
     private FirebaseAuth auth;
     Button logout;
-    FirebaseAuth mAuth; // 이메일 비밀번호 로그인 모듈변수
-    private FirebaseUser currentUser; //로그인 된 유저정보 변수
+    FirebaseUser currentUser; //로그인 된 유저정보 변수
     FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
@@ -31,13 +31,14 @@ public class UserImformationActivity extends AppCompatActivity {
         auth= FirebaseAuth.getInstance();
         name=(TextView)findViewById(R.id.nameId);
         email=(TextView)findViewById(R.id.emailId);
-        proId=(TextView)findViewById(R.id.providerId);
-        uid=(TextView)findViewById(R.id.uid);
+//        proId=(TextView)findViewById(R.id.providerId);
+//        uid=(TextView)findViewById(R.id.uid);
         logout=(Button)findViewById(R.id.logout);
         name.setText(auth.getCurrentUser().getDisplayName());
         email.setText(auth.getCurrentUser().getEmail());
-        proId.setText(auth.getCurrentUser().getProviderId());
-        uid.setText(auth.getCurrentUser().getUid());
+
+//        proId.setText(auth.getCurrentUser().getProviderId());
+//        uid.setText(auth.getCurrentUser().getUid());
 
 
         logout.setOnClickListener(new View.OnClickListener() {

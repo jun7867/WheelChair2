@@ -50,6 +50,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseUser currentUser;
+    FirebaseUser user;
     private BackPressCloseHandler backPressCloseHandler;
     private FirebaseAuth.AuthStateListener mAuthListener;
     Button pass_btn;  // 로그인없이 이동.
@@ -231,7 +232,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            user = mAuth.getCurrentUser();
                             Toast.makeText(LoginScreen.this,"구글 로그인완료.",Toast.LENGTH_SHORT).show();
                             save = 1;
                             Intent intent=new Intent(LoginScreen.this, FirstScreen.class);
