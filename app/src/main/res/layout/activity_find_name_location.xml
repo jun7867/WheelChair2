@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FindNameLocationActivity">
+    tools:context=".WatchLocationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,7 +57,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+        <FrameLayout
+            android:id="@+id/fragmentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="bottom"
+            android:visibility="invisible"
+            android:background="@android:color/background_light">
 
+            <fragment
+                android:id="@+id/stats_fragment"
+                android:name="com.example.mjkim.wheelchair2.StatsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:background="@android:color/background_light" />
+
+        </FrameLayout>
     </FrameLayout>
 
 </LinearLayout>

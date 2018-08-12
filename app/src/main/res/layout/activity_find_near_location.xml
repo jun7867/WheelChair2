@@ -13,35 +13,54 @@
         android:background="#5DCDFF"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:visibility="visible"
-            android:id="@+id/back_b"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@color/colorAccent"
-            app:srcCompat="@drawable/back_arrow" />
+            android:layout_weight="2" >
 
-        <TextView
-            android:id="@+id/logo"
+            <ImageButton
+                android:visibility="visible"
+                android:id="@+id/back_b"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/colorAccent"
+                app:srcCompat="@drawable/back_arrow" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="235dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:text="주변으로 검색"
-            android:textSize="30dp"
-            android:visibility="visible"/>
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/logo"
+                android:layout_width="235dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:text="주변으로 검색"
+                android:textSize="30dp"
+                android:visibility="visible" />
+        </LinearLayout>
 
 
-        <ImageButton
-            android:visibility="visible"
-            android:id="@+id/menu_b"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@color/colorAccent"
-            app:srcCompat="@drawable/menu" />
+            android:layout_weight="2" >
+
+            <ImageButton
+                android:id="@+id/menu_b"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/colorAccent"
+                android:visibility="visible"
+                app:srcCompat="@drawable/menu" />
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -83,6 +102,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+
+        <FrameLayout
+            android:id="@+id/fragmentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="bottom"
+            android:visibility="invisible"
+            android:background="@android:color/background_light">
+
+            <fragment
+                android:id="@+id/stats_fragment"
+                android:name="com.example.mjkim.wheelchair2.StatsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:background="@android:color/background_light" />
+
+        </FrameLayout>
 
     </FrameLayout>
 

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyLocationActivity">
+    tools:context=".WatchLocationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,12 +14,12 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:visibility="visible"
             android:id="@+id/back_b"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:background="@color/colorAccent"
-            android:visibility="visible"
             app:srcCompat="@drawable/back_arrow" />
 
         <TextView
@@ -29,11 +29,13 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:text="지도 검색"
+            android:text="장소 정보"
             android:textSize="30dp"
-            android:visibility="visible" />
+            android:visibility="visible"/>
+
 
         <ImageButton
+            android:visibility="visible"
             android:id="@+id/menu_b"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -44,18 +46,18 @@
 
     </LinearLayout>
 
-    <!--<RelativeLayout-->
-    <!--android:id="@+id/boxmap"-->
-    <!--android:visibility="invisible"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2" />
-    <!--</RelativeLayout>-->
+        android:layout_height="606dp"
+        android:orientation="vertical">
+
+        <com.nhn.android.maps.NMapView
+            android:id="@+id/mapWatchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </FrameLayout>
+
 </LinearLayout>

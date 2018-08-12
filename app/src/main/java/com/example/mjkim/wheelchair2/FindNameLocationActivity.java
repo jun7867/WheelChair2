@@ -1,25 +1,29 @@
 package com.example.mjkim.wheelchair2;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mjkim.wheelchair2.Convert.GeoTrans;
+import com.example.mjkim.wheelchair2.Convert.GeoTransPoint;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.navermap.NMapCalloutCustomOldOverlay;
 import com.example.mjkim.wheelchair2.navermap.NMapPOIflagType;
 import com.example.mjkim.wheelchair2.navermap.NMapViewerResourceProvider;
 import com.nhn.android.maps.NMapActivity;
-import com.nhn.android.maps.NMapCompassManager;
 import com.nhn.android.maps.NMapController;
-import com.nhn.android.maps.NMapLocationManager;
 import com.nhn.android.maps.NMapOverlay;
 import com.nhn.android.maps.NMapOverlayItem;
 import com.nhn.android.maps.NMapView;
@@ -29,7 +33,6 @@ import com.nhn.android.maps.overlay.NMapPOIdata;
 import com.nhn.android.maps.overlay.NMapPOIitem;
 import com.nhn.android.mapviewer.overlay.NMapCalloutCustomOverlay;
 import com.nhn.android.mapviewer.overlay.NMapCalloutOverlay;
-import com.nhn.android.mapviewer.overlay.NMapMyLocationOverlay;
 import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
 import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
 import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
@@ -39,6 +42,9 @@ import java.util.ArrayList;
 public class FindNameLocationActivity extends NMapActivity{
     // gps관련
     double mLatitude, mLongitude;
+    TextView t1, t2, t3;
+    FrameLayout fl;
+    String phone;
 
     NMapPOIdataOverlay poiDataOverlay;
 
@@ -72,6 +78,11 @@ public class FindNameLocationActivity extends NMapActivity{
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         menu_button = (ImageButton)findViewById(R.id.menu_b);
+
+        t1 = (TextView)findViewById(R.id.location_name);
+        t2 = (TextView)findViewById(R.id.address_name);
+        t3 = (TextView)findViewById(R.id.telephone_number);
+        fl = (FrameLayout)findViewById(R.id.fragmentLayout);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +119,7 @@ public class FindNameLocationActivity extends NMapActivity{
         mMapView.setOnMapViewTouchEventListener(mapListener);
         mapNearLayout.addView(mMapView);
 
+
         //지도 객체로부터 컨트롤러 추출
         mMapController = mMapView.getMapController();
 
@@ -118,22 +130,35 @@ public class FindNameLocationActivity extends NMapActivity{
         // 기본 위치(포항시청)
         mMapController.setMapCenter(129.343422, 36.019178, 11);
 
-        mLatitude = 126.985192;
-        mLongitude = 37.564271;
+
+        goToLocation();
+
+    }
+
+
+    private void goToLocation() {
+        Intent map_intent = getIntent();
+
+        GeoTransPoint oKA = new GeoTransPoint(map_intent.getExtras().getInt("MAPX"), map_intent.getExtras().getInt("MAPY"));
+        GeoTransPoint oGeo = GeoTrans.convert(GeoTrans.KATEC, GeoTrans.GEO, oKA);
+
+        mLatitude = oGeo.getX();
+        mLongitude = oGeo.getY();
+
         // 지정한 장소 띄우기
         int markerMyId = NMapPOIflagType.PIN;
+//        System.out.println("Latitude = " + mLatitude);
+//        System.out.println("Longitude = " + mLongitude);
 
         NMapPOIdata myPoiData = new NMapPOIdata(1, mMapViewerResourceProvider);
         myPoiData.beginPOIdata(0);
-        myPoiData.addPOIitem(mLatitude, mLongitude, "빕스 명동점", markerMyId, 0);
+        myPoiData.addPOIitem(mLatitude, mLongitude, map_intent.getExtras().getString("NAME"), markerMyId, 0);
         myPoiData.endPOIdata();
         // poi 데이터 띄우기
         poiDataOverlay = mOverlayManager.createPOIdataOverlay(myPoiData, null);
         poiDataOverlay.showAllPOIdata(11);
+        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);
     }
-
-
-
 
 
     //설정메뉴로 가기
@@ -146,209 +171,237 @@ public class FindNameLocationActivity extends NMapActivity{
     private NMapPOIdataOverlay.OnStateChangeListener onPOIdataStateChangeListener = new NMapPOIdataOverlay.OnStateChangeListener() {
         @Override
         public void onFocusChanged(NMapPOIdataOverlay nMapPOIdataOverlay, NMapPOIitem nMapPOIitem) {
+            if (nMapPOIitem != null) {
+                Log.e(TAG, "onFocusChanged: " + nMapPOIitem.toString());
 
+                t1.setText(nMapPOIitem.getTitle());
+                t2.setText(nMapPOIitem.toString());
+                //전화번호 받아오기
+//                t3.setText();
+//                phone = ~~
+
+                //누르면 프래그먼트 뜨기
+                fl.setVisibility(View.VISIBLE);
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.commit();
+
+                //전화번호 누르면 전화켜짐
+//                t3.setOnClickListener(new View.OnClickListener(){
+//                    @Override
+//                    public void onClick(View view){
+//                        Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+//                        startActivity(intent1);
+//                    }
+//                });
+
+            } else {
+                Log.e(TAG, "onFocusChanged: ");
+                fl.setVisibility(View.INVISIBLE);
+            }
         }
 
         @Override
         public void onCalloutClick(NMapPOIdataOverlay nMapPOIdataOverlay, NMapPOIitem nMapPOIitem) {
-            if (nMapPOIitem != null) {
-                Log.e(TAG, "onFocusChanged: " + nMapPOIitem.toString());
-            } else {
-                Log.e(TAG, "onFocusChanged: ");
-            }
+//            if (nMapPOIitem != null) {
+//                Log.e(TAG, "onFocusChanged: " + nMapPOIitem.toString());
+//            } else {
+//                Log.e(TAG, "onFocusChanged: ");
+//            }
         }
+
     };
 
 
-    private NMapView.OnMapStateChangeListener changeListener = new NMapView.OnMapStateChangeListener() {
-        @Override
-        public void onMapInitHandler(NMapView nMapView, NMapError nMapError) {
-            Log.e(TAG, "OnMapStateChangeListener onMapInitHandler : ");
-        }
-
-        @Override
-        public void onMapCenterChange(NMapView nMapView, NGeoPoint nGeoPoint) {
-            Log.e(TAG, "OnMapStateChangeListener onMapCenterChange : " + nGeoPoint.getLatitude() + " ㅡ  " + nGeoPoint.getLongitude());
-        }
-
-        @Override
-        public void onMapCenterChangeFine(NMapView nMapView) {
-            Log.e(TAG, "OnMapStateChangeListener onMapCenterChangeFine : ");
-        }
-
-        @Override
-        public void onZoomLevelChange(NMapView nMapView, int i) {
-            Log.e(TAG, "OnMapStateChangeListener onZoomLevelChange : " + i);
-        }
-
-        @Override
-        public void onAnimationStateChange(NMapView nMapView, int i, int i1) {
-            Log.e(TAG, "OnMapStateChangeListener onAnimationStateChange : ");
-        }
-    };
-
-    private NMapView.OnMapViewTouchEventListener mapListener = new NMapView.OnMapViewTouchEventListener() {
-        @Override
-        public void onLongPress(NMapView nMapView, MotionEvent motionEvent) {
-            Log.e(TAG, "OnMapViewTouchEventListener onLongPress : ");
-        }
-
-        @Override
-        public void onLongPressCanceled(NMapView nMapView) {
-            Log.e(TAG, "OnMapViewTouchEventListener onLongPressCanceled : ");
-        }
-
-        @Override
-        public void onTouchDown(NMapView nMapView, MotionEvent motionEvent) {
-            Log.e(TAG, "OnMapViewTouchEventListener onTouchDown : ");
-        }
-
-        @Override
-        public void onTouchUp(NMapView nMapView, MotionEvent motionEvent) {
-            Log.e(TAG, "OnMapViewTouchEventListener onTouchUp : ");
-        }
-
-        @Override
-        public void onScroll(NMapView nMapView, MotionEvent motionEvent, MotionEvent motionEvent1) {
-            Log.e(TAG, "OnMapViewTouchEventListener onScroll : ");
-        }
-
-        @Override
-        public void onSingleTapUp(NMapView nMapView, MotionEvent motionEvent) {
-            Log.e(TAG, "OnMapViewTouchEventListener onSingleTapUp : ");
-        }
-    };
-
-
-    /**
-     * Container view class to rotate map view.
-     */
-    private class MapContainerView extends ViewGroup {
-
-        public MapContainerView(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-            final int width = getWidth();
-            final int height = getHeight();
-            final int count = getChildCount();
-            for (int i = 0; i < count; i++) {
-                final View view = getChildAt(i);
-                final int childWidth = view.getMeasuredWidth();
-                final int childHeight = view.getMeasuredHeight();
-                final int childLeft = (width - childWidth) / 2;
-                final int childTop = (height - childHeight) / 2;
-                view.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+        private NMapView.OnMapStateChangeListener changeListener = new NMapView.OnMapStateChangeListener() {
+            @Override
+            public void onMapInitHandler(NMapView nMapView, NMapError nMapError) {
+                Log.e(TAG, "OnMapStateChangeListener onMapInitHandler : ");
             }
 
-            if (changed) {
-                mOverlayManager.onSizeChanged(width, height);
+            @Override
+            public void onMapCenterChange(NMapView nMapView, NGeoPoint nGeoPoint) {
+                Log.e(TAG, "OnMapStateChangeListener onMapCenterChange : " + nGeoPoint.getLatitude() + " ㅡ  " + nGeoPoint.getLongitude());
             }
-        }
 
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            int w = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
-            int h = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
-            int sizeSpecWidth = widthMeasureSpec;
-            int sizeSpecHeight = heightMeasureSpec;
+            @Override
+            public void onMapCenterChangeFine(NMapView nMapView) {
+                Log.e(TAG, "OnMapStateChangeListener onMapCenterChangeFine : ");
+            }
 
-            final int count = getChildCount();
-            for (int i = 0; i < count; i++) {
-                final View view = getChildAt(i);
+            @Override
+            public void onZoomLevelChange(NMapView nMapView, int i) {
+                Log.e(TAG, "OnMapStateChangeListener onZoomLevelChange : " + i);
+            }
 
-                if (view instanceof NMapView) {
-                    if (mMapView.isAutoRotateEnabled()) {
-                        int diag = (((int)(Math.sqrt(w * w + h * h)) + 1) / 2 * 2);
-                        sizeSpecWidth = MeasureSpec.makeMeasureSpec(diag, MeasureSpec.EXACTLY);
-                        sizeSpecHeight = sizeSpecWidth;
-                    }
+            @Override
+            public void onAnimationStateChange(NMapView nMapView, int i, int i1) {
+                Log.e(TAG, "OnMapStateChangeListener onAnimationStateChange : ");
+            }
+        };
+
+        private NMapView.OnMapViewTouchEventListener mapListener = new NMapView.OnMapViewTouchEventListener() {
+            @Override
+            public void onLongPress(NMapView nMapView, MotionEvent motionEvent) {
+                Log.e(TAG, "OnMapViewTouchEventListener onLongPress : ");
+            }
+
+            @Override
+            public void onLongPressCanceled(NMapView nMapView) {
+                Log.e(TAG, "OnMapViewTouchEventListener onLongPressCanceled : ");
+            }
+
+            @Override
+            public void onTouchDown(NMapView nMapView, MotionEvent motionEvent) {
+                Log.e(TAG, "OnMapViewTouchEventListener onTouchDown : ");
+            }
+
+            @Override
+            public void onTouchUp(NMapView nMapView, MotionEvent motionEvent) {
+                Log.e(TAG, "OnMapViewTouchEventListener onTouchUp : ");
+            }
+
+            @Override
+            public void onScroll(NMapView nMapView, MotionEvent motionEvent, MotionEvent motionEvent1) {
+                Log.e(TAG, "OnMapViewTouchEventListener onScroll : ");
+            }
+
+            @Override
+            public void onSingleTapUp(NMapView nMapView, MotionEvent motionEvent) {
+                Log.e(TAG, "OnMapViewTouchEventListener onSingleTapUp : ");
+            }
+        };
+
+
+        /**
+         * Container view class to rotate map view.
+         */
+        public class MapContainerView extends ViewGroup {
+
+            public MapContainerView(Context context) {
+                super(context);
+            }
+
+            @Override
+            protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+                final int width = getWidth();
+                final int height = getHeight();
+                final int count = getChildCount();
+                for (int i = 0; i < count; i++) {
+                    final View view = getChildAt(i);
+                    final int childWidth = view.getMeasuredWidth();
+                    final int childHeight = view.getMeasuredHeight();
+                    final int childLeft = (width - childWidth) / 2;
+                    final int childTop = (height - childHeight) / 2;
+                    view.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
                 }
 
-                view.measure(sizeSpecWidth, sizeSpecHeight);
+                if (changed) {
+                    mOverlayManager.onSizeChanged(width, height);
+                }
             }
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        }
-    }
 
+            @Override
+            protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+                int w = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
+                int h = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
+                int sizeSpecWidth = widthMeasureSpec;
+                int sizeSpecHeight = heightMeasureSpec;
 
-    private final NMapOverlayManager.OnCalloutOverlayListener onCalloutOverlayListener = new NMapOverlayManager.OnCalloutOverlayListener() {
+                final int count = getChildCount();
+                for (int i = 0; i < count; i++) {
+                    final View view = getChildAt(i);
 
-        @Override
-        public NMapCalloutOverlay onCreateCalloutOverlay(NMapOverlay itemOverlay, NMapOverlayItem overlayItem,
-                                                         Rect itemBounds) {
-
-            // handle overlapped items
-            if (itemOverlay instanceof NMapPOIdataOverlay) {
-                NMapPOIdataOverlay poiDataOverlay = (NMapPOIdataOverlay)itemOverlay;
-
-                // check if it is selected by touch event
-                if (!poiDataOverlay.isFocusedBySelectItem()) {
-                    int countOfOverlappedItems = 1;
-
-                    NMapPOIdata poiData = poiDataOverlay.getPOIdata();
-                    for (int i = 0; i < poiData.count(); i++) {
-                        NMapPOIitem poiItem = poiData.getPOIitem(i);
-
-                        // skip selected item
-                        if (poiItem == overlayItem) {
-                            continue;
+                    if (view instanceof NMapView) {
+                        if (mMapView.isAutoRotateEnabled()) {
+                            int diag = (((int) (Math.sqrt(w * w + h * h)) + 1) / 2 * 2);
+                            sizeSpecWidth = MeasureSpec.makeMeasureSpec(diag, MeasureSpec.EXACTLY);
+                            sizeSpecHeight = sizeSpecWidth;
                         }
+                    }
+
+                    view.measure(sizeSpecWidth, sizeSpecHeight);
+                }
+                super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            }
+        }
+
+
+        private final NMapOverlayManager.OnCalloutOverlayListener onCalloutOverlayListener = new NMapOverlayManager.OnCalloutOverlayListener() {
+
+            @Override
+            public NMapCalloutOverlay onCreateCalloutOverlay(NMapOverlay itemOverlay, NMapOverlayItem overlayItem,
+                                                             Rect itemBounds) {
+
+                // handle overlapped items
+                if (itemOverlay instanceof NMapPOIdataOverlay) {
+                    NMapPOIdataOverlay poiDataOverlay = (NMapPOIdataOverlay) itemOverlay;
+
+                    // check if it is selected by touch event
+                    if (!poiDataOverlay.isFocusedBySelectItem()) {
+                        int countOfOverlappedItems = 1;
+
+                        NMapPOIdata poiData = poiDataOverlay.getPOIdata();
+                        for (int i = 0; i < poiData.count(); i++) {
+                            NMapPOIitem poiItem = poiData.getPOIitem(i);
+
+                            // skip selected item
+                            if (poiItem == overlayItem) {
+                                continue;
+                            }
 
 //                        // check if overlapped or not
 //                        if (Rect.intersects(poiItem.getBoundsInScreen(), overlayItem.getBoundsInScreen())) {
 //                            countOfOverlappedItems++;
 //                        }
-                    }
+                        }
 
-                    if (countOfOverlappedItems > 1) {
-                        String text = countOfOverlappedItems + " overlapped items for " + overlayItem.getTitle();
-                        Toast.makeText(FindNameLocationActivity.this, text, Toast.LENGTH_LONG).show();
-                        return null;
+                        if (countOfOverlappedItems > 1) {
+                            String text = countOfOverlappedItems + " overlapped items for " + overlayItem.getTitle();
+                            Toast.makeText(FindNameLocationActivity.this, text, Toast.LENGTH_LONG).show();
+                            return null;
+                        }
                     }
                 }
-            }
 
-            // use custom old callout overlay
-            if (overlayItem instanceof NMapPOIitem) {
-                NMapPOIitem poiItem = (NMapPOIitem)overlayItem;
+                // use custom old callout overlay
+                if (overlayItem instanceof NMapPOIitem) {
+                    NMapPOIitem poiItem = (NMapPOIitem) overlayItem;
 
-                if (poiItem.showRightButton()) {
-                    return new NMapCalloutCustomOldOverlay(itemOverlay, overlayItem, itemBounds,
-                            (NMapCalloutCustomOldOverlay.ResourceProvider) mMapViewerResourceProvider);
+                    if (poiItem.showRightButton()) {
+                        return new NMapCalloutCustomOldOverlay(itemOverlay, overlayItem, itemBounds,
+                                (NMapCalloutCustomOldOverlay.ResourceProvider) mMapViewerResourceProvider);
+                    }
                 }
-            }
 
-            // use custom callout overlay
-            return new NMapCalloutCustomOverlay(itemOverlay, overlayItem, itemBounds, mMapViewerResourceProvider);
+                // use custom callout overlay
+                return new NMapCalloutCustomOverlay(itemOverlay, overlayItem, itemBounds, mMapViewerResourceProvider);
 
 //            // set basic callout overlay
 //            return new NMapCalloutBasicOverlay(itemOverlay, overlayItem, itemBounds);
-        }
+            }
 
-    };
+        };
 
-    private final NMapOverlayManager.OnCalloutOverlayViewListener onCalloutOverlayViewListener = new NMapOverlayManager.OnCalloutOverlayViewListener() {
+        private final NMapOverlayManager.OnCalloutOverlayViewListener onCalloutOverlayViewListener = new NMapOverlayManager.OnCalloutOverlayViewListener() {
 
-        @Override
-        public View onCreateCalloutOverlayView(NMapOverlay itemOverlay, NMapOverlayItem overlayItem, Rect itemBounds) {
+            @Override
+            public View onCreateCalloutOverlayView(NMapOverlay itemOverlay, NMapOverlayItem overlayItem, Rect itemBounds) {
 
-            if (overlayItem != null) {
-                // 있으니까 오류떠서 잠금
+                if (overlayItem != null) {
+                    // 있으니까 오류떠서 잠금
 //                // [TEST] 말풍선 오버레이를 뷰로 설정함
 //                String title = overlayItem.getTitle();
 //                if (title != null && title.length() > 5) {
 //                    return new NMapCalloutCustomOverlayView(NaverMapActivity.this, itemOverlay, overlayItem, itemBounds);
 //                }
+                }
+
+                // null을 반환하면 말풍선 오버레이를 표시하지 않음
+                return null;
             }
 
-            // null을 반환하면 말풍선 오버레이를 표시하지 않음
-            return null;
-        }
-
-    };
+        };
 
 
 }

@@ -50,6 +50,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
         try {
 
             String new_response = getJson(strings[0]); //파서할 새로움 response
+            System.out.println(new_response);
             JSONObject jsonObj = new JSONObject(new_response);
 
             JSONArray items = jsonObj.getJSONArray("items");
@@ -130,9 +131,9 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
             response = temp_response.toString();
 
 
-
         } catch (Exception e) {
         }
+
         return response;
     }
 }
