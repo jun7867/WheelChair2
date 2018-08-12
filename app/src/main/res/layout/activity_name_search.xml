@@ -90,6 +90,5 @@
             android:layout_above="@+id/progressBar"
             android:layout_weight="1"></ListView>
 
-
     </LinearLayout>
 </LinearLayout>

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.mjkim.wheelchair2.FindNameLocationActivity;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.R;
+import com.example.mjkim.wheelchair2.Review.ReviewList;
 import com.example.mjkim.wheelchair2.ReviewDetail;
 
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class NameLocationAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private Activity m_activity;
-    private ArrayList<NaverLocationList> arr;
-    public NameLocationAdapter(Activity act, ArrayList<NaverLocationList> arr_item) {
+    private ArrayList<ReviewList> arr;
+    public NameLocationAdapter(Activity act, ArrayList<ReviewList> arr_item) {
         this.m_activity = act;
         arr = arr_item;
         mInflater = (LayoutInflater)m_activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,8 +60,8 @@ public class NameLocationAdapter extends BaseAdapter {
         //imView.setBackgroundResource(resId);
 
         title.setText(arr.get(position).getName());
-        road_address.setText(arr.get(position).getRoad_address());
-        telephone.setText(arr.get(position).getTelephone());
+        //road_address.setText(arr.get(position).getRoad_address());
+        //telephone.setText(arr.get(position).getTelephone());
 
         /*  버튼에 이벤트처리를 하기위해선 setTag를 이용해서 사용할 수 있습니다.
 
@@ -92,14 +93,14 @@ public class NameLocationAdapter extends BaseAdapter {
 
 //putExtra 로 선택한 아이템의 정보를 인텐트로 넘겨 줄 수 있다.
 
-        intent.putExtra("NAME", arr.get(a).getName());
-        intent.putExtra("LINK", arr.get(a).getLink());
-        intent.putExtra("DESCRIPTION", arr.get(a).getDescription());
-        intent.putExtra("ADDRESS", arr.get(a).getAddress());
-        intent.putExtra("ROAD_ADDRESS", arr.get(a).getRoad_address());
-        intent.putExtra("TELEPHONE", arr.get(a).getTelephone());
-        intent.putExtra("MAPX", arr.get(a).getMapx());
-        intent.putExtra("MAPY", arr.get(a).getMapy());
+        //intent.putExtra("NAME", arr.get(a).getName());
+        //intent.putExtra("LINK", arr.get(a).getLink());
+        //intent.putExtra("DESCRIPTION", arr.get(a).getDescription());
+        //intent.putExtra("ADDRESS", arr.get(a).getAddress());
+        //intent.putExtra("ROAD_ADDRESS", arr.get(a).getRoad_address());
+        //intent.putExtra("TELEPHONE", arr.get(a).getTelephone());
+        //intent.putExtra("MAPX", arr.get(a).getMapx());
+        //intent.putExtra("MAPY", arr.get(a).getMapy());
 
         m_activity.startActivity(intent);
 
