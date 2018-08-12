@@ -1,6 +1,8 @@
 package com.example.mjkim.wheelchair2;
 
 import android.Manifest;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,6 +10,7 @@ import android.graphics.Rect;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -16,9 +19,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mjkim.wheelchair2.Convert.GeoTrans;
+import com.example.mjkim.wheelchair2.Convert.GeoTransPoint;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.navermap.NMapCalloutCustomOldOverlay;
 import com.example.mjkim.wheelchair2.navermap.NMapPOIflagType;
@@ -44,6 +51,8 @@ import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
 import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
 import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /*
@@ -57,6 +66,12 @@ public class FindNearLocationActivity extends NMapActivity{
     // gps관련
     double mLatitude, mLongitude;
     LocationManager locationManager;
+    TextView t1, t2, t3;
+    String phone;
+
+    FrameLayout fl;
+//    FragmentManager fm = getFragmentManager();
+//    FragmentTransaction fragmentTransaction = fm.beginTransaction();
 
     NMapPOIdataOverlay poiDataOverlay;
     NMapPOIdataOverlay myPoiDataOverlay;
@@ -97,6 +112,11 @@ public class FindNearLocationActivity extends NMapActivity{
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         menu_button = (ImageButton)findViewById(R.id.menu_b);
+
+        t1 = (TextView)findViewById(R.id.location_name);
+        t2 = (TextView)findViewById(R.id.address_name);
+        t3 = (TextView)findViewById(R.id.telephone_number);
+        fl = (FrameLayout)findViewById(R.id.fragmentLayout);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,20 +165,21 @@ public class FindNearLocationActivity extends NMapActivity{
         Toast.makeText(FindNearLocationActivity.this, "현재 위치를 탐색중입니다. 잠시만 기다려주세요.", Toast.LENGTH_LONG).show();
 
         //내 주변으로 검색
-//        mGeoPoint = setMarkers(findNearLocation2());
-
         mGeoPoint = findNearLocation();
         // 내위치 띄우기
         int markerMyId = NMapPOIflagType.PIN;
 
         NMapPOIdata myPoiData = new NMapPOIdata(1, mMapViewerResourceProvider);
         myPoiData.beginPOIdata(0);
-        myPoiData.addPOIitem(mGeoPoint, "내 위치", markerMyId, 0);
+//        myPoiData.addPOIitem(mGeoPoint, "내 위치", markerMyId, 0);
+        myPoiData.addPOIitem(129.343422,36.019178, "포항시청", markerMyId, 0);
         myPoiData.endPOIdata();
         // poi 데이터 띄우기
         myPoiDataOverlay = mOverlayManager.createPOIdataOverlay(myPoiData, null);
         myPoiDataOverlay.showAllPOIdata(11);
         myPoiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
+
+
 
 
 //        startMyLocation();
@@ -219,23 +240,6 @@ public class FindNearLocationActivity extends NMapActivity{
         startActivity(intent2);
     }
 
-
-
-    private NGeoPoint setMarkers(NMapLocationManager mMapLocationManager) {
-        int markerId = NMapPOIflagType.PIN;
-        // set POI data
-        NMapPOIdata poiData = new NMapPOIdata(2, mMapViewerResourceProvider);
-        poiData.beginPOIdata(0);
-        poiData.addPOIitem(129.398522, 36.082113, "하나로클럽 포항점", markerId, 0);
-        poiData.addPOIitem(129.397848, 36.081324, "바벤", markerId, 1);
-        poiData.endPOIdata();
-
-        NMapPOIdataOverlay poiDataOverlay = mOverlayManager.createPOIdataOverlay(poiData, null);
-        poiDataOverlay.showAllPOIdata(11);
-        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
-
-        return mMapLocationManager.getMyLocation();
-    }
 
     //내 주변으로 검색 기능 메소드
     //1. 내 위치 찾는다 - 되지만 반복해서 내 위치로 돌아감, 갱신을 없애야 함
@@ -310,10 +314,11 @@ public class FindNearLocationActivity extends NMapActivity{
 //        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
 
         int markerId = NMapPOIflagType.PIN;
+        int i = 3;
         // set POI data
-        NMapPOIdata poiData = new NMapPOIdata(3, mMapViewerResourceProvider);
+        NMapPOIdata poiData = new NMapPOIdata(i, mMapViewerResourceProvider);
         poiData.beginPOIdata(0);
-        poiData.addPOIitem(129.397848, 36.081324, "바벤", markerId, 0);
+        poiData.addPOIitem(129.397848, 36.081324, "Baben", markerId, 0);
         poiData.addPOIitem(129.398522, 36.082113, "하나로클럽 포항점", markerId, 1);
         poiData.addPOIitem(129.403934, 36.079803, "양덕초등학교", markerId, 2);
         poiData.endPOIdata();
@@ -323,109 +328,6 @@ public class FindNearLocationActivity extends NMapActivity{
         poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
 
         return mMapLocationManager.getMyLocation();
-
-
-//        // 리뷰단 장소들의 NaverLocationList 어레이리스트로 사용, db에서 받아와야함
-//        mNaverLocationList = new ArrayList<NaverLocationList>();
-//         어레이리스트에 있는 정보로 마커 띄우기
-//        NMapPOIdata poiData = new NMapPOIdata(mNaverLocationList.size(), mMapViewerResourceProvider);
-//        poiData.beginPOIdata(mNaverLocationList.size());
-//        for (int i = 0; i < mNaverLocationList.size(); i++) {
-//            poiData.addPOIitem(mNaverLocationList.get(i).getMapx(), mNaverLocationList.get(i).getMapy(), mNaverLocationList.get(i).getName(), markerId, 0);
-//        }
-//        poiData.endPOIdata();
-//        // create POI data overlay
-//        NMapPOIdataOverlay poiDataOverlay = mOverlayManager.createPOIdataOverlay(poiData, null);
-//        poiDataOverlay.showAllPOIdata(0);
-//        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
-//        mMapController.setMapCenter(mMapLocationManager.getMyLocation(), 12);
-
-//        mGeoPoint = new NGeoPoint(mMapLocationManager.getMyLocation().getLongitude(), mMapLocationManager.getMyLocation().getLatitude());
-    }
-
-    private NMapLocationManager findNearLocation2() {
-        // create overlay manager
-        mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
-        // register callout overlay listener to customize it.
-        mOverlayManager.setOnCalloutOverlayListener(onCalloutOverlayListener);
-        // register callout overlay view listener to customize it.
-        mOverlayManager.setOnCalloutOverlayViewListener(onCalloutOverlayViewListener);
-
-        // location manager
-        mMapLocationManager = new NMapLocationManager(this);
-        mMapLocationManager.setOnLocationChangeListener(onMyLocationChangeListener);
-
-        // compass manager
-        mMapCompassManager = new NMapCompassManager(this);
-
-        // create my location overlay
-        mMyLocationOverlay = mOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager);
-
-        mMapContainerView = new MapContainerView(this);
-
-
-        if (mMyLocationOverlay != null) {
-            if (!mOverlayManager.hasOverlay(mMyLocationOverlay)) {
-                mOverlayManager.addOverlay(mMyLocationOverlay);
-            }
-            //gps 권한있으면 실행
-            if (mMapLocationManager.isMyLocationEnabled()) {
-
-                if (!mMapView.isAutoRotateEnabled()) {
-                    mMyLocationOverlay.setCompassHeadingVisible(true);
-
-                    mMapCompassManager.enableCompass();
-
-                    mMapView.setAutoRotateEnabled(true, false);
-
-                    mMapContainerView.requestLayout();
-                } else {
-                    stopMyLocation();
-                }
-                mMapView.postInvalidate();
-
-                //권한없으면 환경설정 들어감
-            } else {
-                boolean isMyLocationEnabled = mMapLocationManager.enableMyLocation(true);
-                if (!isMyLocationEnabled) {
-                    Toast.makeText(FindNearLocationActivity.this, "환경설정에서 위치 정보 권한을 앱에 부여해주세요.",
-                            Toast.LENGTH_LONG).show();
-
-                    Intent goToSettings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(goToSettings);
-
-                    return null;
-                }
-            }
-        }
-
-//        // 다른 마커 띄우기
-//        int markerLocationId = NMapPOIflagType.SPOT;
-//        NMapPOIdata poiData = new NMapPOIdata(2, mMapViewerResourceProvider);
-//        poiData.beginPOIdata(0);
-//        poiData.addPOIitem(129.398522, 36.082113, "하나로클럽 포항점", markerLocationId, 0);
-//        poiData.addPOIitem(129.397848, 36.081324, "바벤", markerLocationId, 1);
-//        poiData.endPOIdata();
-//        // create POI data overlay
-//        poiDataOverlay = mOverlayManager.createPOIdataOverlay(poiData, null);
-//        poiDataOverlay.showAllPOIdata(11);
-//        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
-
-        ///////////
-//        int markerId = NMapPOIflagType.PIN;
-//        // set POI data
-//        NMapPOIdata poiData = new NMapPOIdata(2, mMapViewerResourceProvider);
-//        poiData.beginPOIdata(0);
-//        poiData.addPOIitem(129.398522, 36.082113, "하나로클럽 포항점", markerId, 0);
-//        poiData.addPOIitem(129.397848, 36.081324, "바벤", markerId, 1);
-//        poiData.endPOIdata();
-//
-//        NMapPOIdataOverlay poiDataOverlay = mOverlayManager.createPOIdataOverlay(poiData, null);
-//        poiDataOverlay.showAllPOIdata(11);
-//        poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
-        ////////////
-        return mMapLocationManager;
-
 
 
 //        // 리뷰단 장소들의 NaverLocationList 어레이리스트로 사용, db에서 받아와야함
@@ -491,18 +393,47 @@ public class FindNearLocationActivity extends NMapActivity{
     }
 
     private NMapPOIdataOverlay.OnStateChangeListener onPOIdataStateChangeListener = new NMapPOIdataOverlay.OnStateChangeListener() {
+        //마커 누르면 작동
         @Override
         public void onFocusChanged(NMapPOIdataOverlay nMapPOIdataOverlay, NMapPOIitem nMapPOIitem) {
-
-        }
-
-        @Override
-        public void onCalloutClick(NMapPOIdataOverlay nMapPOIdataOverlay, NMapPOIitem nMapPOIitem) {
             if (nMapPOIitem != null) {
                 Log.e(TAG, "onFocusChanged: " + nMapPOIitem.toString());
+
+                t1.setText(nMapPOIitem.getTitle());
+                t2.setText(nMapPOIitem.toString());
+                //전화번호 받아오기
+//                t3.setText();
+//                phone = ~~
+
+                //누르면 프래그먼트 뜨기
+                fl.setVisibility(View.VISIBLE);
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.commit();
+
+//                //전화번호 누르면 전화켜짐
+//                t3.setOnClickListener(new View.OnClickListener(){
+//                    @Override
+//                    public void onClick(View view){
+//                        Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+//                        startActivity(intent1);
+//                    }
+//                });
+
             } else {
                 Log.e(TAG, "onFocusChanged: ");
+                fl.setVisibility(View.INVISIBLE);
             }
+        }
+
+        //마커에 달린 말풍선 누르면 작동
+        @Override
+        public void onCalloutClick(NMapPOIdataOverlay nMapPOIdataOverlay, NMapPOIitem nMapPOIitem) {
+//            if (nMapPOIitem != null) {
+//                Log.e(TAG, "onFocusChanged: " + nMapPOIitem.toString());
+//            } else {
+//                Log.e(TAG, "onFocusChanged: ");
+//            }
         }
     };
 
@@ -890,8 +821,6 @@ public class FindNearLocationActivity extends NMapActivity{
         }
 
     };
-
-
 
 
 

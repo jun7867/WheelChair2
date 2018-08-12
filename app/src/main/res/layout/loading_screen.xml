@@ -9,8 +9,21 @@
         android:id="@+id/init_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="209dp"
         android:background="@drawable/wheel" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="283dp"
+        android:layout_height="86dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="148dp"
+        android:gravity="center"
+        android:text="이 앱은 비장애인과 장애인이 함께               만들어가는 따뜻한 어플입니다"
+        android:textSize="18dp" />
 
 
 </RelativeLayout>
