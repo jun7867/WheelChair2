@@ -1,10 +1,12 @@
 package com.example.mjkim.wheelchair2.Review;
+import android.net.Uri;
 import android.support.design.widget.TextInputEditText;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.example.mjkim.wheelchair2.R;
+import com.example.mjkim.wheelchair2.ReviewScreen;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -24,7 +26,6 @@ public class ReviewData {
     public void saveData(String name, ReviewList temp_reviewList){
 
         reviewList = temp_reviewList;
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         reviewList.setEmail(user.getEmail());
         reviewList.setName(user.getDisplayName());
