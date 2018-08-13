@@ -302,9 +302,14 @@ public class ReviewScreen extends AppCompatActivity {
 
 
         reviewList = new ReviewList(rating, tag1,tag2,tag3,tag4,tag5,tag6, review,mapx,mapy);
-        upload(imagePath1,imagePath2,imagePath3);
+        if(imagePath1!=null || imagePath2 !=null || imagePath3 !=null) {
+            upload(imagePath1, imagePath2, imagePath3);
+        }
+        if(imagePath1 == null && imagePath2 == null && imagePath3 == null) {
+            reviewData.saveData(name, reviewList);
+        }
 
-
+        reviewData.saveData(name,reviewList);
 
 
 
