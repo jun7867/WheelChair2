@@ -13,11 +13,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mjkim.wheelchair2.Review.ReviewData;
@@ -47,6 +49,7 @@ public class ReviewScreen extends AppCompatActivity {
     String imagePath1="";
     String imagePath2="";
     String imagePath3="";
+    String phone ="";
 
     double rating;
     //Boolean tag[] = new Boolean[6];
@@ -55,15 +58,18 @@ public class ReviewScreen extends AppCompatActivity {
 
     ImageButton back_button;
     ImageButton menu_button;
+    Button map_search;
     ImageView picture1,picture2,picture3;
     EditText review_text;
     RatingBar review_rating_bar;
     CheckBox chk[] = new CheckBox[6];
+    TextView location_name, address_name, phone_number;
     static String downloadUrl;
     static String name;
     int pic1;
     int pic2;
     int pic3;
+    int mapx, mapy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -82,11 +88,15 @@ public class ReviewScreen extends AppCompatActivity {
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         menu_button = (ImageButton)findViewById(R.id.menu_b);
+        map_search = (Button)findViewById(R.id.current_b);
         picture1 = (ImageView)findViewById(R.id.picture1);
         picture2 = (ImageView)findViewById(R.id.picture2);
         picture3 = (ImageView)findViewById(R.id.picture3);
         review_text = (EditText) findViewById(R.id.review_text);
         review_rating_bar = (RatingBar) findViewById(R.id.ratingBar);
+        location_name = (TextView) findViewById(R.id.location_name);
+        address_name = (TextView)findViewById(R.id.address_name);
+        phone_number = (TextView)findViewById(R.id.telephone_number);
 
 
 
@@ -100,6 +110,37 @@ public class ReviewScreen extends AppCompatActivity {
         menu_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){ openMenuTab(); }});
+
+        map_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openMapSearch();
+            }
+        });
+
+
+
+        //시설정보
+        Intent intent = getIntent();
+
+        location_name.setText(intent.getExtras().getString("NAME"));
+        address_name.setText(intent.getExtras().getString("ROAD_ADDRESS"));
+        phone_number.setText(intent.getExtras().getString("TELEPHONE"));
+        phone = intent.getExtras().getString("TELEPHONE");
+        mapx = intent.getExtras().getInt("MAPX");
+        mapy = intent.getExtras().getInt("MAPY");
+
+
+        phone_number.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+                startActivity(intent1);
+            }
+        });
+
+
+
+
 
         //별점
         review_rating_bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -277,6 +318,15 @@ public class ReviewScreen extends AppCompatActivity {
 
 
    }
+    public void openMapSearch(){
+        Intent intent = new Intent(this, WatchLocationActivity.class);
+        intent.putExtra("NAME", name);
+        intent.putExtra("MAPX", mapx);
+        intent.putExtra("MAPY", mapy);
+        startActivity(intent);
+    }
+
+
     public void onFinish(View view){
         System.out.println("패스1: "+imagePath1);
         System.out.println("패스2: "+imagePath2);
@@ -302,11 +352,13 @@ public class ReviewScreen extends AppCompatActivity {
 
 
         reviewList = new ReviewList(rating, tag1,tag2,tag3,tag4,tag5,tag6, review,mapx,mapy);
-        upload(imagePath1,imagePath2,imagePath3);
 
-
-
-
+        if(imagePath1 !=null || imagePath2 !=null || imagePath3 !=null) {
+            upload(imagePath1, imagePath2, imagePath3);
+        }
+        if(imagePath1 ==null && imagePath2 ==null && imagePath3==null) {
+            reviewData.saveData(name, reviewList);
+        }
 
         Toast.makeText(this, "리뷰가 등록되었습니다 ", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, FirstScreen.class);

@@ -52,33 +52,66 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
-
-                <ImageView
-                    android:id="@+id/telephone_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/phone" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/watch_review_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/phone" />
+                    <TextView
+                        android:id="@+id/telephone_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/phone"
+                        android:gravity="center"
+                        android:visibility="visible" />
+                </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/write_review_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
+                <!--<ImageView-->
+                <!--android:id="@+id/telephone_icon"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:visibility="visible"-->
+                <!--app:srcCompat="@drawable/phone" />-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/review_icon" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/watch_review_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:visibility="visible"
+                        android:background="@drawable/phone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/write_review_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:visibility="visible"
+                        android:background="@drawable/review_icon" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -93,10 +126,10 @@
                     android:id="@+id/telephone_text"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:paddingLeft="30dp"
                     android:text="전화번호"
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
@@ -105,10 +138,10 @@
                     android:id="@+id/watch_review_text"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:paddingLeft="30dp"
                     android:text="리뷰보기"
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp" />
@@ -117,10 +150,10 @@
                     android:id="@+id/write_review_text"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:paddingLeft="30dp"
                     android:text="리뷰작성"
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp" />

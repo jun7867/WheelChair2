@@ -31,11 +31,14 @@ public class ReviewSearch extends AppCompatActivity implements AbsListView.OnScr
     private final int OFFSET = 10;                  // 한 페이지마다 로드할 데이터 갯수.
     private boolean mLockListView = false;          // 데이터 불러올때 중복안되게 하기위한 변수
     ProgressBar progressBar;                         // 데이터 로딩중을 표시할 프로그레스바
+    int save = 1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_review_search);
 
 
@@ -91,7 +94,7 @@ public class ReviewSearch extends AppCompatActivity implements AbsListView.OnScr
 
 
 
-        adapter = new NaverLocationAdapter(ReviewSearch.this, arrayresult);
+        adapter = new NaverLocationAdapter(ReviewSearch.this, arrayresult, save);
         lv.setAdapter(adapter);
 
 
