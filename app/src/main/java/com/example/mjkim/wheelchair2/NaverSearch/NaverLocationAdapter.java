@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.mjkim.wheelchair2.R;
 import com.example.mjkim.wheelchair2.ReviewDetail;
+import com.example.mjkim.wheelchair2.ReviewScreen;
 import com.example.mjkim.wheelchair2.ReviewSearch;
 
 import java.util.ArrayList;
@@ -22,10 +23,12 @@ public class NaverLocationAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private Activity m_activity;
     private ArrayList<NaverLocationList> arr;
-    public NaverLocationAdapter(Activity act, ArrayList<NaverLocationList> arr_item) {
+    private int save;
+    public NaverLocationAdapter(Activity act, ArrayList<NaverLocationList> arr_item, int save) {
         this.m_activity = act;
         arr = arr_item;
         mInflater = (LayoutInflater)m_activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.save = save;
     }
 
     @Override
@@ -87,8 +90,10 @@ public class NaverLocationAdapter extends BaseAdapter {
 
 
     public void GoIntent(int a){
+        Intent intent;
 
-        Intent intent = new Intent(m_activity, ReviewDetail.class);
+        if(save == 1) intent = new Intent(m_activity, ReviewScreen.class);
+        else intent = new Intent(m_activity, ReviewDetail.class);
 
 //putExtra 로 선택한 아이템의 정보를 인텐트로 넘겨 줄 수 있다.
 

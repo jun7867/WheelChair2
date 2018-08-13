@@ -44,7 +44,7 @@ public class FirebaseJson {
             Object object = ds.getValue(Object.class);
             json = new Gson().toJson(object);
 
-            
+
 
 
              try{
