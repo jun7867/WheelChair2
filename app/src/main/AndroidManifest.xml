@@ -69,7 +69,6 @@
         <activity android:name=".Login.UserImformationActivity" />
         <activity android:name=".NameSearchActivity" />
         <activity android:name=".FindNameLocationActivity" />
-        <activity android:name=".WatchLocationActivity" />
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.mjkim.wheelchair2.NameSearch.NameLocationAdapter;
+import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationSearch;
 import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
@@ -77,7 +78,7 @@ public class NameSearchActivity extends AppCompatActivity {
 
 
         try {
-            //reviewlist = naverLocationSearch.execute(e1.getText().toString()).get();
+//            reviewlist = naverLocationSearch.execute(e1.getText().toString()).get();
         } catch (Exception e) {
             e.printStackTrace();
         }
