@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -41,8 +42,8 @@ public class WatchLocationActivity extends NMapActivity{
     NMapPOIdataOverlay poiDataOverlay;
 
     // 상단 버튼들
-    ImageButton back_button;
-    ImageButton menu_button;
+    Button back_button;
+    Button menu_button;
 
     ArrayList<NaverLocationList> mNaverLocationList;
 
@@ -68,8 +69,8 @@ public class WatchLocationActivity extends NMapActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_location);
 
-        back_button = (ImageButton)findViewById(R.id.back_b);
-        menu_button = (ImageButton)findViewById(R.id.menu_b);
+        back_button = (Button)findViewById(R.id.back_b);
+        menu_button = (Button)findViewById(R.id.menu_b);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override

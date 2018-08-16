@@ -1,4 +1,4 @@
-package com.example.mjkim.wheelchair2;
+package com.example.mjkim.wheelchair2.WatchReview;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,18 +7,20 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogAdapter;
+import com.example.mjkim.wheelchair2.MenuScreen;
+import com.example.mjkim.wheelchair2.R;
+import com.example.mjkim.wheelchair2.ReviewDetail;
 
-public class BlogSearch extends AppCompatActivity {
+public class MoreReviewActivity extends AppCompatActivity {
 
     ImageButton back_button;
     ImageButton menu_button;
-    private NaverBlogAdapter adapter;
+    private WatchReviewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blog_search);
+        setContentView(R.layout.activity_more_review);
 
 
         //버튼 선언
@@ -39,14 +41,14 @@ public class BlogSearch extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        NaverBlogAdapter.select = 0;
+        WatchReviewAdapter.select = 0;
 
 
 
-        ListView lv = (ListView) findViewById(R.id.blog_list);
+        ListView lv = (ListView) findViewById(R.id.review_list);
 
 
-        adapter = new NaverBlogAdapter(BlogSearch.this, ReviewDetail.blogList);
+        adapter = new WatchReviewAdapter(MoreReviewActivity.this, ReviewDetail.reviewList);
         lv.setAdapter(adapter);
 
 

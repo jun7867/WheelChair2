@@ -21,18 +21,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mjkim.wheelchair2.Convert.GeoTrans;
-import com.example.mjkim.wheelchair2.Convert.GeoTransPoint;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
+import com.example.mjkim.wheelchair2.Review.ReviewList;
 import com.example.mjkim.wheelchair2.navermap.NMapCalloutCustomOldOverlay;
 import com.example.mjkim.wheelchair2.navermap.NMapPOIflagType;
 import com.example.mjkim.wheelchair2.navermap.NMapViewerResourceProvider;
-
-import com.google.android.gms.maps.GoogleMap;
 
 import com.nhn.android.maps.NMapActivity;
 import com.nhn.android.maps.NMapCompassManager;
@@ -52,8 +48,6 @@ import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
 import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
 import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 /*
@@ -67,19 +61,24 @@ public class FindNearLocationActivity extends NMapActivity{
     // gps관련
     double mLatitude, mLongitude;
     LocationManager locationManager;
-    TextView t1, t2, t3;
+    TextView locationNameTextView, addressNameTextView, telephoneNumberTextView;
     String phone;
 
     FrameLayout fl;
-//    FragmentManager fm = getFragmentManager();
-//    FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
+    ArrayList<ReviewList> reviewLists;
 
     NMapPOIdataOverlay poiDataOverlay;
     NMapPOIdataOverlay myPoiDataOverlay;
 
     // 상단 버튼들
-    ImageButton back_button;
-    ImageButton menu_button;
+    Button back_button;
+    Button menu_button;
+    Button callButton;
+    Button watchReviewButton;
+    Button writeReviewButton;
+
+    String phoneNumber;
 
     ArrayList<NaverLocationList> mNaverLocationList;
 
@@ -111,12 +110,12 @@ public class FindNearLocationActivity extends NMapActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_near_location);
 
-        back_button = (ImageButton)findViewById(R.id.back_b);
-        menu_button = (ImageButton)findViewById(R.id.menu_b);
+        back_button = (Button)findViewById(R.id.back_b);
+        menu_button = (Button)findViewById(R.id.menu_b);
 
-        t1 = (TextView)findViewById(R.id.location_name);
-        t2 = (TextView)findViewById(R.id.address_name);
-        t3 = (TextView)findViewById(R.id.telephone_number);
+        locationNameTextView = (TextView)findViewById(R.id.location_name);
+        addressNameTextView = (TextView)findViewById(R.id.address_name);
+        telephoneNumberTextView = (TextView)findViewById(R.id.telephone_number);
         fl = (FrameLayout)findViewById(R.id.fragmentLayout);
 
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -172,14 +171,85 @@ public class FindNearLocationActivity extends NMapActivity{
 
         NMapPOIdata myPoiData = new NMapPOIdata(1, mMapViewerResourceProvider);
         myPoiData.beginPOIdata(0);
-//        myPoiData.addPOIitem(mGeoPoint, "내 위치", markerMyId, 0);
-        myPoiData.addPOIitem(129.343422,36.019178, "포항시청", markerMyId, 0);
+        myPoiData.addPOIitem(mGeoPoint, "내 위치", markerMyId, 0);
+//        myPoiData.addPOIitem(129.343422,36.019178, "포항시청", markerMyId, 0);
         myPoiData.endPOIdata();
         // poi 데이터 띄우기
         myPoiDataOverlay = mOverlayManager.createPOIdataOverlay(myPoiData, null);
         myPoiDataOverlay.showAllPOIdata(11);
         myPoiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
 
+
+//        // 전화마크 누르면 전화걸림
+//        callButton.findViewById(R.id.telephone_icon);
+//        callButton.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+//                startActivity(intent1);
+//            }
+//        });
+//
+//        final int a = 0;
+//        // 리뷰보기 버튼
+//        watchReviewButton.findViewById(R.id.watch_review_icon);
+//        watchReviewButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view){
+//                Intent intent;
+//                intent = new Intent(FindNearLocationActivity.this, ReviewDetail.class);
+//
+////putExtra 로 선택한 아이템의 정보를 인텐트로 넘겨 줄 수 있다.
+//                intent.putExtra("RATING", reviewLists.get(a).getRating());
+//                intent.putExtra("TAG1", reviewLists.get(a).getTag1());
+//                intent.putExtra("TAG2", reviewLists.get(a).getTag2());
+//                intent.putExtra("TAG3", reviewLists.get(a).getTag3());
+//                intent.putExtra("TAG4", reviewLists.get(a).getTag4());
+//                intent.putExtra("TAG5", reviewLists.get(a).getTag5());
+//                intent.putExtra("TAG6", reviewLists.get(a).getTag6());
+//                intent.putExtra("REVIEW", reviewLists.get(a).getReview());
+//                intent.putExtra("NAME", reviewLists.get(a).getName());
+//                intent.putExtra("EMAIL", reviewLists.get(a).getEmail());
+//                intent.putExtra("MAPX", reviewLists.get(a).getMapx());
+//                intent.putExtra("MAPY", reviewLists.get(a).getMapy());
+//                intent.putExtra("IMAGEURL1", reviewLists.get(a).getImageUrl1());
+//                intent.putExtra("IMAGEURL2", reviewLists.get(a).getImageUrl2());
+//                intent.putExtra("IMAGEURL3", reviewLists.get(a).getImageUrl3());
+//
+//                startActivity(intent);
+//            }
+//        });
+//
+//
+//        // 리뷰작성 버튼
+//        writeReviewButton.findViewById(R.id.write_review_text);
+//        writeReviewButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view){
+//                Intent intent;
+//                intent = new Intent(FindNearLocationActivity.this, ReviewScreen.class);
+//
+////putExtra 로 선택한 아이템의 정보를 인텐트로 넘겨 줄 수 있다.
+//                intent.putExtra("RATING", reviewLists.get(a).getRating());
+//                intent.putExtra("TAG1", reviewLists.get(a).getTag1());
+//                intent.putExtra("TAG2", reviewLists.get(a).getTag2());
+//                intent.putExtra("TAG3", reviewLists.get(a).getTag3());
+//                intent.putExtra("TAG4", reviewLists.get(a).getTag4());
+//                intent.putExtra("TAG5", reviewLists.get(a).getTag5());
+//                intent.putExtra("TAG6", reviewLists.get(a).getTag6());
+//                intent.putExtra("REVIEW", reviewLists.get(a).getReview());
+//                intent.putExtra("NAME", reviewLists.get(a).getName());
+//                intent.putExtra("EMAIL", reviewLists.get(a).getEmail());
+//                intent.putExtra("MAPX", reviewLists.get(a).getMapx());
+//                intent.putExtra("MAPY", reviewLists.get(a).getMapy());
+//                intent.putExtra("IMAGEURL1", reviewLists.get(a).getImageUrl1());
+//                intent.putExtra("IMAGEURL2", reviewLists.get(a).getImageUrl2());
+//                intent.putExtra("IMAGEURL3", reviewLists.get(a).getImageUrl3());
+//
+//
+//                startActivity(intent);
+//            }
+//        });
 
 
 
@@ -319,7 +389,7 @@ public class FindNearLocationActivity extends NMapActivity{
         // set POI data
         NMapPOIdata poiData = new NMapPOIdata(i, mMapViewerResourceProvider);
         poiData.beginPOIdata(0);
-        poiData.addPOIitem(129.397848, 36.081324, "Baben", markerId, 0);
+        poiData.addPOIitem(129.397848, 36.081324, "바벤", markerId, 0);
         poiData.addPOIitem(129.398522, 36.082113, "하나로클럽 포항점", markerId, 1);
         poiData.addPOIitem(129.403934, 36.079803, "양덕초등학교", markerId, 2);
         poiData.endPOIdata();
@@ -400,10 +470,10 @@ public class FindNearLocationActivity extends NMapActivity{
             if (nMapPOIitem != null) {
                 Log.e(TAG, "onFocusChanged: " + nMapPOIitem.toString());
 
-                t1.setText(nMapPOIitem.getTitle());
-                t2.setText(nMapPOIitem.toString());
+                locationNameTextView.setText(nMapPOIitem.getTitle());
+                addressNameTextView.setText(nMapPOIitem.toString());
                 //전화번호 받아오기
-//                t3.setText();
+//                telephoneNumberTextView.setText();
 //                phone = ~~
 
                 //누르면 프래그먼트 뜨기
@@ -413,7 +483,7 @@ public class FindNearLocationActivity extends NMapActivity{
                 fragmentTransaction.commit();
 
 //                //전화번호 누르면 전화켜짐
-//                t3.setOnClickListener(new View.OnClickListener(){
+//                telephoneNumberTextView.setOnClickListener(new View.OnClickListener(){
 //                    @Override
 //                    public void onClick(View view){
 //                        Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
