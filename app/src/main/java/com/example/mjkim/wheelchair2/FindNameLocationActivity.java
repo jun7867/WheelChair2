@@ -5,14 +5,13 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,15 +41,17 @@ import java.util.ArrayList;
 public class FindNameLocationActivity extends NMapActivity{
     // gps관련
     double mLatitude, mLongitude;
-    TextView t1, t2, t3;
+    TextView locationName, addressName, telephoneNumber;
     FrameLayout fl;
     String phone;
 
     NMapPOIdataOverlay poiDataOverlay;
 
     // 상단 버튼들
-    ImageButton back_button;
-    ImageButton menu_button;
+//    ImageButton back_button;
+//    ImageButton menu_button;
+    Button back_button;
+    Button menu_button;
 
     ArrayList<NaverLocationList> mNaverLocationList;
 
@@ -76,12 +77,12 @@ public class FindNameLocationActivity extends NMapActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_name_location);
 
-        back_button = (ImageButton)findViewById(R.id.back_b);
-        menu_button = (ImageButton)findViewById(R.id.menu_b);
+        back_button = (Button)findViewById(R.id.back_b);
+        menu_button = (Button)findViewById(R.id.menu_b);
 
-        t1 = (TextView)findViewById(R.id.location_name);
-        t2 = (TextView)findViewById(R.id.address_name);
-        t3 = (TextView)findViewById(R.id.telephone_number);
+        locationName = (TextView)findViewById(R.id.location_name);
+        addressName = (TextView)findViewById(R.id.address_name);
+        telephoneNumber = (TextView)findViewById(R.id.telephone_number);
         fl = (FrameLayout)findViewById(R.id.fragmentLayout);
 
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -174,10 +175,10 @@ public class FindNameLocationActivity extends NMapActivity{
             if (nMapPOIitem != null) {
                 Log.e(TAG, "onFocusChanged: " + nMapPOIitem.toString());
 
-                t1.setText(nMapPOIitem.getTitle());
-                t2.setText(nMapPOIitem.toString());
+                locationName.setText(nMapPOIitem.getTitle());
+                addressName.setText(nMapPOIitem.toString());
                 //전화번호 받아오기
-//                t3.setText();
+//                telephoneNumber.setText();
 //                phone = ~~
 
                 //누르면 프래그먼트 뜨기
@@ -187,7 +188,7 @@ public class FindNameLocationActivity extends NMapActivity{
                 fragmentTransaction.commit();
 
                 //전화번호 누르면 전화켜짐
-//                t3.setOnClickListener(new View.OnClickListener(){
+//                telephoneNumber.setOnClickListener(new View.OnClickListener(){
 //                    @Override
 //                    public void onClick(View view){
 //                        Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
