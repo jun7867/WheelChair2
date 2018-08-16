@@ -17,6 +17,27 @@ public class ReviewList {
     private String imageUrl1;
     private String imageUrl2;
     private String imageUrl3;
+    private String imageUrl4;
+    private String imageUrl5;
+    private String imageUrl6;
+
+    public String getImageUrl4() {
+        return imageUrl4;
+    }
+
+    public void setImageUrl4(String imageUrl4) {
+        this.imageUrl4 = imageUrl4;
+    }
+
+    public String getImageUrl5() {
+        return imageUrl5;
+    }
+
+    public void setImageUrl5(String imageUrl5) {
+        this.imageUrl5 = imageUrl5;
+    }
+
+
 
     public String getImageUrl2() { return imageUrl2; }
 
@@ -136,5 +157,12 @@ public class ReviewList {
         this.review = review;
         this.mapx = mapx;
         this.mapy = mapy;
+    }
+
+    public void setImageUrl6(String imageUrl6) {
+        this.imageUrl6 = imageUrl6;
+    }
+    public String getImageUrl6() {
+        return imageUrl6;
     }
 }

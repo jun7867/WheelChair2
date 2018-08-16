@@ -80,12 +80,14 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
         app:srcCompat="@drawable/or" />
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/google_sign"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </com.google.android.gms.common.SignInButton>
+    <!--<com.google.android.gms.common.SignInButton-->
+        <!--android:id="@+id/google_sign"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+    <!--</com.google.android.gms.common.SignInButton>-->
+
     <Button
         android:id="@+id/login_btn_google"
         android:padding="10dp"
