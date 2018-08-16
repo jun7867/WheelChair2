@@ -104,6 +104,8 @@ public class NaverLocationAdapter extends BaseAdapter {
     public void GoIntent(int a){
         Intent intent;
 
+        // 이름으로 검색에서 리스트 뷰를 누르면 장소 정보를 자세히본다.
+        // 리뷰 작성하기에서 리스트 뷰를 누르면 리뷰 작성으로 간다.
         if(save == 1) intent = new Intent(m_activity, ReviewScreen.class);
         else intent = new Intent(m_activity, ReviewDetail.class);
 
@@ -121,7 +123,6 @@ public class NaverLocationAdapter extends BaseAdapter {
 
 
         m_activity.startActivity(intent);
-
     }
 
 

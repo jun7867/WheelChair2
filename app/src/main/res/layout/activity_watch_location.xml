@@ -13,14 +13,29 @@
         android:background="#5DCDFF"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:visibility="visible"
-            android:id="@+id/back_b"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="36dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:background="@color/colorAccent"
-            app:srcCompat="@drawable/back_arrow" />
+            android:gravity="center">
+
+            <Button
+                android:visibility="visible"
+                android:id="@+id/back_b"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:background="@drawable/back_arrow" />
+
+            <!--<ImageButton-->
+            <!--android:visibility="visible"-->
+            <!--android:id="@+id/back_b"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="2"-->
+            <!--android:background="@color/colorAccent"-->
+            <!--app:srcCompat="@drawable/back_arrow" />-->
+        </LinearLayout>
 
         <TextView
             android:id="@+id/logo"
@@ -34,14 +49,27 @@
             android:visibility="visible"/>
 
 
-        <ImageButton
-            android:visibility="visible"
-            android:id="@+id/menu_b"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="36dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:background="@color/colorAccent"
-            app:srcCompat="@drawable/menu" />
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/menu_b"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/menu"
+                android:visibility="visible" />
+            <!--<ImageButton-->
+            <!--android:id="@+id/menu_b"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="2"-->
+            <!--android:background="@color/colorAccent"-->
+            <!--android:visibility="visible"-->
+            <!--app:srcCompat="@drawable/menu" />-->
+        </LinearLayout>
 
 
     </LinearLayout>

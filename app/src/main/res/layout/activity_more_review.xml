@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:text="검색"
+            android:text="리뷰"
             android:textSize="30dp" />
 
         <ImageButton
@@ -45,57 +45,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/review_search"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/back"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="예) 농협 하나로 마트 포항점"
-            android:inputType="textPersonName"
-            android:padding="10dp" />
-
-        <Button
-            android:id="@+id/search_b"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="#6ec1f7"
-            android:onClick="onSearch"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="검색" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/location_list"
+            android:id="@+id/review_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/progressBar"
             android:layout_weight="1" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            tools:visibility="visible" />
 
     </LinearLayout>
 </LinearLayout>

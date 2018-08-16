@@ -153,6 +153,7 @@ public class ReviewScreen extends AppCompatActivity {
         //시설정보
         Intent intent = getIntent();
         location_name.setText(intent.getExtras().getString("NAME"));
+        name = intent.getExtras().getString("NAME");
         address_name.setText(intent.getExtras().getString("ROAD_ADDRESS"));
         phone_number.setText(intent.getExtras().getString("TELEPHONE"));
         phone = intent.getExtras().getString("TELEPHONE");

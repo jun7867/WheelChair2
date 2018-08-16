@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
@@ -16,7 +18,9 @@ import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogSearch;
 import com.example.mjkim.wheelchair2.Review.ReviewList;
-
+import com.example.mjkim.wheelchair2.WatchReview.WatchReviewAdapter;
+import com.example.mjkim.wheelchair2.WatchReview.WatchReviewList;
+import com.example.mjkim.wheelchair2.WatchReview.WatchReviewSearch;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,17 +29,23 @@ import java.util.ArrayList;
 public class ReviewDetail extends AppCompatActivity {
 
 
+    public static ArrayList<NaverBlogList> blogList;       // 네이버 지역 리스트
+    public static ArrayList<WatchReviewList> reviewList;
     public static ArrayList<NaverBlogList> bloglist;       // 네이버 지역 리스트
     public static ArrayList<ReviewList> reviewLists;
     private NaverBlogSearch naverBlogSearch;
-    private NaverBlogAdapter adapter;
-    ImageButton back_button, menu_button, more_blog;
+    private NaverBlogAdapter blogAdapter;
+    private WatchReviewSearch watchReviewSearch;
+    private WatchReviewAdapter reviewAdapter;
+    ImageButton back_button, menu_button, more_blog, more_review;
     Button map_search, review_button;
     TextView location_name, address_name, phone_number;
-    String name = "";
+    ScrollView scrollView;
     String phone = "";
-    int mapx, mapy;
-
+    String address = "";
+    private String name;
+    private double mapx;
+    private double mapy;
     private double rating;
     private Boolean tag1;
     private Boolean tag2;
@@ -61,6 +71,15 @@ public class ReviewDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_detail);
+
+        // 제일 위부터 보기
+        scrollView = new ScrollView(this);
+        scrollView.findViewById(R.id.scroll_view);
+//        scrollView.smoothScrollTo(0,0);
+//        scrollView.scrollBy(0,200);
+        scrollView.scrollTo(0,600);
+//        scrollView.fullScroll(ScrollView.FOCUSABLES_TOUCH_MODE);
+//        scrollView.smoothScrollTo(0,0);
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +107,13 @@ public class ReviewDetail extends AppCompatActivity {
             }
         });
 
+        more_review = (ImageButton)findViewById(R.id.reviewmore_b);
+        more_review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openReviewTab();
+            }
+        });
+
         map_search = (Button)findViewById(R.id.current_b);
         map_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,12 +124,14 @@ public class ReviewDetail extends AppCompatActivity {
         review_button = (Button) findViewById(R.id.review_b);
         review_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { openReviewTab();
+            public void onClick(View view) { writeReviewTab();
             }
         });
 
-        bloglist = new ArrayList<NaverBlogList>();
+        blogList = new ArrayList<NaverBlogList>();
         naverBlogSearch = new NaverBlogSearch();
+        reviewList = new ArrayList<WatchReviewList>();
+        watchReviewSearch = new WatchReviewSearch();
 
         Intent intent = getIntent();
 
@@ -159,18 +187,36 @@ public class ReviewDetail extends AppCompatActivity {
 
 
         try {
-            bloglist = naverBlogSearch.execute(intent.getExtras().getString("NAME")).get();
+            blogList = naverBlogSearch.execute(intent.getExtras().getString("NAME")).get();
         }catch (Exception e){
             e.printStackTrace();
         }
 
         NaverBlogAdapter.select = 1;
 
-        ListView lv = (ListView) findViewById(R.id.short_blog_list);
+        ListView blogListView = (ListView) findViewById(R.id.short_blog_list);
 
 
-        adapter = new NaverBlogAdapter(ReviewDetail.this, bloglist);
-        lv.setAdapter(adapter);
+        blogAdapter = new NaverBlogAdapter(ReviewDetail.this, blogList);
+        blogListView.setAdapter(blogAdapter);
+
+
+
+
+        // 리뷰 어댑터
+        try {
+            reviewList = watchReviewSearch.execute(intent.getExtras().getString("NAME")).get();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        WatchReviewAdapter.select = 1;
+
+        ListView reviewListView = (ListView) findViewById(R.id.short_review_list);
+
+
+        reviewAdapter = new WatchReviewAdapter(ReviewDetail.this, reviewList);
+        reviewListView.setAdapter(reviewAdapter);
 
 
 
@@ -179,11 +225,23 @@ public class ReviewDetail extends AppCompatActivity {
         location_name.setText(intent.getExtras().getString("NAME"));
         name = intent.getExtras().getString("NAME");
         address_name.setText(intent.getExtras().getString("ROAD_ADDRESS"));
+        address = intent.getExtras().getString("ROAD_ADDRESS");
         phone_number.setText(intent.getExtras().getString("TELEPHONE"));
         phone = intent.getExtras().getString("TELEPHONE");
-
         mapx = intent.getExtras().getInt("MAPX");
         mapy = intent.getExtras().getInt("MAPY");
+        rating = intent.getExtras().getDouble("RATING");
+        tag1 = intent.getExtras().getBoolean("TAG1");
+        tag2 = intent.getExtras().getBoolean("TAG2");
+        tag3 = intent.getExtras().getBoolean("TAG3");
+        tag4 = intent.getExtras().getBoolean("TAG4");
+        tag5 = intent.getExtras().getBoolean("TAG5");
+        tag6 = intent.getExtras().getBoolean("TAG6");
+        review = intent.getExtras().getString("STRING");
+        email = intent.getExtras().getString("EMAIL");
+        imageUrl1 = intent.getExtras().getString("IMAGEURL1");
+        imageUrl2 = intent.getExtras().getString("IMAGEURL2");
+        imageUrl3 = intent.getExtras().getString("IMAGEURL3");
 
 
         phone_number.setOnClickListener(new View.OnClickListener(){
@@ -208,19 +266,27 @@ public class ReviewDetail extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public void openReviewTab(){
+        Intent intent = new Intent(this, BlogSearch.class);
+        intent.putExtra("BLOGNAME", name);
+        startActivity(intent);
+    }
+
     public void openMapSearch(){
-        Intent intent = new Intent(this, WatchLocationActivity.class);
+        Intent intent = new Intent(this, FindNameLocationActivity.class);
         intent.putExtra("NAME", name);
         intent.putExtra("MAPX", mapx);
         intent.putExtra("MAPY", mapy);
         startActivity(intent);
     }
 
-    public void openReviewTab(){
+    public void writeReviewTab(){
         Intent intent = new Intent(this, ReviewScreen.class);
         intent.putExtra("NAME", name);
         intent.putExtra("MAPX", mapx);
         intent.putExtra("MAPY", mapy);
+        intent.putExtra("ROAD_ADDRESS", address);
         startActivity(intent);
     }
 
