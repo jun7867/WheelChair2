@@ -68,6 +68,30 @@
                 android:textStyle="bold"
                 android:typeface="monospace" />
 
+            <RatingBar
+                android:id="@+id/vi_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:numStars="5"
+                android:scaleX="0.5"
+                android:scaleY="0.5" />
+
+            <TextView
+                android:id="@+id/vi_review_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingBottom="1dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="1dp"
+                android:text="리뷰 0"
+                android:textColor="#4e4e4e"
+                android:textSize="16sp"
+                android:typeface="monospace" />
+
         </LinearLayout>
 
     </LinearLayout>

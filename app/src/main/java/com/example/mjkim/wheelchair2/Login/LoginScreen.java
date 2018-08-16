@@ -74,7 +74,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
         loginEmail=(ImageButton)findViewById(R.id.login_b2);
         mAuth = FirebaseAuth.getInstance(); // 로그인 작업의 onCreate 메소드에서 FirebaseAuth 개체의 공유 인스턴스를 가져옵니다
         login_btn_google= (Button) findViewById(R.id.login_btn_google);
-        SignInButton googleSign=(SignInButton)findViewById(R.id.google_sign);
+       // SignInButton googleSign=(SignInButton)findViewById(R.id.google_sign);
 
 
 
@@ -151,7 +151,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
 
-        googleSign.setOnClickListener(new View.OnClickListener() {
+        login_btn_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();

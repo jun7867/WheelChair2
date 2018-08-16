@@ -49,16 +49,6 @@ public class NameLocationSearch extends AsyncTask<String, Void, ArrayList<Review
 
         try {
 
-            String new_response = FirebaseJson.json; //파서할 새로움 response
-            JSONObject jsonObj = new JSONObject(new_response);
-
-            JSONArray reviewlist = jsonObj.getJSONArray("review lists");
-            total_num = jsonObj.getInt("total");
-
-            System.out.println("실험용0: " + reviewList);
-            System.out.println("실험용1: " + jsonObj.keys());
-            System.out.println("실험용2: " + jsonObj.names());
-            System.out.println("실험용3: " + jsonObj.length());
 
 
 

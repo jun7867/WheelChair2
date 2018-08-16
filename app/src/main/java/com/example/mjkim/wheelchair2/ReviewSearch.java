@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationSearch;
@@ -59,7 +60,6 @@ public class ReviewSearch extends AppCompatActivity implements AbsListView.OnScr
 
 
 
-
     }
 
 
@@ -102,6 +102,8 @@ public class ReviewSearch extends AppCompatActivity implements AbsListView.OnScr
 
         lv.setOnScrollListener(this);
         getItem();
+
+
     }
 
     @Override
