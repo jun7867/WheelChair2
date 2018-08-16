@@ -34,7 +34,7 @@ public class NameSearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_search);
-        firebaseJson.getJson();
+
 
 
         //버튼 선언
@@ -71,8 +71,9 @@ public class NameSearchActivity extends AppCompatActivity {
 
         naverLocationSearch = new NaverLocationSearch();
         naverLocationLists = new ArrayList<NaverLocationList>();
-        //reviewlist = new ArrayList<ReviewList>();
         reviewlist = new ArrayList<NaverLocationList>();
+
+
 
 
 
@@ -91,7 +92,7 @@ public class NameSearchActivity extends AppCompatActivity {
         adapter = new NaverLocationAdapter(NameSearchActivity.this, reviewlist, save);
         lv.setAdapter(adapter);
 
-        System.out.println("샘플: " + firebaseJson.json);
+        //System.out.println("샘플: " + firebaseJson.json);
 
     }
 

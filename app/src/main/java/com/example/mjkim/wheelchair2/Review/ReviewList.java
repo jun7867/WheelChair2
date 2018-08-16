@@ -146,6 +146,26 @@ public class ReviewList {
     public ReviewList(){}
 
     public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
+                      Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy,
+                      String imageUrl1, String imageUrl2, String imageUrl3){
+        this.rating = rating;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
+        this.tag4 = tag4;
+        this.tag5 = tag5;
+        this.tag6 = tag6;
+        this.review = review;
+        this.name = name;
+        this.email = email;
+        this.mapx = mapx;
+        this.mapy = mapy;
+        this.imageUrl1 = imageUrl1;
+        this.imageUrl2 = imageUrl2;
+        this.imageUrl3 = imageUrl3;
+    }
+
+    public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
                       Boolean tag4, Boolean tag5, Boolean tag6, String review, double mapx, double mapy){
         this.rating = rating;
         this.tag1 = tag1;
