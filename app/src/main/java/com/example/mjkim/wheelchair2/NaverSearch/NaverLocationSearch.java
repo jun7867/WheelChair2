@@ -3,6 +3,10 @@ package com.example.mjkim.wheelchair2.NaverSearch;
 import android.os.AsyncTask;
 import android.text.Html;
 
+import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
+import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson2;
+import com.example.mjkim.wheelchair2.Review.ReviewJson;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -11,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<NaverLocationList>> {
 
@@ -19,7 +24,10 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
     public static int total_num = 0;
 
 
+    private FirebaseJson2 firebaseJson2 = new FirebaseJson2();
+    private FirebaseJson firebaseJson = new FirebaseJson();
     private ArrayList<String> location_result;
+    private ReviewJson reviewJson = new ReviewJson();
 
 
     @Override
@@ -28,6 +36,8 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
     @Override
     protected ArrayList<NaverLocationList> doInBackground(String... strings) {
+
+
 
 
         String result = getJson(strings[0]);
@@ -40,6 +50,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
         String road_address;
         int mapx;
         int mapy;
+        int review_num;
 
 
 
@@ -50,19 +61,20 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
         try {
 
             String new_response = getJson(strings[0]); //파서할 새로움 response
-            //System.out.println(new_response);
             JSONObject jsonObj = new JSONObject(new_response);
 
             JSONArray items = jsonObj.getJSONArray("items");
             total_num = jsonObj.getInt("total");
-
             int num = 0;
 
             for (int i = 0; i < items.length(); i++) {
 
+
                 JSONObject obj = items.getJSONObject(i);
                 name = obj.getString("title");
                 name = Html.fromHtml(name).toString();
+                firebaseJson.getJson(name,num);
+
                 link = obj.getString("link");
                 description = obj.getString("description");
                 telephone = obj.getString("telephone");
@@ -72,7 +84,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
                 mapy = obj.getInt("mapy");
 
 
-                naverLocationList.add(num++, new NaverLocationList(name, link, description, telephone, address, road_address, mapx, mapy));
+                naverLocationList.add(num++, new NaverLocationList(name, link, description, telephone, address, road_address, mapx, mapy, 0));
 
             }
 
@@ -134,6 +146,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
         } catch (Exception e) {
         }
 
+        System.out.println(response);
         return response;
     }
 }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.mjkim.wheelchair2.Login.LoginScreen;
 import com.example.mjkim.wheelchair2.Login.User;
 import com.example.mjkim.wheelchair2.Login.UserImformationActivity;
+import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,8 +28,6 @@ public class FirstScreen extends AppCompatActivity {
     ImageButton menu_button;
     ImageButton login_button;
     private BackPressCloseHandler backPressCloseHandler;
-
-
     private LocationManager locationManager;
 
     private FirebaseAuth mAuth; // 이메일 비밀번호 로그인 모듈변수
@@ -79,6 +78,8 @@ public class FirstScreen extends AppCompatActivity {
         });
 
         backPressCloseHandler = new BackPressCloseHandler(this);
+
+
 
 
         mAuth=FirebaseAuth.getInstance();

@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
 import com.example.mjkim.wheelchair2.R;
+import com.example.mjkim.wheelchair2.Review.ReviewJson;
 import com.example.mjkim.wheelchair2.ReviewDetail;
 import com.example.mjkim.wheelchair2.ReviewScreen;
 import com.example.mjkim.wheelchair2.ReviewSearch;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 public class NaverLocationAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
+    private FirebaseJson firebaseJson;
     private Activity m_activity;
     private ArrayList<NaverLocationList> arr;
     private int save;
@@ -56,6 +59,7 @@ public class NaverLocationAdapter extends BaseAdapter {
         TextView road_address = (TextView)convertView.findViewById(R.id.vi_address);
         TextView telephone = (TextView)convertView.findViewById(R.id.vi_telephone);
         LinearLayout layout_view =  (LinearLayout)convertView.findViewById(R.id.vi_view);
+        TextView review_num = (TextView)convertView.findViewById(R.id.vi_review_num);
 
         //int resId=  m_activity.getResources().getIdentifier(arr.get(position)., "drawable", m_activity.getPackageName());
 
@@ -64,6 +68,14 @@ public class NaverLocationAdapter extends BaseAdapter {
         title.setText(arr.get(position).getName());
         road_address.setText(arr.get(position).getRoad_address());
         telephone.setText(arr.get(position).getTelephone());
+        //review_num.setText("리뷰 " + FirebaseJson.reviewJson.get(position).getReview_count());
+
+
+
+        //System.out.println("진짜 개많네4: " + firebaseJson.reviewJson.get(0).getReview_count());
+        //System.out.println("진짜 개많네5: " + firebaseJson.reviewJson.get(0).getReview_json());
+        //System.out.println("진짜 개많네6: " + firebaseJson.reviewJson.get(0).getReview_json_userID());
+
 
         /*  버튼에 이벤트처리를 하기위해선 setTag를 이용해서 사용할 수 있습니다.
 
@@ -105,6 +117,8 @@ public class NaverLocationAdapter extends BaseAdapter {
         intent.putExtra("TELEPHONE", arr.get(a).getTelephone());
         intent.putExtra("MAPX", arr.get(a).getMapx());
         intent.putExtra("MAPY", arr.get(a).getMapy());
+        intent.putExtra("NUMBER", a);
+
 
         m_activity.startActivity(intent);
 
