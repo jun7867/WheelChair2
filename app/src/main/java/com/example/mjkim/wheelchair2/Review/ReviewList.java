@@ -20,6 +20,34 @@ public class ReviewList {
     private String imageUrl4;
     private String imageUrl5;
     private String imageUrl6;
+    private String imageUrl7;
+
+    public String getImageUrl7() {
+        return imageUrl7;
+    }
+
+    public void setImageUrl7(String imageUrl7) {
+        this.imageUrl7 = imageUrl7;
+    }
+
+    public String getImageUrl8() {
+        return imageUrl8;
+    }
+
+    public void setImageUrl8(String imageUrl8) {
+        this.imageUrl8 = imageUrl8;
+    }
+
+    public String getImageUrl9() {
+        return imageUrl9;
+    }
+
+    public void setImageUrl9(String imageUrl9) {
+        this.imageUrl9 = imageUrl9;
+    }
+
+    private String imageUrl8;
+    private String imageUrl9;
 
     public String getImageUrl4() {
         return imageUrl4;
@@ -183,6 +211,10 @@ public class ReviewList {
         imageUrl4 = "";
         imageUrl5 = "";
         imageUrl6 = "";
+        imageUrl7 = "";
+        imageUrl8 = "";
+        imageUrl9 = "";
+
     }
 
     public void setImageUrl6(String imageUrl6) {
