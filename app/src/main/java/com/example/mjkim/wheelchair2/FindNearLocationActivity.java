@@ -112,6 +112,9 @@ public class FindNearLocationActivity extends NMapActivity{
 
         back_button = (Button)findViewById(R.id.back_b);
         menu_button = (Button)findViewById(R.id.menu_b);
+        callButton = (Button)findViewById(R.id.telephone_icon);
+        watchReviewButton = (Button)findViewById(R.id.watch_review_icon);
+        writeReviewButton = (Button)findViewById(R.id.write_review_icon);
 
         locationNameTextView = (TextView)findViewById(R.id.location_name);
         addressNameTextView = (TextView)findViewById(R.id.address_name);
@@ -171,8 +174,8 @@ public class FindNearLocationActivity extends NMapActivity{
 
         NMapPOIdata myPoiData = new NMapPOIdata(1, mMapViewerResourceProvider);
         myPoiData.beginPOIdata(0);
-        myPoiData.addPOIitem(mGeoPoint, "내 위치", markerMyId, 0);
-//        myPoiData.addPOIitem(129.343422,36.019178, "포항시청", markerMyId, 0);
+//        myPoiData.addPOIitem(mGeoPoint, "내 위치", markerMyId, 0);
+        myPoiData.addPOIitem(129.343422,36.019178, "포항시청", markerMyId, 0);
         myPoiData.endPOIdata();
         // poi 데이터 띄우기
         myPoiDataOverlay = mOverlayManager.createPOIdataOverlay(myPoiData, null);
@@ -483,11 +486,35 @@ public class FindNearLocationActivity extends NMapActivity{
                 fragmentTransaction.commit();
 
 //                //전화번호 누르면 전화켜짐
-//                telephoneNumberTextView.setOnClickListener(new View.OnClickListener(){
-//                    @Override
-//                    public void onClick(View view){
+                callButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
 //                        Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
-//                        startActivity(intent1);
+                        Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "010"));
+                        startActivity(intent1);
+                    }
+                });
+
+//                // 리뷰보기 틀, 리뷰들 데이터를 받아야 띄울 수 있음
+//                watchReviewButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent2 = new Intent(FindNearLocationActivity.this, BlogSearch.class);
+//                        intent2.putExtra("BLOGNAME", name);
+//                        startActivity(intent2);
+//                    }
+//                });
+//
+//                // 리뷰작성 틀, 데이터가 있어야 테스트 할 수 있음
+//                writeReviewButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent3 = new Intent(FindNearLocationActivity.this, ReviewScreen.class);
+//                        intent3.putExtra("NAME", name);
+//                        intent3.putExtra("MAPX", mapx);
+//                        intent3.putExtra("MAPY", mapy);
+//                        intent3.putExtra("ROAD_ADDRESS", address);
+//                        startActivity(intent3);
 //                    }
 //                });
 
@@ -496,6 +523,8 @@ public class FindNearLocationActivity extends NMapActivity{
                 fl.setVisibility(View.INVISIBLE);
             }
         }
+
+
 
         //마커에 달린 말풍선 누르면 작동
         @Override
