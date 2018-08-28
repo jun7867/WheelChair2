@@ -231,7 +231,7 @@
                     android:layout_weight="1"
                     android:paddingLeft="30dp"
                     android:text="전화번호"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="18sp" />
 
                 <TextView

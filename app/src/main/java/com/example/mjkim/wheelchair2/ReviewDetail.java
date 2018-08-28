@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
@@ -19,7 +21,6 @@ import com.example.mjkim.wheelchair2.Review.ReviewList;
 import com.example.mjkim.wheelchair2.WatchReview.MoreReviewActivity;
 import com.example.mjkim.wheelchair2.WatchReview.WatchReviewAdapter;
 import com.example.mjkim.wheelchair2.WatchReview.WatchReviewList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -29,6 +30,7 @@ public class ReviewDetail extends AppCompatActivity {
 
 
     public static ArrayList<NaverBlogList> blogList;       // 네이버 지역 리스트
+    public static ArrayList<WatchReviewList> reviewList;
     public static ArrayList<ReviewList> reviewLists;
     private NaverBlogSearch naverBlogSearch;
     private NaverBlogAdapter blogAdapter;
@@ -133,6 +135,7 @@ public class ReviewDetail extends AppCompatActivity {
 
         //해당 장소의 리뷰들을 리스트로 저장하고 JSON 파싱을한다
         if(FirebaseJson.reviewJson.size() > intent.getExtras().getInt("NUMBER")){
+
             reviewLists = new ArrayList<ReviewList>();
             int num = 0;
 
@@ -279,6 +282,7 @@ public class ReviewDetail extends AppCompatActivity {
         intent.putExtra("MAPX", mapx);
         intent.putExtra("MAPY", mapy);
         intent.putExtra("ROAD_ADDRESS", address);
+        intent.putExtra("TELEPHONE", phone);
         startActivity(intent);
     }
 
