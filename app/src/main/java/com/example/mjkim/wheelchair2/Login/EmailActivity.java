@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.mjkim.wheelchair2.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -38,18 +39,6 @@ public class EmailActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.signupActivity_edittext_password);
         signup = (Button) findViewById(R.id.signupActivity_button_signup);
         mAuth = FirebaseAuth.getInstance();
-//        FirebaseAuth.getInstance()
-//                .createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-//                .addOnCompleteListener(EmailActivity.this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        final String uid = task.getResult().getUser().getUid();
-//                        progressDialog.dismiss();
-//                        Toast.makeText(getApplicationContext(), "회원가입을 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-//                        finish();
-//                    }
-//                });
-
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +49,28 @@ public class EmailActivity extends AppCompatActivity {
                 createUser(email1,name1,pw1);
             }
         });
+        sendEmail();
 
+
+    }
+    public void sendEmail(){
+        String url = "http://www.example.com/verify?uid=" + currentUser.getUid();
+        ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
+                .setUrl(url)
+                .setIOSBundleId("com.example.android")
+                // The default for this is populated with the current android package name.
+                .setAndroidPackageName("com.example.android", false, null)
+                .build();
+
+        currentUser.sendEmailVerification(actionCodeSettings)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                           Toast.makeText(EmailActivity.this,"링크 전송 성공",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
     private void createUser(String email,final String name, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -91,4 +101,5 @@ public class EmailActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }
