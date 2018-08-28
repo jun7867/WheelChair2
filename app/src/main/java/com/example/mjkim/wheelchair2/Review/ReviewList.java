@@ -177,6 +177,12 @@ public class ReviewList {
         this.review = review;
         this.mapx = mapx;
         this.mapy = mapy;
+        imageUrl1 = "";
+        imageUrl2 = "";
+        imageUrl3 = "";
+        imageUrl4 = "";
+        imageUrl5 = "";
+        imageUrl6 = "";
     }
 
     public void setImageUrl6(String imageUrl6) {

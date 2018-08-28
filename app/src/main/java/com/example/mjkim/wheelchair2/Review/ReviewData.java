@@ -28,64 +28,6 @@ public class ReviewData {
 
 
         usersRef.child(name).push().setValue(reviewList);// 기본 database 하위 message라는 child에 chatData를 list로 만들기
-
-
-
-        FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Log.d("MainActivity", "ValueEventListener : " + snapshot.getValue());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    // 데이터베이스 읽기 #2. Single ValueEventListener
-        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                Log.d("MainActivity", "Single ValueEventListener : " + snapshot.getValue());
-            }
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    });
-
-    // 데이터베이스 읽기 #3. ChildEventListener
-        FirebaseDatabase.getInstance().getReference().addChildEventListener(new ChildEventListener() {
-        @Override
-        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            Log.d("MainActivity", "ChildEventListener - onChildAdded : " + dataSnapshot.getValue());
-        }
-
-        @Override
-        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            Log.d("MainActivity", "ChildEventListener - onChildChanged : " + s);
-        }
-
-        @Override
-        public void onChildRemoved(DataSnapshot dataSnapshot) {
-            Log.d("MainActivity", "ChildEventListener - onChildRemoved : " + dataSnapshot.getKey());
-        }
-
-        @Override
-        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            Log.d("MainActivity", "ChildEventListener - onChildMoved" + s);
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-            Log.d("MainActivity", "ChildEventListener - onCancelled" + databaseError.getMessage());
-        }
-    });
 }
 }
 

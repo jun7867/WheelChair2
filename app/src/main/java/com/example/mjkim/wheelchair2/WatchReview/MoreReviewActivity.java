@@ -48,7 +48,7 @@ public class MoreReviewActivity extends AppCompatActivity {
         ListView lv = (ListView) findViewById(R.id.review_list);
 
 
-        adapter = new WatchReviewAdapter(MoreReviewActivity.this, ReviewDetail.reviewList);
+        adapter = new WatchReviewAdapter(MoreReviewActivity.this, ReviewDetail.reviewLists);
         lv.setAdapter(adapter);
 
 
