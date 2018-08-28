@@ -132,5 +132,8 @@ public class FirstScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() { backPressCloseHandler.onBackPressed(); }
+
 
 }

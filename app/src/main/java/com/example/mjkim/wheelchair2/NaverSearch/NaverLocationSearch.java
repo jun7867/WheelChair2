@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.text.Html;
 
 import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
-import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson2;
 import com.example.mjkim.wheelchair2.Review.ReviewJson;
 
 import org.json.JSONArray;
@@ -15,7 +14,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<NaverLocationList>> {
 
@@ -24,7 +22,6 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
     public static int total_num = 0;
 
 
-    private FirebaseJson2 firebaseJson2 = new FirebaseJson2();
     private FirebaseJson firebaseJson = new FirebaseJson();
     private ArrayList<String> location_result;
     private ReviewJson reviewJson = new ReviewJson();

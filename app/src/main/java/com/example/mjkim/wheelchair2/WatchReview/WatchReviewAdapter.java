@@ -11,7 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mjkim.wheelchair2.BlogDetail;
+import com.example.mjkim.wheelchair2.FirstScreen;
 import com.example.mjkim.wheelchair2.R;
+import com.example.mjkim.wheelchair2.Review.ReviewList;
+import com.example.mjkim.wheelchair2.ReviewDetail;
 
 import java.util.ArrayList;
 
@@ -19,9 +22,9 @@ public class WatchReviewAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private Activity m_activity;
-    private ArrayList<WatchReviewList> arr;
+    private ArrayList<ReviewList> arr;
     public static int select = 0; //출력되는 블로그 개수 선택 1이면 5개 2이면 최대 20개
-    public WatchReviewAdapter(Activity act, ArrayList<WatchReviewList> arr_item) {
+    public WatchReviewAdapter(Activity act, ArrayList<ReviewList> arr_item) {
         this.m_activity = act;
         arr = arr_item;
         mInflater = (LayoutInflater)m_activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -30,7 +33,7 @@ public class WatchReviewAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if(select == 1){
-            if(WatchReviewSearch.total_num < 3) return arr.size();
+            if(ReviewDetail.length < 3) return arr.size();
             else return 3;
         }
         else return arr.size();
@@ -65,10 +68,10 @@ public class WatchReviewAdapter extends BaseAdapter {
 
         //imView.setBackgroundResource(resId);
 
-        title.setText(arr.get(position).getName());
-        description.setText(arr.get(position).getDescription());
-        bloggername.setText(arr.get(position).getBloogername());
-        postdate.setText(arr.get(position).getPostdate());
+        title.setText("리뷰 " + position);
+        description.setText(arr.get(position).getReview());
+        bloggername.setText(arr.get(position).getName());
+        postdate.setText("날짜");
 
         /*  버튼에 이벤트처리를 하기위해선 setTag를 이용해서 사용할 수 있습니다.
 
@@ -96,8 +99,8 @@ public class WatchReviewAdapter extends BaseAdapter {
 
     public void GoIntent(int a){
 
-        Intent intent = new Intent(m_activity, BlogDetail.class);
-        intent.putExtra("LINK", arr.get(a).getLink()); //해당 블로그 링크를 보내준다
+        Intent intent = new Intent(m_activity, FirstScreen.class);
+        //intent.putExtra("LINK", arr.get(a).getLink()); //해당 블로그 링크를 보내준다
         m_activity.startActivity(intent);
     }
 
