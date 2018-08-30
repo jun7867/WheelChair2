@@ -30,6 +30,34 @@ public class ReviewList {
     public void setDate(String date) {
         this.date = date;
     }
+    private String imageUrl7;
+
+    public String getImageUrl7() {
+        return imageUrl7;
+    }
+
+    public void setImageUrl7(String imageUrl7) {
+        this.imageUrl7 = imageUrl7;
+    }
+
+    public String getImageUrl8() {
+        return imageUrl8;
+    }
+
+    public void setImageUrl8(String imageUrl8) {
+        this.imageUrl8 = imageUrl8;
+    }
+
+    public String getImageUrl9() {
+        return imageUrl9;
+    }
+
+    public void setImageUrl9(String imageUrl9) {
+        this.imageUrl9 = imageUrl9;
+    }
+
+    private String imageUrl8;
+    private String imageUrl9;
 
     public String getImageUrl4() {
         return imageUrl4;
@@ -163,10 +191,9 @@ public class ReviewList {
 
     public ReviewList(){}
 
-    public ReviewList(String location_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
+    public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
                       Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy,
                       String imageUrl1, String imageUrl2, String imageUrl3){
-        this.location_name = location_name;
         this.rating = rating;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -185,7 +212,7 @@ public class ReviewList {
     }
 
     public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
-                      Boolean tag4, Boolean tag5, Boolean tag6, String review, double mapx, double mapy, String date){
+                      Boolean tag4, Boolean tag5, Boolean tag6, String review, double mapx, double mapy){
         this.rating = rating;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -196,13 +223,16 @@ public class ReviewList {
         this.review = review;
         this.mapx = mapx;
         this.mapy = mapy;
-        this.date = date;
         imageUrl1 = "";
         imageUrl2 = "";
         imageUrl3 = "";
         imageUrl4 = "";
         imageUrl5 = "";
         imageUrl6 = "";
+        imageUrl7 = "";
+        imageUrl8 = "";
+        imageUrl9 = "";
+
     }
 
     public void setImageUrl6(String imageUrl6) {

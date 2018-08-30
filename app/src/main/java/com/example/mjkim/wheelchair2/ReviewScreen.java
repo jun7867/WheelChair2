@@ -69,6 +69,9 @@ public class ReviewScreen extends AppCompatActivity {
     String imagePath4="";
     String imagePath5="";
     String imagePath6="";
+    String imagePath7="";
+    String imagePath8="";
+    String imagePath9="";
 
     String phone ="";
 
@@ -80,7 +83,7 @@ public class ReviewScreen extends AppCompatActivity {
     ImageButton back_button;
     ImageButton menu_button;
     Button map_search;
-    ImageView picture1,picture2,picture3,picture4,picture5,picture6;
+    ImageView picture1,picture2,picture3,picture4,picture5,picture6,picture7,picture8,picture9;
     EditText review_text;
     RatingBar review_rating_bar;
     CheckBox chk[] = new CheckBox[6];
@@ -93,6 +96,10 @@ public class ReviewScreen extends AppCompatActivity {
     int pic4=0;
     int pic5=0;
     int pic6=0;
+    int pic7=0;
+    int pic8=0;
+    int pic9=0;
+
     int mapx, mapy;
     private String imageFilePath1="";
     private String imageFilePath2="";
@@ -100,6 +107,9 @@ public class ReviewScreen extends AppCompatActivity {
     private String imageFilePath4="";
     private String imageFilePath5="";
     private String imageFilePath6="";
+    private String imageFilePath7="";
+    private String imageFilePath8="";
+    private String imageFilePath9="";
 
     private Uri photoUri;
     @Override
@@ -127,6 +137,10 @@ public class ReviewScreen extends AppCompatActivity {
         picture4 = (ImageView)findViewById(R.id.picture4);
         picture5 = (ImageView)findViewById(R.id.picture5);
         picture6 = (ImageView)findViewById(R.id.picture6);
+        picture7 = (ImageView)findViewById(R.id.picture7);
+        picture8 = (ImageView)findViewById(R.id.picture8);
+        picture9 = (ImageView)findViewById(R.id.picture9);
+
 
         review_text = (EditText) findViewById(R.id.review_text);
         review_rating_bar = (RatingBar) findViewById(R.id.ratingBar);
@@ -186,7 +200,8 @@ public class ReviewScreen extends AppCompatActivity {
 
         id_view = view.getId();
         if(view.getId() == R.id.picture1 || view.getId() == R.id.picture2 || view.getId() == R.id.picture3
-                || view.getId() == R.id.picture4 || view.getId() == R.id.picture5 || view.getId() == R.id.picture6){
+                || view.getId() == R.id.picture4 || view.getId() == R.id.picture5 || view.getId() == R.id.picture6
+                || view.getId() == R.id.picture7 || view.getId() == R.id.picture8 || view.getId() == R.id.picture9 ){
             DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) { doTakePhotoAction(); }
@@ -228,7 +243,6 @@ public class ReviewScreen extends AppCompatActivity {
 
                 if (photoFile != null) {
                     photoUri = FileProvider.getUriForFile(this, getPackageName(), photoFile);
-                    System.out.println("포토 유알이"+photoUri);
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
@@ -412,6 +426,72 @@ public class ReviewScreen extends AppCompatActivity {
                     picture6.setImageBitmap(rotate(bitmap, exifDegree));
                     pic6=2;
                 }
+                if(id_view == R.id.picture7){
+                    Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath7);
+                    ExifInterface exif = null;
+
+                    try {
+                        exif = new ExifInterface(imageFilePath7);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    int exifOrientation;
+                    int exifDegree;
+
+                    if (exif != null) {
+                        exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+                        exifDegree = exifOrientationToDegrees(exifOrientation);
+                    } else {
+                        exifDegree = 0;
+                    }
+                    picture7.setImageBitmap(rotate(bitmap, exifDegree));
+                    pic7=2;
+                }
+                if(id_view == R.id.picture8){
+                    Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath8);
+                    ExifInterface exif = null;
+
+                    try {
+                        exif = new ExifInterface(imageFilePath8);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    int exifOrientation;
+                    int exifDegree;
+
+                    if (exif != null) {
+                        exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+                        exifDegree = exifOrientationToDegrees(exifOrientation);
+                    } else {
+                        exifDegree = 0;
+                    }
+                    picture8.setImageBitmap(rotate(bitmap, exifDegree));
+                    pic8=2;
+                }
+                if(id_view == R.id.picture9){
+                    Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath9);
+                    ExifInterface exif = null;
+
+                    try {
+                        exif = new ExifInterface(imageFilePath9);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    int exifOrientation;
+                    int exifDegree;
+
+                    if (exif != null) {
+                        exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+                        exifDegree = exifOrientationToDegrees(exifOrientation);
+                    } else {
+                        exifDegree = 0;
+                    }
+                    picture9.setImageBitmap(rotate(bitmap, exifDegree));
+                    pic9=2;
+                }
             }
 
             }
@@ -452,6 +532,24 @@ public class ReviewScreen extends AppCompatActivity {
                     picture6.setImageURI(Uri.fromFile(f6));
                     pic6=1;
                 }
+                if (id_view == R.id.picture7) {
+                    imagePath7 = getPath(data.getData());
+                    File f7 = new File(imagePath7);
+                    picture7.setImageURI(Uri.fromFile(f7));
+                    pic7=1;
+                }
+                if (id_view == R.id.picture8) {
+                    imagePath8 = getPath(data.getData());
+                    File f8 = new File(imagePath8);
+                    picture8.setImageURI(Uri.fromFile(f8));
+                    pic8=1;
+                }
+                if (id_view == R.id.picture9) {
+                    imagePath9 = getPath(data.getData());
+                    File f9 = new File(imagePath9);
+                    picture9.setImageURI(Uri.fromFile(f9));
+                    pic9=1;
+                }
             }
         }
     private File createImageFile() throws IOException {  //이미지가 저장될 파일을 만드는 함수
@@ -481,11 +579,21 @@ public class ReviewScreen extends AppCompatActivity {
         if(id_view==R.id.picture6){
             imageFilePath6 = image.getAbsolutePath();
         }
+        if(id_view==R.id.picture7){
+            imageFilePath7 = image.getAbsolutePath();
+        }
+        if(id_view==R.id.picture8){
+            imageFilePath8 = image.getAbsolutePath();
+        }
+        if(id_view==R.id.picture9){
+            imageFilePath9 = image.getAbsolutePath();
+        }
 
         return image;
     }
    // 사진 링크를 저장하는 함수.
-   private void upload(final String uri, final String uri2, final String uri3,final String uri4,final String uri5,final String uri6){
+   private void upload(final String uri, final String uri2, final String uri3,final String uri4,final String uri5,final String uri6,
+                       final String uri7, final String uri8, final String uri9){
         System.out.println("시작");
 
            Uri file = Uri.fromFile(new File(uri));
@@ -497,7 +605,7 @@ public class ReviewScreen extends AppCompatActivity {
            uploadTask.addOnFailureListener(new OnFailureListener() {
                @Override
                public void onFailure(@NonNull Exception e) {
-                   upload2(uri2,uri3,uri4,uri5,uri6);
+                   upload2(uri2,uri3,uri4,uri5,uri6,uri7,uri8,uri9);
                    System.out.println("실패1");
                }
            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -506,16 +614,20 @@ public class ReviewScreen extends AppCompatActivity {
                    downloadUrl=taskSnapshot.toString();
                    System.out.println("다운1: "+downloadUrl);
                    reviewList.setImageUrl1(downloadUrl);
-                   if(pic2!=0){ upload2(uri2,uri3,uri4,uri5,uri6); }
-                   else if(pic3!=0){ upload3(uri3,uri4,uri5,uri6); }
-                   else if(pic4!=0){ upload4(uri4,uri5,uri6); }
-                   else if(pic5!=0){ upload5(uri5,uri6); }
-                   else if (pic6 != 0) { upload6(uri6); }
+                   if(pic2!=0){ upload2(uri2,uri3,uri4,uri5,uri6,uri7,uri8,uri9); }
+                   else if(pic3!=0){ upload3(uri3,uri4,uri5,uri6,uri7,uri8,uri9); }
+                   else if(pic4!=0){ upload4(uri4,uri5,uri6,uri7,uri8,uri9); }
+                   else if(pic5!=0){ upload5(uri5,uri6,uri7,uri8,uri9); }
+                   else if (pic6 != 0) { upload6(uri6,uri7,uri8,uri9); }
+                   else if(pic7!=0) upload7(uri7,uri8,uri9);
+                   else if(pic8!=0) upload8(uri8,uri9);
+                   else if(pic9!=0) upload9(uri9);
                    else{ reviewData.saveData(name, reviewList); }
                }
            });
    }
-   public void upload2(String uri2, final String uri3, final String uri4, final String uri5, final String uri6){
+   public void upload2(String uri2, final String uri3, final String uri4, final String uri5, final String uri6,
+                       final String uri7,final String uri8,final String uri9){
        Uri file2 = Uri.fromFile(new File(uri2));
        if(pic2==2){ // 사진으로 찍은거면 file을 바꾸기.
            file2 = Uri.fromFile(new File(imageFilePath2));
@@ -525,7 +637,7 @@ public class ReviewScreen extends AppCompatActivity {
        uploadTask2.addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
-                upload3(uri3,uri4,uri5,uri6);
+               upload3(uri3,uri4,uri5,uri6,uri7,uri8,uri9);
                System.out.println("실패2");
            }
        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -534,15 +646,18 @@ public class ReviewScreen extends AppCompatActivity {
                downloadUrl=taskSnapshot.toString();
                System.out.println("다운2: "+downloadUrl);
                reviewList.setImageUrl2(downloadUrl);
-               if(pic3!=0){ upload3(uri3,uri4,uri5,uri6); }
-               else if(pic4!=0){ upload4(uri4,uri5,uri6); }
-               else if(pic5!=0){ upload5(uri5,uri6); }
-               else if (pic6 != 0) { upload6(uri6); }
+               if(pic3!=0){ upload3(uri3,uri4,uri5,uri6,uri7,uri8,uri9); }
+               else if(pic4!=0){ upload4(uri4,uri5,uri6,uri7,uri8,uri9); }
+               else if(pic5!=0){ upload5(uri5,uri6,uri7,uri8,uri9); }
+               else if (pic6 != 0) { upload6(uri6,uri7,uri8,uri9); }
+               else if(pic7!=0) upload7(uri7,uri8,uri9);
+               else if(pic8!=0) upload8(uri8,uri9);
+               else if(pic9!=0) upload9(uri9);
                else{ reviewData.saveData(name, reviewList); }
            }
        });
    }
-   public void upload3(String uri3, final String uri4, final String uri5, final String uri6){
+   public void upload3(String uri3, final String uri4, final String uri5, final String uri6,final String uri7,final String uri8,final String uri9){
        Uri file3 = Uri.fromFile(new File(imagePath3));
        if(pic3==2){ // 사진으로 찍은거면 file을 바꾸기.
            file3 = Uri.fromFile(new File(imageFilePath3));
@@ -552,7 +667,7 @@ public class ReviewScreen extends AppCompatActivity {
        uploadTask3.addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
-                    upload4(uri4,uri5,uri6);
+               upload4(uri4,uri5,uri6,uri7,uri8,uri9);
                System.out.println("실패3");
            }
        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -561,14 +676,17 @@ public class ReviewScreen extends AppCompatActivity {
                downloadUrl=taskSnapshot.toString();
                System.out.println("다운3: "+downloadUrl);
                reviewList.setImageUrl3(downloadUrl);
-               if(pic4!=0){ upload4(uri4,uri5,uri6); }
-               else if(pic5!=0){ upload5(uri5, uri6); }
-               else if (pic6 != 0) { upload6(uri6); }
+               if(pic4!=0){ upload4(uri4,uri5,uri6,uri7,uri8,uri9); }
+               else if(pic5!=0){ upload5(uri5,uri6,uri7,uri8,uri9); }
+               else if (pic6 != 0) { upload6(uri6,uri7,uri8,uri9); }
+               else if(pic7!=0) upload7(uri7,uri8,uri9);
+               else if(pic8!=0) upload8(uri8,uri9);
+               else if(pic9!=0) upload9(uri9);
                else{ reviewData.saveData(name, reviewList); }
            }
        });
    }
-   public void upload4(String uri4, final String uri5, final String uri6){
+   public void upload4(String uri4, final String uri5, final String uri6,final String uri7, final String uri8,final String uri9){
        Uri file4 = Uri.fromFile(new File(imagePath4));
        if(pic4==2){ // 사진으로 찍은거면 file을 바꾸기.
            file4 = Uri.fromFile(new File(imageFilePath4));
@@ -579,7 +697,7 @@ public class ReviewScreen extends AppCompatActivity {
            @Override
            public void onFailure(@NonNull Exception e) {
                 System.out.println("실패4");
-                upload5(uri5,uri6);
+               upload5(uri5,uri6,uri7,uri8,uri9);
            }
        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
            @Override
@@ -587,13 +705,16 @@ public class ReviewScreen extends AppCompatActivity {
                downloadUrl=taskSnapshot.toString();
                System.out.println("다운4: "+downloadUrl);
                reviewList.setImageUrl4(downloadUrl);
-               if(pic5!=0){ upload5(uri5,uri6); }
-               else if (pic6 != 0) { upload6(uri6); }
+               if(pic5!=0){ upload5(uri5,uri6,uri7,uri8,uri9); }
+               else if (pic6 != 0) { upload6(uri6,uri7,uri8,uri9); }
+               else if(pic7!=0) upload7(uri7,uri8,uri9);
+               else if(pic8!=0) upload8(uri8,uri9);
+               else if(pic9!=0) upload9(uri9);
                else{ reviewData.saveData(name, reviewList); }
            }
        });
    }
-         public void upload5(String uri5, final String uri6){
+         public void upload5(String uri5, final String uri6,final String uri7, final String uri8,final String uri9){
           Uri file5 = Uri.fromFile(new File(imagePath5));
        if(pic5==2){ // 사진으로 찍은거면 file을 바꾸기.
            file5 = Uri.fromFile(new File(imageFilePath5));
@@ -604,7 +725,7 @@ public class ReviewScreen extends AppCompatActivity {
            @Override
            public void onFailure(@NonNull Exception e) {
                System.out.println("실패5");
-               upload6(uri6);
+               upload6(uri6,uri7,uri8,uri9);
            }
        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
            @Override
@@ -612,12 +733,15 @@ public class ReviewScreen extends AppCompatActivity {
                downloadUrl=taskSnapshot.toString();
                System.out.println("다운5: "+downloadUrl);
                reviewList.setImageUrl5(downloadUrl);
-               if (pic6 != 0) { upload6(uri6); }
+               if (pic6 != 0) { upload6(uri6,uri7,uri8,uri9); }
+               else if(pic7!=0) upload7(uri7,uri8,uri9);
+               else if(pic8!=0) upload8(uri8,uri9);
+               else if(pic9!=0) upload9(uri9);
                else{ reviewData.saveData(name, reviewList); }
            }
        });
    }
-   public void upload6(String uri6){
+   public void upload6(String uri6,final String uri7, final String uri8,final String uri9){
        Uri file6 = Uri.fromFile(new File(imagePath6));
        if(pic6==2){ // 사진으로 찍은거면 file을 바꾸기.
            file6 = Uri.fromFile(new File(imageFilePath6));
@@ -628,6 +752,7 @@ public class ReviewScreen extends AppCompatActivity {
            @Override
            public void onFailure(@NonNull Exception e) {
                System.out.println("실패6");
+               upload7(uri7,uri8,uri9);
            }
        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
            @Override
@@ -635,10 +760,86 @@ public class ReviewScreen extends AppCompatActivity {
                downloadUrl=taskSnapshot.toString();
                System.out.println("다운6: "+downloadUrl);
                reviewList.setImageUrl6(downloadUrl);
-               reviewData.saveData(name,reviewList);
+               if(pic7!=0) upload7(uri7,uri8,uri9);
+               else if(pic8!=0) upload8(uri8,uri9);
+               else if(pic9!=0) upload9(uri9);
+               else reviewData.saveData(name,reviewList);
            }
        });
    }
+    public void upload7(final String uri7, final String uri8,final String uri9){
+        Uri file7 = Uri.fromFile(new File(imagePath7));
+        if(pic7==2){ // 사진으로 찍은거면 file을 바꾸기.
+            file7 = Uri.fromFile(new File(imageFilePath7));
+        }
+        StorageReference riverRef7=storageRef.child("images/"+file7.getLastPathSegment());
+        UploadTask uploadTask7 = riverRef7.putFile(file7);
+        uploadTask7.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("실패7");
+                upload8(uri8,uri9);
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                downloadUrl=taskSnapshot.toString();
+                System.out.println("다운7: "+downloadUrl);
+                reviewList.setImageUrl7(downloadUrl);
+                if(pic8!=0) upload8(uri8,uri9);
+                else if(pic9!=0) upload9(uri9);
+                else reviewData.saveData(name,reviewList);
+            }
+        });
+    }
+    public void upload8(final String uri8,final String uri9){
+        Uri file8 = Uri.fromFile(new File(imagePath8));
+        if(pic8==2){ // 사진으로 찍은거면 file을 바꾸기.
+            file8 = Uri.fromFile(new File(imageFilePath8));
+        }
+        StorageReference riverRef8=storageRef.child("images/"+file8.getLastPathSegment());
+        UploadTask uploadTask8 = riverRef8.putFile(file8);
+        uploadTask8.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("실패8");
+                upload9(uri9);
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                downloadUrl=taskSnapshot.toString();
+                System.out.println("다운8: "+downloadUrl);
+                reviewList.setImageUrl8(downloadUrl);
+                if(pic9!=0) upload9(uri9);
+                else reviewData.saveData(name,reviewList);
+            }
+        });
+    }
+    public void upload9(final String uri9){
+        Uri file9 = Uri.fromFile(new File(imagePath9));
+        if(pic9==2){ // 사진으로 찍은거면 file을 바꾸기.
+            file9 = Uri.fromFile(new File(imageFilePath9));
+        }
+        StorageReference riverRef9=storageRef.child("images/"+file9.getLastPathSegment());
+        UploadTask uploadTask9 = riverRef9.putFile(file9);
+        uploadTask9.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("실패9");
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                downloadUrl=taskSnapshot.toString();
+                System.out.println("다운9: "+downloadUrl);
+                reviewList.setImageUrl9(downloadUrl);
+                reviewData.saveData(name,reviewList);
+            }
+        });
+    }
+
     public void openMapSearch(){
         Intent intent = new Intent(this, WatchLocationActivity.class);
         intent.putExtra("NAME", name);
@@ -672,12 +873,10 @@ public class ReviewScreen extends AppCompatActivity {
 
         reviewList = new ReviewList(rating, tag1,tag2,tag3,tag4,tag5,tag6, review,mapx,mapy, mTime);
 
-        if(pic1==1 || pic2==1 || pic3==1 || pic4==1 || pic5==1 || pic6==1 ||
-        pic1==2 || pic2==2 || pic3==2 || pic4==2 || pic5==2 || pic6==2) {  // 사진이 하나라도 있으면.
-            upload(imagePath1, imagePath2, imagePath3,imagePath4,imagePath5,imagePath6);
+        if(pic1 !=0 || pic2 !=0 || pic3 !=0 || pic4 !=0 || pic5 !=0 || pic6 !=0 || pic7 !=0 || pic8!=0 || pic9!=0 ) {  // 사진이 하나라도 있으면.
+            upload(imagePath1, imagePath2, imagePath3,imagePath4,imagePath5,imagePath6,imagePath7,imagePath8,imagePath9);
         }
-        if(pic1 !=1 && pic1 !=2 && pic2 !=1 && pic2 !=2 && pic3 !=1 && pic3 !=2 && pic4 !=1 && pic4 !=2 &&
-               pic5!=1 && pic5!=2 && pic6 !=1 && pic6 !=2 ) {
+        else{
             reviewData.saveData(name, reviewList);  //사진 없을때
         }
         Toast.makeText(this, "리뷰가 등록되었습니다 ", Toast.LENGTH_SHORT).show();
