@@ -53,7 +53,7 @@ public class ReviewDetail extends AppCompatActivity {
     private Boolean tag5;
     private Boolean tag6;
     private String review;
-    private String location_title;
+    private String reviewer_name;
     private String email;
     private double location_mapx;
     private double location_mapy;
@@ -131,6 +131,7 @@ public class ReviewDetail extends AppCompatActivity {
         naverBlogSearch = new NaverBlogSearch();
 
         Intent intent = getIntent();
+        reviewLists = new ArrayList<ReviewList>();
 
 
         //해당 장소의 리뷰들을 리스트로 저장하고 JSON 파싱을한다
@@ -142,8 +143,13 @@ public class ReviewDetail extends AppCompatActivity {
 
 
             String json = FirebaseJson.reviewJson.get(intent.getExtras().getInt("NUMBER")).getReview_json_string();
+            System.out.println(json);
             length = FirebaseJson.reviewJson.get(intent.getExtras().getInt("NUMBER")).getReview_count();
+            System.out.println("길이: " + length);
             JSONArray IDs = FirebaseJson.reviewJson.get(intent.getExtras().getInt("NUMBER")).getReview_json_userID();
+            System.out.println("아이디: " + IDs);
+            String location_name = FirebaseJson.reviewJson.get(intent.getExtras().getInt("NUMBER")).getLocation_name();
+            System.out.println("이름: " + location_name);
 
             try{
                 JSONObject obj = new JSONObject(json);
@@ -162,7 +168,7 @@ public class ReviewDetail extends AppCompatActivity {
                     tag6 = jsonObj.getBoolean("tag6");
                     review = jsonObj.getString("review");
                     System.out.println("리뷰: " + review);
-                    location_title = jsonObj.getString("name");
+                    reviewer_name = jsonObj.getString("name");
                     email = jsonObj.getString("email");
                     location_mapx = jsonObj.getInt("mapx");
                     System.out.println("MAPX: " + location_mapx);
@@ -173,8 +179,16 @@ public class ReviewDetail extends AppCompatActivity {
                     imageUrl3 = jsonObj.getString("imageUrl3");
 
 
-                    reviewLists.add(num++, new ReviewList(rating, tag1, tag2, tag3, tag4, tag5,tag6, review, location_title,
-                            email, location_mapx, location_mapy, imageUrl1, imageUrl2, imageUrl3));
+
+
+                    System.out.println("지역 이름1 " + intent.getExtras().getString("NAME"));
+                    System.out.println("지역 이름2 " + location_name);
+
+                    if(intent.getExtras().getString("NAME").equals(location_name)) {
+                        reviewLists.add(num++, new ReviewList(intent.getExtras().getString("NAME"), rating, tag1, tag2, tag3, tag4, tag5, tag6, review, reviewer_name,
+                                email, location_mapx, location_mapy, imageUrl1, imageUrl2, imageUrl3));
+                    }
+
                 }
 
 
