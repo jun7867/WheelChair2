@@ -9,6 +9,7 @@ public class ReviewList {
     private Boolean tag4;
     private Boolean tag5;
     private Boolean tag6;
+    private String location_name;
     private String review;
     private String name;
     private String email;
@@ -20,6 +21,15 @@ public class ReviewList {
     private String imageUrl4;
     private String imageUrl5;
     private String imageUrl6;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
     private String imageUrl7;
 
     public String getImageUrl7() {
@@ -55,6 +65,14 @@ public class ReviewList {
 
     public void setImageUrl4(String imageUrl4) {
         this.imageUrl4 = imageUrl4;
+    }
+
+    public String getLocation_name() {
+        return imageUrl4;
+    }
+
+    public void setLocation_name(String location_name) {
+        this.location_name = location_name;
     }
 
     public String getImageUrl5() {
@@ -173,9 +191,10 @@ public class ReviewList {
 
     public ReviewList(){}
 
-    public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
+    public ReviewList(String location_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
                       Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy,
                       String imageUrl1, String imageUrl2, String imageUrl3){
+        this.location_name = location_name;
         this.rating = rating;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -194,7 +213,7 @@ public class ReviewList {
     }
 
     public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
-                      Boolean tag4, Boolean tag5, Boolean tag6, String review, double mapx, double mapy){
+                      Boolean tag4, Boolean tag5, Boolean tag6, String review, double mapx, double mapy, String date){
         this.rating = rating;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -205,6 +224,7 @@ public class ReviewList {
         this.review = review;
         this.mapx = mapx;
         this.mapy = mapy;
+        this.date = date;
         imageUrl1 = "";
         imageUrl2 = "";
         imageUrl3 = "";
@@ -214,8 +234,8 @@ public class ReviewList {
         imageUrl7 = "";
         imageUrl8 = "";
         imageUrl9 = "";
-
     }
+
 
     public void setImageUrl6(String imageUrl6) {
         this.imageUrl6 = imageUrl6;

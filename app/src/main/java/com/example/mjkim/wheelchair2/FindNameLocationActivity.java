@@ -48,6 +48,8 @@ public class FindNameLocationActivity extends NMapActivity{
     NMapPOIdataOverlay poiDataOverlay;
 
     // 상단 버튼들
+//    ImageButton back_button;
+//    ImageButton menu_button;
     Button back_button;
     Button menu_button;
 

@@ -10,8 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.mjkim.wheelchair2.BlogDetail;
-import com.example.mjkim.wheelchair2.FirstScreen;
+import com.example.mjkim.wheelchair2.CertainReviewDetail;
 import com.example.mjkim.wheelchair2.R;
 import com.example.mjkim.wheelchair2.Review.ReviewList;
 import com.example.mjkim.wheelchair2.ReviewDetail;
@@ -71,7 +70,7 @@ public class WatchReviewAdapter extends BaseAdapter {
         title.setText("리뷰 " + position);
         description.setText(arr.get(position).getReview());
         bloggername.setText(arr.get(position).getName());
-        postdate.setText("날짜");
+        postdate.setText(arr.get(position).getDate());
 
         /*  버튼에 이벤트처리를 하기위해선 setTag를 이용해서 사용할 수 있습니다.
 
@@ -99,8 +98,7 @@ public class WatchReviewAdapter extends BaseAdapter {
 
     public void GoIntent(int a){
 
-        Intent intent = new Intent(m_activity, FirstScreen.class);
-        //intent.putExtra("LINK", arr.get(a).getLink()); //해당 블로그 링크를 보내준다
+        Intent intent = new Intent(m_activity, CertainReviewDetail.class);
         m_activity.startActivity(intent);
     }
 
