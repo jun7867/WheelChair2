@@ -191,9 +191,10 @@ public class ReviewList {
 
     public ReviewList(){}
 
-    public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
+    public ReviewList(String location_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
                       Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy,
                       String imageUrl1, String imageUrl2, String imageUrl3){
+        this.location_name = location_name;
         this.rating = rating;
         this.tag1 = tag1;
         this.tag2 = tag2;
