@@ -647,6 +647,13 @@ public class ReviewScreen extends AppCompatActivity {
         startActivity(intent);
     }
     public void onFinish(View view){ //등록눌렀을때.
+
+        //리뷰가 작성된 날짜
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd",Locale.KOREA);
+        Date currentTime = new Date();
+        String mTime = simpleDateFormat.format(currentTime);
+
+
         Intent review_intent = getIntent();
 
         name = review_intent.getExtras().getString("NAME");
@@ -663,7 +670,7 @@ public class ReviewScreen extends AppCompatActivity {
         if(chk[4].isChecked() == true) tag5 = true; else tag5 = false;
         if(chk[5].isChecked() == true) tag6 = true; else tag6 = false;
 
-        reviewList = new ReviewList(rating, tag1,tag2,tag3,tag4,tag5,tag6, review,mapx,mapy);
+        reviewList = new ReviewList(rating, tag1,tag2,tag3,tag4,tag5,tag6, review,mapx,mapy, mTime);
 
         if(pic1==1 || pic2==1 || pic3==1 || pic4==1 || pic5==1 || pic6==1 ||
         pic1==2 || pic2==2 || pic3==2 || pic4==2 || pic5==2 || pic6==2) {  // 사진이 하나라도 있으면.

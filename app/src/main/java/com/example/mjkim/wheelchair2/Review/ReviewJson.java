@@ -8,7 +8,15 @@ public class ReviewJson {
     private int review_count;
     private String review_json_string;
     private JSONArray review_json_userID;
+    private String location_name;
 
+    public String getLocation_name() {
+        return location_name;
+    }
+
+    public void setLocation_name(String location_name) {
+        this.location_name = location_name;
+    }
 
     public int getReview_count() {
         return review_count;
@@ -37,7 +45,8 @@ public class ReviewJson {
 
     public ReviewJson(){}
 
-    public ReviewJson(int review_count, String review_json_string, JSONArray review_json_userID){
+    public ReviewJson(String location_name, int review_count, String review_json_string, JSONArray review_json_userID){
+        this.location_name = location_name;
         this.review_count = review_count;
         this.review_json_string = review_json_string;
         this.review_json_userID = review_json_userID;

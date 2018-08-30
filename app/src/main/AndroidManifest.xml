@@ -83,6 +83,7 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
+        <activity android:name=".CertainReviewDetail"></activity>
     </application>
 
 </manifest>

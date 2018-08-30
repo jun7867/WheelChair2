@@ -70,7 +70,7 @@ public class FirebaseJson {
                 System.out.println("개수 초반: " + review_num);
 
                 System.out.println("번호: " + num);
-                reviewJson.add(num,new ReviewJson(review_num, jsonObj.getString(name), jsonObj.getJSONObject(name).names()));
+                reviewJson.add(num,new ReviewJson(name, review_num, jsonObj.getString(name), jsonObj.getJSONObject(name).names()));
                 System.out.println("진짜 개많네1: " + reviewJson.get(num).getReview_count());
                 System.out.println("진짜 개많네2: " + reviewJson.get(num).getReview_json_string());
                 System.out.println("진짜 개많네3: " + reviewJson.get(num).getReview_json_userID());
