@@ -213,7 +213,7 @@ public class ReviewList {
     }
 
     public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
-                      Boolean tag4, Boolean tag5, Boolean tag6, String review, double mapx, double mapy){
+                      Boolean tag4, Boolean tag5, Boolean tag6, String review, double mapx, double mapy, String date){
         this.rating = rating;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -224,6 +224,7 @@ public class ReviewList {
         this.review = review;
         this.mapx = mapx;
         this.mapy = mapy;
+        this.date = date;
         imageUrl1 = "";
         imageUrl2 = "";
         imageUrl3 = "";
@@ -233,8 +234,8 @@ public class ReviewList {
         imageUrl7 = "";
         imageUrl8 = "";
         imageUrl9 = "";
-
     }
+
 
     public void setImageUrl6(String imageUrl6) {
         this.imageUrl6 = imageUrl6;
