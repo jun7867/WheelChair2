@@ -181,9 +181,10 @@ public class ReviewDetail extends AppCompatActivity {
                     System.out.println("지역 이름1 " + intent.getExtras().getString("NAME"));
                     System.out.println("지역 이름2 " + location_name);
 
-                    if(intent.getExtras().getString("NAME").equals(location_name)) System.out.println("제발제발제발 되라 이새끼야");
-                    reviewLists.add(num++, new ReviewList(intent.getExtras().getString("NAME"),rating, tag1, tag2, tag3, tag4, tag5, tag6, review, reviewer_name,
-                            email, location_mapx, location_mapy, imageUrl1, imageUrl2, imageUrl3));
+                    if(intent.getExtras().getString("NAME").equals(location_name)) {
+                        reviewLists.add(num++, new ReviewList(intent.getExtras().getString("NAME"), rating, tag1, tag2, tag3, tag4, tag5, tag6, review, reviewer_name,
+                                email, location_mapx, location_mapy, imageUrl1, imageUrl2, imageUrl3));
+                    }
 
                 }
 
