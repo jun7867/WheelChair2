@@ -78,13 +78,13 @@ public class ReviewScreen extends AppCompatActivity {
     double rating;
     //Boolean tag[] = new Boolean[6];
     Boolean tag1,tag2,tag3,tag4,tag5,tag6;
-    String review;
+    String review, review_name;
 
     ImageButton back_button;
     ImageButton menu_button;
     Button map_search;
     ImageView picture1,picture2,picture3,picture4,picture5,picture6,picture7,picture8,picture9;
-    EditText review_text;
+    EditText review_title, review_text;
     RatingBar review_rating_bar;
     CheckBox chk[] = new CheckBox[6];
     TextView location_name, address_name, phone_number;
@@ -141,7 +141,7 @@ public class ReviewScreen extends AppCompatActivity {
         picture8 = (ImageView)findViewById(R.id.picture8);
         picture9 = (ImageView)findViewById(R.id.picture9);
 
-
+        review_title = (EditText) findViewById(R.id.review_title);
         review_text = (EditText) findViewById(R.id.review_text);
         review_rating_bar = (RatingBar) findViewById(R.id.ratingBar);
         location_name = (TextView) findViewById(R.id.location_name);
@@ -863,6 +863,8 @@ public class ReviewScreen extends AppCompatActivity {
 
         //리뷰 문장 받아오기
         review = review_text.getText().toString();
+        review_name = review_title.getText().toString();
+
 
         if(chk[0].isChecked() == true) tag1 = true; else tag1 = false;
         if(chk[1].isChecked() == true) tag2 = true; else tag2 = false;
@@ -871,7 +873,7 @@ public class ReviewScreen extends AppCompatActivity {
         if(chk[4].isChecked() == true) tag5 = true; else tag5 = false;
         if(chk[5].isChecked() == true) tag6 = true; else tag6 = false;
 
-        reviewList = new ReviewList(rating, tag1,tag2,tag3,tag4,tag5,tag6, review,mapx,mapy, mTime);
+        reviewList = new ReviewList(review_name, rating, tag1,tag2,tag3,tag4,tag5,tag6, review,mapx,mapy, mTime);
 
         if(pic1 !=0 || pic2 !=0 || pic3 !=0 || pic4 !=0 || pic5 !=0 || pic6 !=0 || pic7 !=0 || pic8!=0 || pic9!=0 ) {  // 사진이 하나라도 있으면.
             upload(imagePath1, imagePath2, imagePath3,imagePath4,imagePath5,imagePath6,imagePath7,imagePath8,imagePath9);

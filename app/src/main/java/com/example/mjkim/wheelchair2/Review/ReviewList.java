@@ -22,6 +22,15 @@ public class ReviewList {
     private String imageUrl5;
     private String imageUrl6;
     private String date;
+    private String review_name;
+
+    public String getReview_name() {
+        return review_name;
+    }
+
+    public void setReview_name(String review_name) {
+        this.review_name = review_name;
+    }
 
     public String getDate() {
         return date;
@@ -191,10 +200,11 @@ public class ReviewList {
 
     public ReviewList(){}
 
-    public ReviewList(String location_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
-                      Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy,
+    public ReviewList(String location_name, String review_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
+                      Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy, String date,
                       String imageUrl1, String imageUrl2, String imageUrl3){
         this.location_name = location_name;
+        this.review_name = review_name;
         this.rating = rating;
         this.tag1 = tag1;
         this.tag2 = tag2;
@@ -207,13 +217,15 @@ public class ReviewList {
         this.email = email;
         this.mapx = mapx;
         this.mapy = mapy;
+        this.date = date;
         this.imageUrl1 = imageUrl1;
         this.imageUrl2 = imageUrl2;
         this.imageUrl3 = imageUrl3;
     }
 
-    public ReviewList(double rating, Boolean tag1, Boolean tag2, Boolean tag3,
+    public ReviewList(String review_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
                       Boolean tag4, Boolean tag5, Boolean tag6, String review, double mapx, double mapy, String date){
+        this.review_name = review_name;
         this.rating = rating;
         this.tag1 = tag1;
         this.tag2 = tag2;

@@ -43,6 +43,7 @@ public class ReviewDetail extends AppCompatActivity {
     String phone = "";
     String address = "";
     private String name;
+    private String review_name;
     private double mapx;
     private double mapy;
     private double rating;
@@ -60,6 +61,7 @@ public class ReviewDetail extends AppCompatActivity {
     private String imageUrl1;
     private String imageUrl2;
     private String imageUrl3;
+    private String date;
 
 
 
@@ -157,7 +159,9 @@ public class ReviewDetail extends AppCompatActivity {
 
                 for (int i = 0; i < length; i++) {
                     JSONObject jsonObj = obj.getJSONObject(IDs.getString(i));
-
+                    date = jsonObj.getString("date");
+                    review_name = jsonObj.getString("review_name");
+                    System.out.println("제묵: " + review_name);
                     rating = jsonObj.getDouble("rating");
                     System.out.println("점수: " + rating);
                     tag1 = jsonObj.getBoolean("tag1");
@@ -181,12 +185,13 @@ public class ReviewDetail extends AppCompatActivity {
 
 
 
+
                     System.out.println("지역 이름1 " + intent.getExtras().getString("NAME"));
                     System.out.println("지역 이름2 " + location_name);
 
                     if(intent.getExtras().getString("NAME").equals(location_name)) {
-                        reviewLists.add(num++, new ReviewList(intent.getExtras().getString("NAME"), rating, tag1, tag2, tag3, tag4, tag5, tag6, review, reviewer_name,
-                                email, location_mapx, location_mapy, imageUrl1, imageUrl2, imageUrl3));
+                        reviewLists.add(num++, new ReviewList(intent.getExtras().getString("NAME"),review_name, rating, tag1, tag2, tag3, tag4, tag5, tag6, review, reviewer_name,
+                                email, location_mapx, location_mapy, date, imageUrl1, imageUrl2, imageUrl3));
                     }
 
                 }

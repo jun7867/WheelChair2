@@ -67,10 +67,11 @@ public class WatchReviewAdapter extends BaseAdapter {
 
         //imView.setBackgroundResource(resId);
 
-        title.setText("리뷰 " + position);
+        title.setText(arr.get(position).getReview_name());
         description.setText(arr.get(position).getReview());
         bloggername.setText(arr.get(position).getName());
         postdate.setText(arr.get(position).getDate());
+        System.out.println(arr.get(position).getDate());
 
         /*  버튼에 이벤트처리를 하기위해선 setTag를 이용해서 사용할 수 있습니다.
 
