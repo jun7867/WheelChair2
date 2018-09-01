@@ -59,7 +59,7 @@ public class NaverLocationAdapter extends BaseAdapter {
         TextView road_address = (TextView)convertView.findViewById(R.id.vi_address);
         TextView telephone = (TextView)convertView.findViewById(R.id.vi_telephone);
         LinearLayout layout_view =  (LinearLayout)convertView.findViewById(R.id.vi_view);
-        TextView review_num = (TextView)convertView.findViewById(R.id.vi_review_num);
+        //TextView review_num = (TextView)convertView.findViewById(R.id.vi_review_num);
 
         //int resId=  m_activity.getResources().getIdentifier(arr.get(position)., "drawable", m_activity.getPackageName());
 

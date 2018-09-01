@@ -51,7 +51,7 @@ public class WatchReviewAdapter extends BaseAdapter {
         if(convertView == null){
 
             int res = 0;
-            res = R.layout.naver_blog_list;
+            res = R.layout.more_information_list;
             convertView = mInflater.inflate(res, parent, false);
 
         }
@@ -59,18 +59,21 @@ public class WatchReviewAdapter extends BaseAdapter {
 
         TextView title = (TextView)convertView.findViewById(R.id.postname);
         TextView description = (TextView)convertView.findViewById(R.id.post_des);
-        TextView bloggername = (TextView)convertView.findViewById(R.id.blogger);
+        TextView bloggername = (TextView)convertView.findViewById(R.id.reviewer);
         TextView postdate = (TextView)convertView.findViewById(R.id.postdate);
-        LinearLayout layout_view =  (LinearLayout)convertView.findViewById(R.id.blog_view);
+        LinearLayout layout_view =  (LinearLayout)convertView.findViewById(R.id.review_view);
 
         //int resId=  m_activity.getResources().getIdentifier(arr.get(position)., "drawable", m_activity.getPackageName());
 
         //imView.setBackgroundResource(resId);
 
-        title.setText("리뷰 " + position);
+        int num = position + 1;
+        title.setText("리뷰 " + num);
+        title.setText(arr.get(position).getReview_name());
         description.setText(arr.get(position).getReview());
         bloggername.setText(arr.get(position).getName());
         postdate.setText(arr.get(position).getDate());
+        System.out.println(arr.get(position).getDate());
 
         /*  버튼에 이벤트처리를 하기위해선 setTag를 이용해서 사용할 수 있습니다.
 

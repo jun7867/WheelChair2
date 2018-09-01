@@ -7,43 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ReviewScreen">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#5DCDFF"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/back_b"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@color/colorAccent"
-            android:visibility="visible"
-            app:srcCompat="@drawable/back_arrow" />
-
-        <TextView
-            android:id="@+id/logo"
-            android:layout_width="235dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:text="리뷰 작성"
-            android:textSize="30dp"
-            android:visibility="visible" />
-
-        <ImageButton
-            android:id="@+id/menu_b"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@color/colorAccent"
-            app:srcCompat="@drawable/menu" />
-
-
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -157,6 +120,19 @@
                 android:stepSize="0.5" />
 
 
+            <EditText
+                android:id="@+id/review_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="리뷰 제목"
+                android:inputType="none"
+                android:maxWidth="1dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
@@ -206,19 +182,19 @@
                     android:id="@+id/check_box_b4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/checkbox_image1" />
+                    android:button="@drawable/checkbox_image4" />
 
                 <CheckBox
                     android:id="@+id/check_box_b5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/checkbox_image1" />
+                    android:button="@drawable/checkbox_image5" />
 
                 <CheckBox
                     android:id="@+id/check_box_b6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/checkbox_image1"
+                    android:button="@drawable/checkbox_image6"
                     android:gravity="center" />
 
 
@@ -263,32 +239,36 @@
                     app:srcCompat="@drawable/picture_frame" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="입구 사진"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="화장실 사진"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="경사로 사진"
-                    android:gravity="center"
                     android:layout_weight="1"
-                    android:textSize="20dp"/>
+                    android:gravity="center"
+                    android:text="경사로 사진"
+                    android:textSize="20dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -321,33 +301,36 @@
             </LinearLayout>
 
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-                android:orientation="horizontal"
-            >
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="장애인 주차장"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:orientation="horizontal">
 
-                android:textSize="20dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="승강기"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:textSize="20dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="입식 테이블"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:textSize="20dp"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="장애인 주차장"
+
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="승강기"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="입식 테이블"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -378,34 +361,38 @@
                     app:srcCompat="@drawable/picture_frame" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="기타"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                android:orientation="horizontal">
 
-                    android:textSize="20dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="기타"
-                    android:gravity="center"
                     android:layout_weight="1"
-                    android:textSize="20dp"/>
+                    android:gravity="center"
+                    android:text="기타"
+
+                    android:textSize="20dp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="기타"
-                    android:gravity="center"
                     android:layout_weight="1"
-                    android:textSize="20dp"/>
+                    android:gravity="center"
+                    android:text="기타"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="기타"
+                    android:textSize="20dp" />
             </LinearLayout>
+
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
@@ -444,6 +431,42 @@
         </LinearLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#5DCDFF"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/back_b"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/colorAccent"
+            android:visibility="visible"
+            app:srcCompat="@drawable/back_arrow" />
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="235dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="리뷰 작성"
+            android:textSize="30dp"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/menu_b"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/colorAccent"
+            app:srcCompat="@drawable/menu" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

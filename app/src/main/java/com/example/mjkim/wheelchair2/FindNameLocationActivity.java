@@ -181,11 +181,11 @@ public class FindNameLocationActivity extends NMapActivity{
 //                telephoneNumber.setText();
 //                phone = ~~
 
-                //누르면 프래그먼트 뜨기
-                fl.setVisibility(View.VISIBLE);
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.commit();
+                //누르면 프래그먼트 뜨기, 안쓰기로 판단
+//                fl.setVisibility(View.VISIBLE);
+//                FragmentManager fm = getFragmentManager();
+//                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+//                fragmentTransaction.commit();
 
                 //전화번호 누르면 전화켜짐
 //                telephoneNumber.setOnClickListener(new View.OnClickListener(){

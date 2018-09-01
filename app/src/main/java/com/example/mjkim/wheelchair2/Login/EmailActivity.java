@@ -49,29 +49,28 @@ public class EmailActivity extends AppCompatActivity {
                 createUser(email1,name1,pw1);
             }
         });
-        sendEmail();
-
+//        sendEmail();
 
     }
-    public void sendEmail(){
-        String url = "http://www.example.com/verify?uid=" + currentUser.getUid();
-        ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
-                .setUrl(url)
-                .setIOSBundleId("com.example.android")
-                // The default for this is populated with the current android package name.
-                .setAndroidPackageName("com.example.android", false, null)
-                .build();
-
-        currentUser.sendEmailVerification(actionCodeSettings)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                           Toast.makeText(EmailActivity.this,"링크 전송 성공",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
+//    public void sendEmail(){
+//        String url = "http://www.example.com/verify?uid=" + currentUser.getUid();
+//        ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
+//                .setUrl(url)
+//                .setIOSBundleId("com.example.android")
+//                // The default for this is populated with the current android package name.
+//                .setAndroidPackageName("com.example.android", false, null)
+//                .build();
+//
+//        currentUser.sendEmailVerification(actionCodeSettings)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                           Toast.makeText(EmailActivity.this,"링크 전송 성공",Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//    }
     private void createUser(String email,final String name, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -81,13 +80,13 @@ public class EmailActivity extends AppCompatActivity {
                             try {
                                 throw task.getException();
                             } catch(FirebaseAuthWeakPasswordException e) {
-                                Toast.makeText(EmailActivity.this,"비밀번호가 간단해요.." ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EmailActivity.this,"비밀번호가 간단해요" ,Toast.LENGTH_SHORT).show();
                             } catch(FirebaseAuthInvalidCredentialsException e) {
-                                Toast.makeText(EmailActivity.this,"email 형식에 맞지 않습니다." ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EmailActivity.this,"email 형식에 맞지 않습니다" ,Toast.LENGTH_SHORT).show();
                             } catch(FirebaseAuthUserCollisionException e) {
-                                Toast.makeText(EmailActivity.this,"이미존재하는 email 입니다." ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EmailActivity.this,"이미 존재하는 email 입니다" ,Toast.LENGTH_SHORT).show();
                             } catch(Exception e) {
-                                Toast.makeText(EmailActivity.this,"다시 확인해주세요.." ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EmailActivity.this,"다시 확인해주세요" ,Toast.LENGTH_SHORT).show();
                             }
                         }else {
 
