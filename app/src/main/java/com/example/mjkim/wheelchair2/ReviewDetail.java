@@ -292,6 +292,7 @@ public class ReviewDetail extends AppCompatActivity {
         intent.putExtra("NAME", name);
         intent.putExtra("MAPX", mapx);
         intent.putExtra("MAPY", mapy);
+//        intent.putExtra()
         startActivity(intent);
     }
 

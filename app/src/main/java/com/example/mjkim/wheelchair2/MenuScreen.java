@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.mjkim.wheelchair2.Review.ReviewActivity;
 
@@ -27,7 +28,7 @@ public class MenuScreen extends AppCompatActivity {
             }
         });
 
-        btn=(Button)findViewById(R.id.test);
+        btn = (Button)findViewById(R.id.test);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,9 +44,14 @@ public class MenuScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void picto(View v){
-        Intent intent = new Intent(this,PictogramActivity.class);
-        startActivity(intent);
+    // 아직 준비중임, 다되면 열 예정
+//    public void picto(View v){
+//        Intent intent = new Intent(this,PictogramActivity.class);
+//        startActivity(intent);
+//    }
+
+    public void prepare(View v) {
+        Toast.makeText(MenuScreen.this, "준비중입니다", Toast.LENGTH_SHORT).show();
     }
 
 
