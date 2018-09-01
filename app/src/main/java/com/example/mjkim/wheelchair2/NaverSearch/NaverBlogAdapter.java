@@ -7,14 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mjkim.wheelchair2.BlogDetail;
 import com.example.mjkim.wheelchair2.R;
-import com.example.mjkim.wheelchair2.ReviewDetail;
-import com.example.mjkim.wheelchair2.ReviewSearch;
 
 import java.util.ArrayList;
 
@@ -52,7 +49,7 @@ public class NaverBlogAdapter extends BaseAdapter {
         if(convertView == null){
 
             int res = 0;
-            res = R.layout.naver_blog_list;
+            res = R.layout.more_information_list;
             convertView = mInflater.inflate(res, parent, false);
 
         }
@@ -60,9 +57,9 @@ public class NaverBlogAdapter extends BaseAdapter {
 
         TextView title = (TextView)convertView.findViewById(R.id.postname);
         TextView description = (TextView)convertView.findViewById(R.id.post_des);
-        TextView bloggername = (TextView)convertView.findViewById(R.id.blogger);
+        TextView bloggername = (TextView)convertView.findViewById(R.id.reviewer);
         TextView postdate = (TextView)convertView.findViewById(R.id.postdate);
-        LinearLayout layout_view =  (LinearLayout)convertView.findViewById(R.id.blog_view);
+        LinearLayout layout_view =  (LinearLayout)convertView.findViewById(R.id.review_view);
 
         //int resId=  m_activity.getResources().getIdentifier(arr.get(position)., "drawable", m_activity.getPackageName());
 

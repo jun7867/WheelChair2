@@ -58,18 +58,20 @@
         android:background="@color/menu_tab" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/pictogram"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/pictogram"
         tools:background="@drawable/pictogram"
-        android:onClick="picto"/>
+        android:onClick="prepare"/>
+        <!--android:onClick="picto"/>-->
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/instruction"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@drawable/tutorial" />
+        android:background="@drawable/tutorial"
+        android:onClick="prepare"/>
 
     <TextView
         android:id="@+id/textView2"

@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/blog_view"
+    android:id="@+id/review_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -58,7 +58,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/blogger"
+                    android:id="@+id/reviewer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
