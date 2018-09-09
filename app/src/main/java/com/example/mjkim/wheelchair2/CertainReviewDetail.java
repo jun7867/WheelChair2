@@ -9,7 +9,10 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -36,6 +39,10 @@ import java.util.logging.Logger;
 
 public class CertainReviewDetail extends AppCompatActivity {
     ImageView imageShow1,imageShow2,imageShow3,imageShow4,imageShow5,imageShow6,imageShow7,imageShow8,imageShow9;
+    ImageView tagShow1,tagShow2,tagShow3,tagShow4,tagShow5,tagShow6;
+    RatingBar ratingBar;
+    ImageButton menu_button;
+    ImageButton back_button;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
     StorageReference httpsReference;
@@ -46,12 +53,39 @@ public class CertainReviewDetail extends AppCompatActivity {
     TextView reviewT;
     TextView reviewDetailT;
     TextView dateT;
-    TextView TagT1, TagT2, TagT3, TagT4, TagT5, TagT6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_certain_review_detail);
+
+        //버튼 선언
+        back_button = (ImageButton)findViewById(R.id.back_b);
+        menu_button = (ImageButton)findViewById(R.id.menu_b);
+
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        menu_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){ openMenuTab(); }});
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar2);
+
+        tagShow1 = (ImageView) findViewById(R.id.tag_done_1);
+        tagShow2 = (ImageView) findViewById(R.id.tag_done_2);
+        tagShow3 = (ImageView) findViewById(R.id.tag_done_3);
+        tagShow4 = (ImageView) findViewById(R.id.tag_done_4);
+        tagShow5 = (ImageView) findViewById(R.id.tag_done_5);
+        tagShow6 = (ImageView) findViewById(R.id.tag_done_6);
+
         imageShow1 = (ImageView) findViewById(R.id.imageView1);
         imageShow2 = (ImageView) findViewById(R.id.imageView2);
         imageShow3 = (ImageView) findViewById(R.id.imageView3);
@@ -67,16 +101,14 @@ public class CertainReviewDetail extends AppCompatActivity {
         reviewT = (TextView) findViewById(R.id.review_name);
         reviewDetailT = (TextView) findViewById(R.id.review_detail);
         dateT = (TextView) findViewById(R.id.date);
-        TagT1 = (TextView) findViewById(R.id.tag1);
-        TagT2 = (TextView) findViewById(R.id.tag2);
-        TagT3 = (TextView) findViewById(R.id.tag3);
-        TagT4 = (TextView) findViewById(R.id.tag4);
-        TagT5 = (TextView) findViewById(R.id.tag5);
-        TagT6 = (TextView) findViewById(R.id.tag6);
+
 
         Intent intent = getIntent();
 
         //reviewLists = intent.getExtras().getStringArrayList("ARRAY");
+
+        float number = (float)intent.getExtras().getDouble("Rating");
+        ratingBar.setRating((float)intent.getExtras().getDouble("Rating"));
 
         final String image1 = intent.getExtras().getString("IMAGE1");
         final String image2 = intent.getExtras().getString("IMAGE2");
@@ -98,6 +130,13 @@ public class CertainReviewDetail extends AppCompatActivity {
         final boolean TagT4 = intent.getExtras().getBoolean("Tag4");
         final boolean TagT5 = intent.getExtras().getBoolean("Tag5");
         final boolean TagT6 = intent.getExtras().getBoolean("Tag6");
+
+        if(TagT1 == true) tagShow1.setImageResource(R.drawable.tag_checked_1);
+        if(TagT2 == true) tagShow1.setImageResource(R.drawable.tag_checked_2);
+        if(TagT3 == true) tagShow1.setImageResource(R.drawable.tag_checked_3);
+        if(TagT4 == true) tagShow1.setImageResource(R.drawable.tag_checked_4);
+        if(TagT5 == true) tagShow1.setImageResource(R.drawable.tag_checked_5);
+        if(TagT6 == true) tagShow1.setImageResource(R.drawable.tag_checked_6);
 
         emailT.setText(email);
         nameT.setText(name);
@@ -121,5 +160,10 @@ public class CertainReviewDetail extends AppCompatActivity {
                 .load(ref)
                 .into(imageShow1);
 
+    }
+
+    public void openMenuTab(){
+        Intent intent = new Intent(this, MenuScreen.class);
+        startActivity(intent);
     }
 }

@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -21,9 +22,11 @@ import java.util.concurrent.CountDownLatch;
 public class FirebaseJson {
 
     private static String json;
+    private static String full_json;
     private static int review_num;
 
     public static ArrayList<ReviewJson> reviewJson = new ArrayList<ReviewJson>();
+    public static ReviewJson fullReviewJson = new ReviewJson();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -49,7 +52,44 @@ public class FirebaseJson {
 
     }
 
+    public void getFullJson(){
 
+
+        System.out.println("데이터베이스: "+ databaseReference.getKey());
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    Object object = ds.getValue(Object.class);
+                    full_json = new Gson().toJson(object);
+
+
+
+                    try{
+                        JSONObject jsonObj = new JSONObject(full_json);
+                        review_num = jsonObj.length();
+                        fullReviewJson = new ReviewJson(review_num, jsonObj.toString(), jsonObj.names());
+                        //System.out.println("이름들: " + jsonObj.getJSONObject("바벤디자인"));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("전체 제이슨: " + fullReviewJson.getReview_json_string());
+                    System.out.println("이름들: " +  fullReviewJson.getReview_json_userID());
+                    //System.out.println("Sample: " + full);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
     public void readData(DataSnapshot dataSnapshot, String name, int num){
 
@@ -60,28 +100,12 @@ public class FirebaseJson {
 
             try{
                 JSONObject jsonObj = new JSONObject(json);
-                System.out.println("실험용2: " + jsonObj.names());
-                System.out.println("실험용3: " + jsonObj.length());
-                System.out.println("실험용4: " + jsonObj.getString(name));
-                System.out.println("실험용6: " + jsonObj.getJSONObject(name).names());
-                System.out.println("실험용7: " + jsonObj.getJSONObject(name).length());
-                System.out.println("실험용8: " + jsonObj.getJSONObject(name));
                 review_num = jsonObj.getJSONObject(name).length();
-                System.out.println("개수 초반: " + review_num);
-
-                System.out.println("번호: " + num);
                 reviewJson.add(num,new ReviewJson(name, review_num, jsonObj.getString(name), jsonObj.getJSONObject(name).names()));
-                System.out.println("진짜 개많네1: " + reviewJson.get(num).getReview_count());
-                System.out.println("진짜 개많네2: " + reviewJson.get(num).getReview_json_string());
-                System.out.println("진짜 개많네3: " + reviewJson.get(num).getReview_json_userID());
-
-
             }catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     public static int getReview_num() {

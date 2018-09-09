@@ -870,7 +870,8 @@ public class ReviewScreen extends AppCompatActivity {
 
         //리뷰 문장 받아오기
         review = review_text.getText().toString();
-        review_name = review_title.getText().toString();
+        if(review_title.getText().toString().equals("")) review_name = "제목없음";
+        else review_name = review_title.getText().toString();
 
 
         if(chk[0].isChecked() == true) tag1 = true; else tag1 = false;
