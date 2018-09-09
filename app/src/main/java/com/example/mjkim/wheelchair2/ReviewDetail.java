@@ -61,6 +61,13 @@ public class ReviewDetail extends AppCompatActivity {
     private String imageUrl1;
     private String imageUrl2;
     private String imageUrl3;
+    private String imageUrl4;
+    private String imageUrl5;
+    private String imageUrl6;
+    private String imageUrl7;
+    private String imageUrl8;
+    private String imageUrl9;
+
     private String date;
 
 
@@ -181,6 +188,13 @@ public class ReviewDetail extends AppCompatActivity {
                     imageUrl1 = jsonObj.getString("imageUrl1");
                     imageUrl2 = jsonObj.getString("imageUrl2");
                     imageUrl3 = jsonObj.getString("imageUrl3");
+                    imageUrl4 = jsonObj.getString("imageUrl4");
+                    imageUrl5 = jsonObj.getString("imageUrl5");
+                    imageUrl6 = jsonObj.getString("imageUrl6");
+                    imageUrl7 = jsonObj.getString("imageUrl7");
+                    imageUrl8 = jsonObj.getString("imageUrl8");
+                    imageUrl9 = jsonObj.getString("imageUrl9");
+
 
 
 
@@ -191,7 +205,8 @@ public class ReviewDetail extends AppCompatActivity {
 
                     if(intent.getExtras().getString("NAME").equals(location_name)) {
                         reviewLists.add(num++, new ReviewList(intent.getExtras().getString("NAME"),review_name, rating, tag1, tag2, tag3, tag4, tag5, tag6, review, reviewer_name,
-                                email, location_mapx, location_mapy, date, imageUrl1, imageUrl2, imageUrl3));
+                                email, location_mapx, location_mapy, date, imageUrl1, imageUrl2, imageUrl3,imageUrl4,imageUrl5,imageUrl6,
+                                imageUrl7,imageUrl8,imageUrl9));
                     }
 
                 }
@@ -256,6 +271,13 @@ public class ReviewDetail extends AppCompatActivity {
         imageUrl1 = intent.getExtras().getString("IMAGEURL1");
         imageUrl2 = intent.getExtras().getString("IMAGEURL2");
         imageUrl3 = intent.getExtras().getString("IMAGEURL3");
+        imageUrl4 = intent.getExtras().getString("IMAGEURL4");
+        imageUrl5 = intent.getExtras().getString("IMAGEURL5");
+        imageUrl6 = intent.getExtras().getString("IMAGEURL6");
+        imageUrl7 = intent.getExtras().getString("IMAGEURL7");
+        imageUrl8 = intent.getExtras().getString("IMAGEURL8");
+        imageUrl9 = intent.getExtras().getString("IMAGEURL9");
+
 
 
         phone_number.setOnClickListener(new View.OnClickListener(){

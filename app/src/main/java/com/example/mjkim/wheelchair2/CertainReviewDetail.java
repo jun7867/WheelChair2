@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -44,15 +45,13 @@ public class CertainReviewDetail extends AppCompatActivity {
     ImageButton menu_button;
     ImageButton back_button;
     FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReference();
-    StorageReference httpsReference;
-    public ReviewList reviewList = new ReviewList();
-    private Uri filePath;
     TextView emailT;
     TextView nameT;
     TextView reviewT;
     TextView reviewDetailT;
     TextView dateT;
+    ScrollView scrollView;
+    TextView TagT1, TagT2, TagT3, TagT4, TagT5, TagT6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +59,7 @@ public class CertainReviewDetail extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_certain_review_detail);
+
 
         //버튼 선언
         back_button = (ImageButton)findViewById(R.id.back_b);
@@ -143,22 +143,62 @@ public class CertainReviewDetail extends AppCompatActivity {
         dateT.setText(date);
         reviewT.setText(review_name);
         reviewDetailT.setText(review);
-//        System.out.println("이미지쓰"+image1);
         StorageReference ref = FirebaseStorage.getInstance().getReference("images/"+image1);
-//        String path=ref.getPath();
-//        storage.getReference().child("images/IMG_20180806_033819.jpg").getDownloadUrl();
-//        System.out.println("이것이다"+image1+ "  "+ reviewList.getImageName());
-//        storageRef.child("images").child(reviewList.getImageName());
-//        String path=storageRef.getPath();
-//        storage.getReference().child("image").child(reviewList.getImageName()).getDownloadUrl();
-//        System.out.println("야래"+path);
-//        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),);
-//        imageShow1.setImageBitmap(bitmap);
-//        StorageReference storageRef = storage.getReference();
-//        StorageReference spaceRef = storageRef.child(image1);
+        StorageReference ref2 = FirebaseStorage.getInstance().getReference("images/"+image2);
+        StorageReference ref3 = FirebaseStorage.getInstance().getReference("images/"+image3);
+        StorageReference ref4 = FirebaseStorage.getInstance().getReference("images/"+image4);
+        StorageReference ref5 = FirebaseStorage.getInstance().getReference("images/"+image5);
+        StorageReference ref6 = FirebaseStorage.getInstance().getReference("images/"+image6);
+        StorageReference ref7 = FirebaseStorage.getInstance().getReference("images/"+image7);
+        StorageReference ref8 = FirebaseStorage.getInstance().getReference("images/"+image8);
+        StorageReference ref9 = FirebaseStorage.getInstance().getReference("images/"+image9);
+
+        System.out.println("과연1"+ref+image1+"2"+ref5+image5);
+
+        if(image1!="")
+            Glide.with(this /* context */)
+                    .load(ref)
+                    .into(imageShow1);
+
+        if(image2!="")
         Glide.with(this /* context */)
-                .load(ref)
-                .into(imageShow1);
+                .load(ref2)
+                .into(imageShow2);
+
+        if(image3!="")
+        Glide.with(this /* context */)
+                .load(ref3)
+                .into(imageShow3);
+
+        if(image4!="")
+        Glide.with(this /* context */)
+                .load(ref4)
+                .into(imageShow4);
+
+        if(image5!="")
+        Glide.with(this /* context */)
+                .load(ref5)
+                .into(imageShow5);
+
+        if(image6!="")
+        Glide.with(this /* context */)
+                .load(ref6)
+                .into(imageShow6);
+
+        if(image7!="")
+        Glide.with(this /* context */)
+                .load(ref7)
+                .into(imageShow7);
+
+        if(image8!="")
+        Glide.with(this /* context */)
+                .load(ref8)
+                .into(imageShow8);
+
+        if(image9!="")
+        Glide.with(this /* context */)
+                .load(ref9)
+                .into(imageShow9);
 
     }
 
