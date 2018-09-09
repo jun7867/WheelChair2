@@ -302,7 +302,6 @@ public class ReviewDetail extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public void openReviewTab(){
         Intent intent = new Intent(this, MoreReviewActivity.class);
         intent.putExtra("BLOGNAME", name);
