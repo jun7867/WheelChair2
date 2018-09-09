@@ -24,6 +24,16 @@ public class ReviewList {
     private String date;
     private String review_name;
 
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    private String imageName;
+
     public String getReview_name() {
         return review_name;
     }
