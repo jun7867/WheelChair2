@@ -22,7 +22,7 @@ public class WatchReviewAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private Activity m_activity;
     private ArrayList<ReviewList> arr;
-    public static int select = 0; //출력되는 블로그 개수 선택 1이면 5개 2이면 최대 20개
+    public static int select = 0; //출력되는 리뷰 개수 선택 1이면 5개 2이면 최대 20개
     public WatchReviewAdapter(Activity act, ArrayList<ReviewList> arr_item) {
         this.m_activity = act;
         arr = arr_item;
@@ -58,20 +58,18 @@ public class WatchReviewAdapter extends BaseAdapter {
 
         TextView title = (TextView)convertView.findViewById(R.id.postname);
         TextView description = (TextView)convertView.findViewById(R.id.post_des);
-        TextView bloggername = (TextView)convertView.findViewById(R.id.reviewer);
-        TextView postdate = (TextView)convertView.findViewById(R.id.postdate);
+        TextView reviewerName = (TextView)convertView.findViewById(R.id.reviewer);
+        TextView postDate = (TextView)convertView.findViewById(R.id.postdate);
         LinearLayout layout_view =  (LinearLayout)convertView.findViewById(R.id.review_view);
 
         //int resId=  m_activity.getResources().getIdentifier(arr.get(position)., "drawable", m_activity.getPackageName());
 
         //imView.setBackgroundResource(resId);
 
-        int num = position + 1;
-        title.setText("리뷰 " + num);
         title.setText(arr.get(position).getReview_name());
         description.setText(arr.get(position).getReview());
-        bloggername.setText(arr.get(position).getName());
-        postdate.setText(arr.get(position).getDate());
+        reviewerName.setText(arr.get(position).getName());
+        postDate.setText(arr.get(position).getDate());
         System.out.println(arr.get(position).getDate());
 
         /*  버튼에 이벤트처리를 하기위해선 setTag를 이용해서 사용할 수 있습니다.

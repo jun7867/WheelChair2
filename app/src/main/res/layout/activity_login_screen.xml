@@ -28,7 +28,7 @@
         android:layout_marginRight="30dp"
         android:ems="10"
         android:hint="비밀번호를 입력하세요"
-        android:inputType="textPersonName" />
+        android:inputType="textPassword" />
 
     <ImageButton
         android:id="@+id/login_b2"
@@ -89,15 +89,15 @@
     <!--</com.google.android.gms.common.SignInButton>-->
     <com.facebook.login.widget.LoginButton
         android:id="@+id/facebook"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_marginBottom="20dp"
         android:layout_height="60dp"
-        android:layout_gravity="center_horizontal" >
-    </com.facebook.login.widget.LoginButton>
+        android:layout_gravity="center_horizontal"></com.facebook.login.widget.LoginButton>
 
     <Button
         android:id="@+id/login_btn_google"
         android:padding="10dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f2c9c9"

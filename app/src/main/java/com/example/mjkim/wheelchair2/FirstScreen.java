@@ -103,8 +103,10 @@ public class FirstScreen extends AppCompatActivity {
 
     public void onClick(View view){
         if(view.getId()== R.id.surround_b){
-            Intent intent=new Intent(this,FindNearLocationActivity.class);
-            startActivity(intent);
+            // 아직 준비가 안됨
+//            Intent intent=new Intent(this,FindNearLocationActivity.class);
+//            startActivity(intent);
+            Toast.makeText(FirstScreen.this, "준비중인 기능입니다", Toast.LENGTH_LONG).show();
         }
         if(view.getId()== R.id.name_b){
             Intent intent=new Intent(this,NameSearchActivity.class);

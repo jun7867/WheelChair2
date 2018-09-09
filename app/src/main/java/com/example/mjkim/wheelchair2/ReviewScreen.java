@@ -128,8 +128,8 @@ public class ReviewScreen extends AppCompatActivity {
         Integer[] numChkIDs = { R.id.check_box_b1, R.id.check_box_b2, R.id.check_box_b3,
                 R.id.check_box_b4, R.id.check_box_b5, R.id.check_box_b6};
 
-        back_button = (ImageButton)findViewById(R.id.back_b);
-        menu_button = (ImageButton)findViewById(R.id.menu_b);
+        back_button = (ImageButton)findViewById(R.id.backButton);
+        menu_button = (ImageButton)findViewById(R.id.menuButton);
         map_search = (Button)findViewById(R.id.current_b);
         picture1 = (ImageView)findViewById(R.id.picture1);
         picture2 = (ImageView)findViewById(R.id.picture2);
