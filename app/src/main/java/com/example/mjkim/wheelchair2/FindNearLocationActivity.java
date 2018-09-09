@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationList;
 import com.example.mjkim.wheelchair2.Review.ReviewList;
 import com.example.mjkim.wheelchair2.navermap.NMapCalloutCustomOldOverlay;
@@ -305,6 +306,31 @@ public class FindNearLocationActivity extends NMapActivity{
 //        else{
 //            requestMyLocation();
 //        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //제이슨 퍼오기
+        FirebaseJson firebaseJson = new FirebaseJson();
+
+        firebaseJson.getFullJson();
+
+        System.out.println("제이슨 이후: " + FirebaseJson.fullReviewJson.getReview_json_string());
+
+
     }
 
 

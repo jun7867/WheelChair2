@@ -21,6 +21,9 @@ public class ReviewList {
     private String imageUrl4;
     private String imageUrl5;
     private String imageUrl6;
+    private String imageUrl7;
+    private String imageUrl8;
+    private String imageUrl9;
     private String date;
     private String review_name;
 
@@ -49,7 +52,7 @@ public class ReviewList {
     public void setDate(String date) {
         this.date = date;
     }
-    private String imageUrl7;
+
 
     public String getImageUrl7() {
         return imageUrl7;
@@ -75,8 +78,7 @@ public class ReviewList {
         this.imageUrl9 = imageUrl9;
     }
 
-    private String imageUrl8;
-    private String imageUrl9;
+
 
     public String getImageUrl4() {
         return imageUrl4;
@@ -212,7 +214,8 @@ public class ReviewList {
 
     public ReviewList(String location_name, String review_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
                       Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy, String date,
-                      String imageUrl1, String imageUrl2, String imageUrl3){
+                      String imageUrl1, String imageUrl2, String imageUrl3,String imageUrl4,String imageUrl5,String imageUrl6,
+                      String imageUrl7,String imageUrl8,String imageUrl9){
         this.location_name = location_name;
         this.review_name = review_name;
         this.rating = rating;
@@ -231,6 +234,14 @@ public class ReviewList {
         this.imageUrl1 = imageUrl1;
         this.imageUrl2 = imageUrl2;
         this.imageUrl3 = imageUrl3;
+        this.imageUrl4 = imageUrl4;
+        this.imageUrl5 = imageUrl5;
+        this.imageUrl6 = imageUrl6;
+        this.imageUrl7 = imageUrl7;
+        this.imageUrl8 = imageUrl8;
+        this.imageUrl9 = imageUrl9;
+
+
     }
 
     public ReviewList(String review_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
@@ -257,6 +268,7 @@ public class ReviewList {
         imageUrl8 = "";
         imageUrl9 = "";
     }
+
 
 
     public void setImageUrl6(String imageUrl6) {
