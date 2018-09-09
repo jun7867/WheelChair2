@@ -36,7 +36,6 @@ public class WatchReviewAdapter extends BaseAdapter {
             else return 3;
         }
         else return arr.size();
-
     }
 
     @Override
