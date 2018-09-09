@@ -56,6 +56,8 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
     Button pass_btn;  // 로그인없이 이동.
     Button login_btn_google; //구글 로그인 버튼
     Button createUser;  // 회원가입버튼
+    Button findId;
+    Button findPass;
     EditText emailTxt; //이메일 텍스트
     EditText pwTxt; // 비밀번호 텍스트
     ImageButton loginEmail;
@@ -74,6 +76,8 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
         loginEmail=(ImageButton)findViewById(R.id.login_b2);
         mAuth = FirebaseAuth.getInstance(); // 로그인 작업의 onCreate 메소드에서 FirebaseAuth 개체의 공유 인스턴스를 가져옵니다
         login_btn_google= (Button) findViewById(R.id.login_btn_google);
+        findId=(Button)findViewById(R.id.findid_b);
+        findPass=(Button)findViewById(R.id.findpass_b);
        // SignInButton googleSign=(SignInButton)findViewById(R.id.google_sign);
 
 
@@ -112,6 +116,18 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
             public void onClick(View view) {
                 Intent intent=new Intent(LoginScreen.this,EmailActivity.class);
                 startActivity(intent);
+            }
+        });
+        findId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LoginScreen.this,"준비중입니다.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        findPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LoginScreen.this,"준비중입니다.",Toast.LENGTH_SHORT).show();
             }
         });
         mCallbackManager = CallbackManager.Factory.create();

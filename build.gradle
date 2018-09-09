@@ -5,6 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         //이거 버젼 네이버맵 하려면 3.0.0해야하는 것같다. 딴거하니까 다 오류뜸 (희석)

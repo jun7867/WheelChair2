@@ -602,7 +602,8 @@ public class ReviewScreen extends AppCompatActivity {
             }
            StorageReference riverRef=storageRef.child("images/"+file.getLastPathSegment());
            UploadTask uploadTask = riverRef.putFile(file);
-           uploadTask.addOnFailureListener(new OnFailureListener() {
+       final Uri finalFile = file;
+       uploadTask.addOnFailureListener(new OnFailureListener() {
                @Override
                public void onFailure(@NonNull Exception e) {
                    upload2(uri2,uri3,uri4,uri5,uri6,uri7,uri8,uri9);
@@ -613,7 +614,9 @@ public class ReviewScreen extends AppCompatActivity {
                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                    downloadUrl=taskSnapshot.toString();
                    System.out.println("다운1: "+downloadUrl);
-                   reviewList.setImageUrl1(downloadUrl);
+//                   reviewList.setImageUrl1(downloadUrl);
+                   reviewList.setImageUrl1(finalFile.getLastPathSegment());
+
                    if(pic2!=0){ upload2(uri2,uri3,uri4,uri5,uri6,uri7,uri8,uri9); }
                    else if(pic3!=0){ upload3(uri3,uri4,uri5,uri6,uri7,uri8,uri9); }
                    else if(pic4!=0){ upload4(uri4,uri5,uri6,uri7,uri8,uri9); }
@@ -634,6 +637,7 @@ public class ReviewScreen extends AppCompatActivity {
        }
        StorageReference riverRef2=storageRef.child("images/"+file2.getLastPathSegment());
        UploadTask uploadTask2 = riverRef2.putFile(file2);
+       final Uri finalFile = file2;
        uploadTask2.addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
@@ -645,7 +649,7 @@ public class ReviewScreen extends AppCompatActivity {
            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                downloadUrl=taskSnapshot.toString();
                System.out.println("다운2: "+downloadUrl);
-               reviewList.setImageUrl2(downloadUrl);
+               reviewList.setImageUrl2(finalFile.getLastPathSegment());
                if(pic3!=0){ upload3(uri3,uri4,uri5,uri6,uri7,uri8,uri9); }
                else if(pic4!=0){ upload4(uri4,uri5,uri6,uri7,uri8,uri9); }
                else if(pic5!=0){ upload5(uri5,uri6,uri7,uri8,uri9); }
@@ -664,6 +668,7 @@ public class ReviewScreen extends AppCompatActivity {
        }
        StorageReference riverRef3=storageRef.child("images/"+file3.getLastPathSegment());
        UploadTask uploadTask3 = riverRef3.putFile(file3);
+       final Uri finalFile = file3;
        uploadTask3.addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
@@ -675,7 +680,7 @@ public class ReviewScreen extends AppCompatActivity {
            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                downloadUrl=taskSnapshot.toString();
                System.out.println("다운3: "+downloadUrl);
-               reviewList.setImageUrl3(downloadUrl);
+               reviewList.setImageUrl3(finalFile.getLastPathSegment());
                if(pic4!=0){ upload4(uri4,uri5,uri6,uri7,uri8,uri9); }
                else if(pic5!=0){ upload5(uri5,uri6,uri7,uri8,uri9); }
                else if (pic6 != 0) { upload6(uri6,uri7,uri8,uri9); }
@@ -691,8 +696,10 @@ public class ReviewScreen extends AppCompatActivity {
        if(pic4==2){ // 사진으로 찍은거면 file을 바꾸기.
            file4 = Uri.fromFile(new File(imageFilePath4));
        }
+
        StorageReference riverRef4=storageRef.child("images/"+file4.getLastPathSegment());
        UploadTask uploadTask4 = riverRef4.putFile(file4);
+       final Uri finalFile = file4;
        uploadTask4.addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
@@ -704,7 +711,7 @@ public class ReviewScreen extends AppCompatActivity {
            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                downloadUrl=taskSnapshot.toString();
                System.out.println("다운4: "+downloadUrl);
-               reviewList.setImageUrl4(downloadUrl);
+               reviewList.setImageUrl4(finalFile.getLastPathSegment());
                if(pic5!=0){ upload5(uri5,uri6,uri7,uri8,uri9); }
                else if (pic6 != 0) { upload6(uri6,uri7,uri8,uri9); }
                else if(pic7!=0) upload7(uri7,uri8,uri9);
@@ -721,6 +728,7 @@ public class ReviewScreen extends AppCompatActivity {
        }
        StorageReference riverRef5=storageRef.child("images/"+file5.getLastPathSegment());
        UploadTask uploadTask5 = riverRef5.putFile(file5);
+             final Uri finalFile = file5;
        uploadTask5.addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
@@ -731,8 +739,7 @@ public class ReviewScreen extends AppCompatActivity {
            @Override
            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                downloadUrl=taskSnapshot.toString();
-               System.out.println("다운5: "+downloadUrl);
-               reviewList.setImageUrl5(downloadUrl);
+               reviewList.setImageUrl5(finalFile.getLastPathSegment());
                if (pic6 != 0) { upload6(uri6,uri7,uri8,uri9); }
                else if(pic7!=0) upload7(uri7,uri8,uri9);
                else if(pic8!=0) upload8(uri8,uri9);
@@ -748,6 +755,7 @@ public class ReviewScreen extends AppCompatActivity {
        }
        StorageReference riverRef6=storageRef.child("images/"+file6.getLastPathSegment());
        UploadTask uploadTask6 = riverRef6.putFile(file6);
+       final Uri finalFile = file6;
        uploadTask6.addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
@@ -758,8 +766,7 @@ public class ReviewScreen extends AppCompatActivity {
            @Override
            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                downloadUrl=taskSnapshot.toString();
-               System.out.println("다운6: "+downloadUrl);
-               reviewList.setImageUrl6(downloadUrl);
+               reviewList.setImageUrl6(finalFile.getLastPathSegment());
                if(pic7!=0) upload7(uri7,uri8,uri9);
                else if(pic8!=0) upload8(uri8,uri9);
                else if(pic9!=0) upload9(uri9);
@@ -774,6 +781,7 @@ public class ReviewScreen extends AppCompatActivity {
         }
         StorageReference riverRef7=storageRef.child("images/"+file7.getLastPathSegment());
         UploadTask uploadTask7 = riverRef7.putFile(file7);
+        final Uri finalFile = file7;
         uploadTask7.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -784,8 +792,7 @@ public class ReviewScreen extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 downloadUrl=taskSnapshot.toString();
-                System.out.println("다운7: "+downloadUrl);
-                reviewList.setImageUrl7(downloadUrl);
+                reviewList.setImageUrl7(finalFile.getLastPathSegment());
                 if(pic8!=0) upload8(uri8,uri9);
                 else if(pic9!=0) upload9(uri9);
                 else reviewData.saveData(name,reviewList);
@@ -799,6 +806,7 @@ public class ReviewScreen extends AppCompatActivity {
         }
         StorageReference riverRef8=storageRef.child("images/"+file8.getLastPathSegment());
         UploadTask uploadTask8 = riverRef8.putFile(file8);
+        final Uri finalFile = file8;
         uploadTask8.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -809,8 +817,7 @@ public class ReviewScreen extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 downloadUrl=taskSnapshot.toString();
-                System.out.println("다운8: "+downloadUrl);
-                reviewList.setImageUrl8(downloadUrl);
+                reviewList.setImageUrl8(finalFile.getLastPathSegment());
                 if(pic9!=0) upload9(uri9);
                 else reviewData.saveData(name,reviewList);
             }
@@ -823,6 +830,7 @@ public class ReviewScreen extends AppCompatActivity {
         }
         StorageReference riverRef9=storageRef.child("images/"+file9.getLastPathSegment());
         UploadTask uploadTask9 = riverRef9.putFile(file9);
+        final Uri finalFile = file9;
         uploadTask9.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -833,8 +841,7 @@ public class ReviewScreen extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 downloadUrl=taskSnapshot.toString();
-                System.out.println("다운9: "+downloadUrl);
-                reviewList.setImageUrl9(downloadUrl);
+                reviewList.setImageUrl9(finalFile.getLastPathSegment());
                 reviewData.saveData(name,reviewList);
             }
         });

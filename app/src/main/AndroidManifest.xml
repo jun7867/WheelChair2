@@ -43,7 +43,6 @@
         <activity android:name=".Login.LoginScreen" />
         <activity android:name=".Login.EmailActivity" />
         <activity android:name=".WatchLocationActivity" />
-        <activity android:name=".Review.ReviewActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
