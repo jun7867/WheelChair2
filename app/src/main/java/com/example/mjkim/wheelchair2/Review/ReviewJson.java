@@ -51,4 +51,10 @@ public class ReviewJson {
         this.review_json_string = review_json_string;
         this.review_json_userID = review_json_userID;
     }
+
+    public ReviewJson(int review_count, String review_json_string, JSONArray review_json_userID){
+        this.review_count = review_count;
+        this.review_json_string = review_json_string;
+        this.review_json_userID = review_json_userID;
+    }
 }
