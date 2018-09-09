@@ -51,6 +51,7 @@ public class EmailActivity extends AppCompatActivity {
         });
 //        sendEmail();
 
+
     }
 //    public void sendEmail(){
 //        String url = "http://www.example.com/verify?uid=" + currentUser.getUid();
@@ -71,6 +72,7 @@ public class EmailActivity extends AppCompatActivity {
 //                    }
 //                });
 //    }
+
     private void createUser(String email,final String name, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -84,7 +86,7 @@ public class EmailActivity extends AppCompatActivity {
                             } catch(FirebaseAuthInvalidCredentialsException e) {
                                 Toast.makeText(EmailActivity.this,"email 형식에 맞지 않습니다" ,Toast.LENGTH_SHORT).show();
                             } catch(FirebaseAuthUserCollisionException e) {
-                                Toast.makeText(EmailActivity.this,"이미 존재하는 email 입니다" ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EmailActivity.this,"이미 존재하는 email 입니다." ,Toast.LENGTH_SHORT).show();
                             } catch(Exception e) {
                                 Toast.makeText(EmailActivity.this,"다시 확인해주세요" ,Toast.LENGTH_SHORT).show();
                             }

@@ -102,6 +102,30 @@ public class WatchReviewAdapter extends BaseAdapter {
     public void GoIntent(int a){
 
         Intent intent = new Intent(m_activity, CertainReviewDetail.class);
+        intent.putExtra("IMAGE1", arr.get(a).getImageUrl1());
+        intent.putExtra("IMAGE2", arr.get(a).getImageUrl2());
+        intent.putExtra("IMAGE3", arr.get(a).getImageUrl3());
+        intent.putExtra("IMAGE4", arr.get(a).getImageUrl4());
+        intent.putExtra("IMAGE5", arr.get(a).getImageUrl5());
+        intent.putExtra("IMAGE6", arr.get(a).getImageUrl6());
+        intent.putExtra("IMAGE7", arr.get(a).getImageUrl7());
+        intent.putExtra("IMAGE8", arr.get(a).getImageUrl8());
+        intent.putExtra("IMAGE9", arr.get(a).getImageUrl9());
+
+        intent.putExtra("Email", arr.get(a).getEmail());
+        intent.putExtra("Name", arr.get(a).getName());
+        intent.putExtra("Review", arr.get(a).getReview());
+        intent.putExtra("Date",arr.get(a).getDate());
+        intent.putExtra("Review_name",arr.get(a).getReview_name());
+        intent.putExtra("Rating",arr.get(a).getRating());
+        intent.putExtra("Tag1",arr.get(a).getTag1());
+        intent.putExtra("Tag2",arr.get(a).getTag2());
+        intent.putExtra("Tag3",arr.get(a).getTag3());
+        intent.putExtra("Tag4",arr.get(a).getTag4());
+        intent.putExtra("Tag5",arr.get(a).getTag5());
+        intent.putExtra("Tag6",arr.get(a).getTag6());
+
+
         m_activity.startActivity(intent);
     }
 
