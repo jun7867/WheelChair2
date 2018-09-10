@@ -121,13 +121,13 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
         findId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginScreen.this,"준비중입니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginScreen.this,"준비중입니다",Toast.LENGTH_SHORT).show();
             }
         });
         findPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginScreen.this,"준비중입니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginScreen.this,"준비중입니다",Toast.LENGTH_SHORT).show();
             }
         });
         mCallbackManager = CallbackManager.Factory.create();
@@ -196,9 +196,9 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthInvalidUserException e) {
-                        Toast.makeText(LoginScreen.this, "존재하지 않는 id 입니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginScreen.this, "존재하지 않는 id 입니다", Toast.LENGTH_SHORT).show();
                     } catch (FirebaseAuthInvalidCredentialsException e) {
-                        Toast.makeText(LoginScreen.this, "이메일 형식이 맞지 않습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginScreen.this, "이메일 형식이 맞지 않습니다", Toast.LENGTH_SHORT).show();
                     } catch (FirebaseNetworkException e) {
                         Toast.makeText(LoginScreen.this, "Firebase NetworkException", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
@@ -206,7 +206,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                     }
                 } else {
 
-                    save = 0;
+                    save = 1;
                     currentUser = mAuth.getCurrentUser();
 
                     Toast.makeText(LoginScreen.this, "로그인 성공", Toast.LENGTH_SHORT).show();
@@ -249,7 +249,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginScreen.this,"구글 로그인완료.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginScreen.this,"구글 로그인완료",Toast.LENGTH_SHORT).show();
                             save = 1;
                             Intent intent=new Intent(LoginScreen.this, FirstScreen.class);
                             startActivity(intent);
@@ -298,7 +298,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
     }
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(LoginScreen.this,"연결이 해제되었습니다.",Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginScreen.this,"연결이 해제되었습니다",Toast.LENGTH_SHORT).show();
     }
     private void updateUI(FirebaseUser user) {
 

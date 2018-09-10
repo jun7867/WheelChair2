@@ -89,7 +89,8 @@ public class NameLocationAdapter extends BaseAdapter {
 
     public void GoIntent(int a){
 
-        Intent intent = new Intent(m_activity, FindNameLocationActivity.class);
+
+        Intent intent = new Intent(m_activity, ReviewDetail.class);
 
 //putExtra 로 선택한 아이템의 정보를 인텐트로 넘겨 줄 수 있다.
 
@@ -99,8 +100,10 @@ public class NameLocationAdapter extends BaseAdapter {
         //intent.putExtra("ADDRESS", arr.get(a).getAddress());
         //intent.putExtra("ROAD_ADDRESS", arr.get(a).getRoad_address());
         //intent.putExtra("TELEPHONE", arr.get(a).getTelephone());
-        //intent.putExtra("MAPX", arr.get(a).getMapx());
-        //intent.putExtra("MAPY", arr.get(a).getMapy());
+        intent.putExtra("MAPX", arr.get(a).getMapx());
+        System.out.println("멥 엑스: " + intent.putExtra("MAPX", arr.get(a).getMapx()));
+        intent.putExtra("MAPY", arr.get(a).getMapy());
+        System.out.println("멥 와이: " + intent.putExtra("MAPY", arr.get(a).getMapy()));
 
         m_activity.startActivity(intent);
 
