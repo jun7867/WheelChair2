@@ -206,7 +206,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                     }
                 } else {
 
-                    save = 0;
+                    save = 1;
                     currentUser = mAuth.getCurrentUser();
 
                     Toast.makeText(LoginScreen.this, "로그인 성공", Toast.LENGTH_SHORT).show();

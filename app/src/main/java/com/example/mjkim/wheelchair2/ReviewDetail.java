@@ -44,8 +44,7 @@ public class ReviewDetail extends AppCompatActivity {
     String address = "";
     private String name;
     private String review_name;
-    private double mapx;
-    private double mapy;
+    int mapx, mapy;
     private double rating;
     private Boolean tag1;
     private Boolean tag2;
@@ -141,6 +140,7 @@ public class ReviewDetail extends AppCompatActivity {
 
         Intent intent = getIntent();
         reviewLists = new ArrayList<ReviewList>();
+
 
 
         //해당 장소의 리뷰들을 리스트로 저장하고 JSON 파싱을한다
@@ -249,8 +249,6 @@ public class ReviewDetail extends AppCompatActivity {
 
 
 
-
-
         location_name.setText(intent.getExtras().getString("NAME"));
         name = intent.getExtras().getString("NAME");
         address_name.setText(intent.getExtras().getString("ROAD_ADDRESS"));
@@ -309,11 +307,12 @@ public class ReviewDetail extends AppCompatActivity {
     }
 
     public void openMapSearch(){
-        Intent intent = new Intent(this, FindNameLocationActivity.class);
+        Intent intent = new Intent(this, WatchLocationActivity.class);
         intent.putExtra("NAME", name);
         intent.putExtra("MAPX", mapx);
         intent.putExtra("MAPY", mapy);
-//        intent.putExtra()
+        System.out.println("멥 엑스1: " + mapx);
+        System.out.println("멥 와이1: " + mapy);
         startActivity(intent);
     }
 
