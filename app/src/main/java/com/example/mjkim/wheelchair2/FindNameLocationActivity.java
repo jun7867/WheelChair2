@@ -140,7 +140,8 @@ public class FindNameLocationActivity extends NMapActivity{
     private void goToLocation() {
         Intent map_intent = getIntent();
 
-        GeoTransPoint oKA = new GeoTransPoint(map_intent.getExtras().getDouble("MAPX"), map_intent.getExtras().getDouble("MAPY"));
+        // 여기서 좌표 받아올 때 문제있다!!
+        GeoTransPoint oKA = new GeoTransPoint(map_intent.getExtras().getInt("MAPX"), map_intent.getExtras().getInt("MAPY"));
         GeoTransPoint oGeo = GeoTrans.convert(GeoTrans.KATEC, GeoTrans.GEO, oKA);
 
         mLatitude = oGeo.getX();

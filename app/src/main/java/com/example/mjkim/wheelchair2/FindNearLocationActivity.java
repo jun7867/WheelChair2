@@ -166,7 +166,7 @@ public class FindNearLocationActivity extends NMapActivity{
 
 
         // 기본 위치(포항시청) + 기다리는 멘트
-        mMapController.setMapCenter(129.343422,36.019178, 11);
+//        mMapController.setMapCenter(129.343422,36.019178, 11);
         Toast.makeText(FindNearLocationActivity.this, "현재 위치를 탐색중입니다. 잠시만 기다려주세요.", Toast.LENGTH_LONG).show();
 
         //내 주변으로 검색
