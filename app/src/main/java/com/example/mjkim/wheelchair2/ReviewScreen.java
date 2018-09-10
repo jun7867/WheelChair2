@@ -852,6 +852,8 @@ public class ReviewScreen extends AppCompatActivity {
         intent.putExtra("NAME", name);
         intent.putExtra("MAPX", mapx);
         intent.putExtra("MAPY", mapy);
+        System.out.println("멥 엑스2: " + mapx);
+        System.out.println("멥 와이2: " + mapy);
         startActivity(intent);
     }
     public void onFinish(View view){ //등록눌렀을때.

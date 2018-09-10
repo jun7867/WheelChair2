@@ -140,7 +140,7 @@ public class FindNameLocationActivity extends NMapActivity{
     private void goToLocation() {
         Intent map_intent = getIntent();
 
-        GeoTransPoint oKA = new GeoTransPoint(map_intent.getExtras().getInt("MAPX"), map_intent.getExtras().getInt("MAPY"));
+        GeoTransPoint oKA = new GeoTransPoint(map_intent.getExtras().getDouble("MAPX"), map_intent.getExtras().getDouble("MAPY"));
         GeoTransPoint oGeo = GeoTrans.convert(GeoTrans.KATEC, GeoTrans.GEO, oKA);
 
         mLatitude = oGeo.getX();
