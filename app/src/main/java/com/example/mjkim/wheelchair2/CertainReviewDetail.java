@@ -40,7 +40,9 @@ import java.util.logging.Logger;
 
 public class CertainReviewDetail extends AppCompatActivity {
     ImageView imageShow1,imageShow2,imageShow3,imageShow4,imageShow5,imageShow6,imageShow7,imageShow8,imageShow9;
+    String image1,image2,image3,image4,image5,image6,image7,image8,image9;
     ImageView tagShow1,tagShow2,tagShow3,tagShow4,tagShow5,tagShow6;
+    StorageReference ref,ref2,ref3,ref4,ref5,ref6,ref7,ref8,ref9;
     RatingBar ratingBar;
     ImageButton menu_button;
     ImageButton back_button;
@@ -110,15 +112,15 @@ public class CertainReviewDetail extends AppCompatActivity {
         float number = (float)intent.getExtras().getDouble("Rating");
         ratingBar.setRating((float)intent.getExtras().getDouble("Rating"));
 
-        final String image1 = intent.getExtras().getString("IMAGE1");
-        final String image2 = intent.getExtras().getString("IMAGE2");
-        final String image3 = intent.getExtras().getString("IMAGE3");
-        final String image4 = intent.getExtras().getString("IMAGE4");
-        final String image5 = intent.getExtras().getString("IMAGE5");
-        final String image6 = intent.getExtras().getString("IMAGE6");
-        final String image7 = intent.getExtras().getString("IMAGE7");
-        final String image8 = intent.getExtras().getString("IMAGE8");
-        final String image9 = intent.getExtras().getString("IMAGE9");
+        image1 = intent.getExtras().getString("IMAGE1");
+        image2 = intent.getExtras().getString("IMAGE2");
+        image3 = intent.getExtras().getString("IMAGE3");
+        image4 = intent.getExtras().getString("IMAGE4");
+        image5 = intent.getExtras().getString("IMAGE5");
+        image6 = intent.getExtras().getString("IMAGE6");
+        image7 = intent.getExtras().getString("IMAGE7");
+        image8 = intent.getExtras().getString("IMAGE8");
+        image9 = intent.getExtras().getString("IMAGE9");
         final String email = intent.getExtras().getString("Email");
         final String name = intent.getExtras().getString("Name");
         final String review = intent.getExtras().getString("Review");
@@ -143,17 +145,15 @@ public class CertainReviewDetail extends AppCompatActivity {
         dateT.setText(date);
         reviewT.setText(review_name);
         reviewDetailT.setText(review);
-        StorageReference ref = FirebaseStorage.getInstance().getReference("images/"+image1);
-        StorageReference ref2 = FirebaseStorage.getInstance().getReference("images/"+image2);
-        StorageReference ref3 = FirebaseStorage.getInstance().getReference("images/"+image3);
-        StorageReference ref4 = FirebaseStorage.getInstance().getReference("images/"+image4);
-        StorageReference ref5 = FirebaseStorage.getInstance().getReference("images/"+image5);
-        StorageReference ref6 = FirebaseStorage.getInstance().getReference("images/"+image6);
-        StorageReference ref7 = FirebaseStorage.getInstance().getReference("images/"+image7);
-        StorageReference ref8 = FirebaseStorage.getInstance().getReference("images/"+image8);
-        StorageReference ref9 = FirebaseStorage.getInstance().getReference("images/"+image9);
-
-        System.out.println("과연1"+ref+image1+"2"+ref5+image5);
+        ref = FirebaseStorage.getInstance().getReference("images/"+image1);
+        ref2 = FirebaseStorage.getInstance().getReference("images/"+image2);
+        ref3 = FirebaseStorage.getInstance().getReference("images/"+image3);
+        ref4 = FirebaseStorage.getInstance().getReference("images/"+image4);
+        ref5 = FirebaseStorage.getInstance().getReference("images/"+image5);
+        ref6 = FirebaseStorage.getInstance().getReference("images/"+image6);
+        ref7 = FirebaseStorage.getInstance().getReference("images/"+image7);
+        ref8 = FirebaseStorage.getInstance().getReference("images/"+image8);
+        ref9 = FirebaseStorage.getInstance().getReference("images/"+image9);
 
         if(image1!="")
             Glide.with(this /* context */)
@@ -201,7 +201,38 @@ public class CertainReviewDetail extends AppCompatActivity {
                 .into(imageShow9);
 
     }
+    public void onClick(View view){
+        Intent intent = new Intent(this, ImageShowActivity.class);
 
+        if(view.getId()== R.id.imageView1){
+            intent.putExtra("IMAGE1",image1);
+        }
+        if(view.getId()== R.id.imageView2){
+            intent.putExtra("IMAGE2",image2);
+        }
+        if(view.getId()== R.id.imageView3){
+            intent.putExtra("IMAGE3",image3);
+        }
+        if(view.getId()== R.id.imageView4){
+            intent.putExtra("IMAGE4",image4);
+        }
+        if(view.getId()== R.id.imageView5){
+            intent.putExtra("IMAGE5",image5);
+        }
+        if(view.getId()== R.id.imageView6){
+            intent.putExtra("IMAGE6",image6);
+        }
+        if(view.getId()== R.id.imageView7){
+            intent.putExtra("IMAGE7",image7);
+        }
+        if(view.getId()== R.id.imageView8){
+            intent.putExtra("IMAGE8",image8);
+        }
+        if(view.getId()== R.id.imageView9){
+            intent.putExtra("IMAGE9",image9);
+        }
+        startActivity(intent);
+    }
     public void openMenuTab(){
         Intent intent = new Intent(this, MenuScreen.class);
         startActivity(intent);

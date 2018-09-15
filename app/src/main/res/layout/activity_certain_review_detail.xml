@@ -201,20 +201,23 @@
                 <ImageView
                     android:id="@+id/imageView1"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
 
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
 
             </LinearLayout>
 
@@ -228,7 +231,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="입구 사진"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:onClick="onClick"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -236,7 +240,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="화장실 사진"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:onClick="onClick"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -244,7 +249,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="경사로 사진"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:onClick="onClick"/>
             </LinearLayout>
 
             <LinearLayout
@@ -255,20 +261,23 @@
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
 
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
 
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
             </LinearLayout>
 
             <LinearLayout
@@ -310,20 +319,23 @@
                 <ImageView
                     android:id="@+id/imageView7"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
 
                 <ImageView
                     android:id="@+id/imageView8"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
 
                 <ImageView
                     android:id="@+id/imageView9"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"/>
             </LinearLayout>
 
             <LinearLayout

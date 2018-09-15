@@ -88,7 +88,6 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
             public void onClick(View view) {
                 String email=emailTxt.getText().toString();
                 String password=pwTxt.getText().toString();
-
                 loginStart(email,password); // 성공했을때 메인페이지로 보냄.
             }
         });
@@ -97,6 +96,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
             @Override
             public void onClick(View view) {
                 Log.v("알림", "구글 LOGIN");
+
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }

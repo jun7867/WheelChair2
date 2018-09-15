@@ -102,22 +102,22 @@ public class FirstScreen extends AppCompatActivity {
 
 
     public void onClick(View view){
-        if(view.getId()== R.id.surround_b){
-            // 아직 준비가 안됨
+            if(view.getId()== R.id.surround_b){
+                // 아직 준비가 안됨
 //            Intent intent=new Intent(this,FindNearLocationActivity.class);
 //            startActivity(intent);
-            Toast.makeText(FirstScreen.this, "준비중인 기능입니다", Toast.LENGTH_LONG).show();
-        }
-        if(view.getId()== R.id.name_b){
-            Intent intent=new Intent(this,NameSearchActivity.class);
-            startActivity(intent);
-        }
-        if(view.getId() == R.id.review_b){
-            Intent intent=new Intent(this,ReviewSearch.class);
-            if(LoginScreen.save == 0) Toast.makeText(this, "로그인후 이용해주세요", Toast.LENGTH_SHORT).show();
-            else if(LoginScreen.save == 1) startActivity(intent);
+                Toast.makeText(FirstScreen.this, "준비중인 기능입니다", Toast.LENGTH_LONG).show();
+            }
+            if(view.getId()== R.id.name_b){
+                Intent intent=new Intent(this,NameSearchActivity.class);
+                startActivity(intent);
+            }
+            if(view.getId() == R.id.review_b){
+                Intent intent=new Intent(this,ReviewSearch.class);
+                if(LoginScreen.save == 0) Toast.makeText(this, "로그인후 이용해주세요", Toast.LENGTH_SHORT).show();
+                else if(LoginScreen.save == 1) startActivity(intent);
 
-        }
+            }
     }
     public void openMenuTab(){
         Intent intent = new Intent(this, MenuScreen.class);
