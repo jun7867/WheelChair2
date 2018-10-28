@@ -114,7 +114,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
         String response = "";
 
         try {
-            int display = 50; //총 결과물 갯수
+            int display = 30; //총 결과물 갯수
             String text = URLEncoder.encode(string, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/local?query="+ text + "&display=" + display + "&"; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
