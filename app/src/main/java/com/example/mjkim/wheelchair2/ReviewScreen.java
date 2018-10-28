@@ -196,34 +196,51 @@ public class ReviewScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClick(View view){
+    public void onClick(final View view){
 
         id_view = view.getId();
         if(view.getId() == R.id.picture1 || view.getId() == R.id.picture2 || view.getId() == R.id.picture3
                 || view.getId() == R.id.picture4 || view.getId() == R.id.picture5 || view.getId() == R.id.picture6
-                || view.getId() == R.id.picture7 || view.getId() == R.id.picture8 || view.getId() == R.id.picture9 ){
-            DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) { doTakePhotoAction(); }
-            };
+                || view.getId() == R.id.picture7 || view.getId() == R.id.picture8 || view.getId() == R.id.picture9 ) {
 
-            DialogInterface.OnClickListener albumListener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) { doTakeAlbumAction(); }
-            };
-            DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) { dialogInterface.dismiss(); }
-            };
+                DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        doTakePhotoAction();
+                    }
+                };
 
-            new AlertDialog.Builder(this)
-                    .setTitle("업로드할 이미지 선택")
-                    .setPositiveButton("앨범선택", albumListener)
-                    .setNeutralButton("취소", cancelListener)
-                    .setNegativeButton("사진촬영", cameraListener)
-                    .show();
+                DialogInterface.OnClickListener albumListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        doTakeAlbumAction();
+                    }
+                };
+                DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(view.getId()==R.id.picture1) picture1.setImageResource(R.drawable.picture_frame);
+                        if(view.getId()==R.id.picture2) picture1.setImageResource(R.drawable.picture_frame);
+                        if(view.getId()==R.id.picture3) picture1.setImageResource(R.drawable.picture_frame);
+                        if(view.getId()==R.id.picture4) picture1.setImageResource(R.drawable.picture_frame);
+                        if(view.getId()==R.id.picture5) picture1.setImageResource(R.drawable.picture_frame);
+                        if(view.getId()==R.id.picture6) picture1.setImageResource(R.drawable.picture_frame);
+                        if(view.getId()==R.id.picture7) picture1.setImageResource(R.drawable.picture_frame);
+                        if(view.getId()==R.id.picture8) picture1.setImageResource(R.drawable.picture_frame);
+                        if(view.getId()==R.id.picture9) picture1.setImageResource(R.drawable.picture_frame); // 취소버튼을 누르면 사진삭제
+                        dialogInterface.dismiss();
+                    }
+                };
+
+                new AlertDialog.Builder(this)
+                        .setTitle("업로드할 이미지 선택")
+                        .setPositiveButton("앨범선택", albumListener)
+                        .setNeutralButton("취소/사진삭제", cancelListener)
+                        .setNegativeButton("사진촬영", cameraListener)
+                        .show();
+
+            }
         }
-    }
     public void doTakePhotoAction(){  //카메라에서 사진 가져오기.
         int permissioncheck= ContextCompat.checkSelfPermission(ReviewScreen.this,Manifest.permission.CAMERA);
         if(permissioncheck== PackageManager.PERMISSION_DENIED){
@@ -231,7 +248,7 @@ public class ReviewScreen extends AppCompatActivity {
             ActivityCompat.requestPermissions(ReviewScreen.this,new String[]{Manifest.permission.CAMERA},0);
             Toast.makeText(this,"권한없음",Toast.LENGTH_SHORT).show();
         }
-        else{ // 권한있
+        else{ // 권한있을 경우.
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 File photoFile = null;
