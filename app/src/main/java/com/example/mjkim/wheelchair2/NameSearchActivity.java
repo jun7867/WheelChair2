@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.mjkim.wheelchair2.NameSearch.NameLocationAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
@@ -54,9 +55,6 @@ public class NameSearchActivity extends AppCompatActivity {
                 openMenuTab();
             }
         });
-
-
-
     }
 
 
@@ -67,13 +65,9 @@ public class NameSearchActivity extends AppCompatActivity {
 
     public void onSearch(View v) {
 
-
-
         naverLocationSearch = new NaverLocationSearch();
         naverLocationLists = new ArrayList<NaverLocationList>();
         reviewlist = new ArrayList<NaverLocationList>();
-
-
 
 
 
@@ -84,6 +78,11 @@ public class NameSearchActivity extends AppCompatActivity {
             reviewlist = naverLocationSearch.execute(e1.getText().toString()).get();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if(reviewlist.isEmpty()) {
+            Toast.makeText(NameSearchActivity.this, "검색 결과가 없습니다",
+                    Toast.LENGTH_SHORT).show();
         }
 
         ListView lv = (ListView) findViewById(R.id.review_location_list);

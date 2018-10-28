@@ -37,7 +37,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorAccent"
                     android:gravity="center"
-                    android:text="시설 정보"
+                    android:text="리뷰"
                     android:textSize="30dp" />
 
                 <ImageButton

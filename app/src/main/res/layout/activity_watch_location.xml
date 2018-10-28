@@ -44,7 +44,7 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:text="장소 정보"
+            android:text="지도 보기"
             android:textSize="30dp"
             android:visibility="visible"/>
 
