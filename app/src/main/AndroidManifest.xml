@@ -83,6 +83,8 @@
         </provider>
 
         <activity android:name=".CertainReviewDetail" />
+        <activity android:name=".Login.MyReview"></activity>
+        <activity android:name=".CertainReviewDetail" />
         <activity android:name=".ImageShowActivity"></activity>
     </application>
 

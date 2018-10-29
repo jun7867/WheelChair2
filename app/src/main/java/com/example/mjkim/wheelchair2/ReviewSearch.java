@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
@@ -86,6 +87,10 @@ public class ReviewSearch extends AppCompatActivity implements AbsListView.OnScr
             e.printStackTrace();
         }
 
+        if(arrayresult.isEmpty()) {
+            Toast.makeText(ReviewSearch.this, "검색 결과가 없습니다",
+                    Toast.LENGTH_SHORT).show();
+        }
         ListView lv = (ListView) findViewById(R.id.location_list);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

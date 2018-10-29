@@ -37,6 +37,7 @@ public class Data {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getName() {
         return name;
     }
