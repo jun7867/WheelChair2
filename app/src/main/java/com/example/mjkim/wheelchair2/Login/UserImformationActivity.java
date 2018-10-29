@@ -20,7 +20,7 @@ public class UserImformationActivity extends AppCompatActivity {
     TextView proId;
     TextView uid;
     private FirebaseAuth auth;
-    Button logout;
+    Button logout, my_review;
     FirebaseUser currentUser; //로그인 된 유저정보 변수
     FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -34,6 +34,7 @@ public class UserImformationActivity extends AppCompatActivity {
 //        proId=(TextView)findViewById(R.id.providerId);
 //        uid=(TextView)findViewById(R.id.uid);
         logout=(Button)findViewById(R.id.logout);
+        my_review=(Button)findViewById(R.id.my_review_b);
         name.setText(auth.getCurrentUser().getDisplayName());
         email.setText(auth.getCurrentUser().getEmail());
 
@@ -48,6 +49,16 @@ public class UserImformationActivity extends AppCompatActivity {
                 LoginManager.getInstance().logOut(); //페이스북 로그아웃
                 finish();
                 Intent intent =new Intent(UserImformationActivity.this,LoginScreen.class);
+                startActivity(intent);
+
+            }
+        });
+
+        my_review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent =new Intent(UserImformationActivity.this,MyReview.class);
                 startActivity(intent);
 
             }

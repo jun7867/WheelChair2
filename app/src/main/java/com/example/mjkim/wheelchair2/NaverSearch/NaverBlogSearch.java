@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class NaverBlogSearch extends AsyncTask<String, Void, ArrayList<NaverBlogList>> {
 
-    final static String clientId = "3StaOAzcpbFU3A798Ahq";//애플리케이션 클라이언트 아이디값";
-    final static String clientSecret = "NIwOzZz_Ot";//애플리케이션 클라이언트 시크릿값";
+    final static String clientId = "3xyZUa5HXxjAjIzgzxWQ";//애플리케이션 클라이언트 아이디값";
+    final static String clientSecret = "XfZnePx1KE";//애플리케이션 클라이언트 시크릿값";
     public static int total_num = 0;
     public static int display = 0;
 
