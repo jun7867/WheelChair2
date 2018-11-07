@@ -22,7 +22,7 @@ public class WatchReviewAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private Activity m_activity;
     private ArrayList<ReviewList> arr;
-    public static int select = 0; //출력되는 리뷰 개수 선택 1이면 5개 2이면 최대 20개
+    public static int select = 0; //출력되는 리뷰 개수 선택 1이면 3개 2이면 최대 20개
     public WatchReviewAdapter(Activity act, ArrayList<ReviewList> arr_item) {
         this.m_activity = act;
         arr = arr_item;

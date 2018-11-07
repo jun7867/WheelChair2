@@ -8,7 +8,10 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.TextView;
@@ -24,6 +27,7 @@ import com.example.mjkim.wheelchair2.WatchReview.WatchReviewList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class ReviewDetail extends AppCompatActivity {
@@ -37,9 +41,11 @@ public class ReviewDetail extends AppCompatActivity {
     private WatchReviewAdapter reviewAdapter;
     public static int length;
     ImageButton back_button, menu_button, more_blog, more_review;
+    ImageView tagShow1,tagShow2,tagShow3,tagShow4,tagShow5,tagShow6;
     Button map_search, review_button;
     TextView location_name, address_name, phone_number;
     ScrollView scrollView;
+    RatingBar ratingBar;
     String phone = "";
     String address = "";
     private String name;
@@ -66,8 +72,8 @@ public class ReviewDetail extends AppCompatActivity {
     private String imageUrl7;
     private String imageUrl8;
     private String imageUrl9;
-
     private String date;
+
 
 
 
@@ -79,14 +85,6 @@ public class ReviewDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_detail);
 
-        // 제일 위부터 보기
-        scrollView = new ScrollView(this);
-        scrollView.findViewById(R.id.scroll_view);
-//        scrollView.smoothScrollTo(0,0);
-//        scrollView.scrollBy(0,200);
-        scrollView.scrollTo(0,600);
-//        scrollView.fullScroll(ScrollView.FOCUSABLES_TOUCH_MODE);
-//        scrollView.smoothScrollTo(0,0);
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +103,14 @@ public class ReviewDetail extends AppCompatActivity {
 
         location_name = (TextView) findViewById(R.id.location_name);
         address_name = (TextView) findViewById(R.id.address_name);
+        address_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openMapSearch();
+            }
+        });
+
         phone_number = (TextView) findViewById(R.id.telephone_number);
+
 
         more_blog = (ImageButton)findViewById(R.id.blogmore_b);
         more_blog.setOnClickListener(new View.OnClickListener() {
@@ -121,12 +126,7 @@ public class ReviewDetail extends AppCompatActivity {
             }
         });
 
-        map_search = (Button)findViewById(R.id.current_b);
-        map_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { openMapSearch();
-            }
-        });
+
 
         review_button = (Button) findViewById(R.id.review_b);
         review_button.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +134,15 @@ public class ReviewDetail extends AppCompatActivity {
             public void onClick(View view) { writeReviewTab();
             }
         });
+
+        tagShow1 = (ImageView) findViewById(R.id.tag_done_1);
+        tagShow2 = (ImageView) findViewById(R.id.tag_done_2);
+        tagShow3 = (ImageView) findViewById(R.id.tag_done_3);
+        tagShow4 = (ImageView) findViewById(R.id.tag_done_4);
+        tagShow5 = (ImageView) findViewById(R.id.tag_done_5);
+        tagShow6 = (ImageView) findViewById(R.id.tag_done_6);
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar2);
 
         blogList = new ArrayList<NaverBlogList>();
         naverBlogSearch = new NaverBlogSearch();
@@ -144,6 +153,10 @@ public class ReviewDetail extends AppCompatActivity {
 
 
         //해당 장소의 리뷰들을 리스트로 저장하고 JSON 파싱을한다
+
+        double total_star = 0;
+        int[] tag_array = {0,0,0,0,0,0};
+
         if(FirebaseJson.reviewJson.size() > intent.getExtras().getInt("NUMBER")){
 
             reviewLists = new ArrayList<ReviewList>();
@@ -170,13 +183,20 @@ public class ReviewDetail extends AppCompatActivity {
                     review_name = jsonObj.getString("review_name");
                     System.out.println("제묵: " + review_name);
                     rating = jsonObj.getDouble("rating");
+                    total_star += rating;
                     System.out.println("점수: " + rating);
                     tag1 = jsonObj.getBoolean("tag1");
+                    if(tag1 == true) tag_array[0]  = tag_array[0] +  1;
                     tag2 = jsonObj.getBoolean("tag2");
+                    if(tag2 == true) tag_array[1]  = tag_array[1] +  1;
                     tag3 = jsonObj.getBoolean("tag3");
+                    if(tag3 == true) tag_array[2]  = tag_array[2] +  1;
                     tag4 = jsonObj.getBoolean("tag4");
+                    if(tag4 == true) tag_array[3]  = tag_array[3] +  1;
                     tag5 = jsonObj.getBoolean("tag5");
+                    if(tag5 == true) tag_array[4]  = tag_array[4] +  1;
                     tag6 = jsonObj.getBoolean("tag6");
+                    if(tag6 == true) tag_array[5]  = tag_array[5] +  1;
                     review = jsonObj.getString("review");
                     System.out.println("리뷰: " + review);
                     reviewer_name = jsonObj.getString("name");
@@ -196,12 +216,6 @@ public class ReviewDetail extends AppCompatActivity {
                     imageUrl9 = jsonObj.getString("imageUrl9");
 
 
-
-
-
-
-                    System.out.println("지역 이름1 " + intent.getExtras().getString("NAME"));
-                    System.out.println("지역 이름2 " + location_name);
 
                     if(intent.getExtras().getString("NAME").equals(location_name)) {
                         reviewLists.add(num++, new ReviewList(intent.getExtras().getString("NAME"),review_name, rating, tag1, tag2, tag3, tag4, tag5, tag6, review, reviewer_name,
@@ -230,7 +244,20 @@ public class ReviewDetail extends AppCompatActivity {
         NaverBlogAdapter.select = 1;
 
         ListView blogListView = (ListView) findViewById(R.id.short_blog_list);
+        // 동적으로 리스트뷰 높이 할당
+        if(blogList.size() == 0) {
+            System.out.println("bull1");
+            blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
 
+        }
+        else if(blogList.size() == 1) {
+            System.out.println("bull2");
+            blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
+        }
+        else if(blogList.size() == 2) {
+            System.out.println("bull3");
+            blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 850));
+        }
 
         blogAdapter = new NaverBlogAdapter(ReviewDetail.this, blogList);
         blogListView.setAdapter(blogAdapter);
@@ -242,8 +269,18 @@ public class ReviewDetail extends AppCompatActivity {
         WatchReviewAdapter.select = 1;
 
         ListView reviewListView = (ListView) findViewById(R.id.short_review_list);
-
-
+        if(reviewLists.size() == 0) {
+            System.out.println("sibal1");
+            reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
+        }
+        else if(reviewLists.size() == 1) {
+            System.out.println("sibal2");
+            reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
+        }
+        else if(reviewLists.size() == 2) {
+            System.out.println("sibal3");
+            reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 850));
+        }
         reviewAdapter = new WatchReviewAdapter(ReviewDetail.this, reviewLists);
         reviewListView.setAdapter(reviewAdapter);
 
@@ -285,6 +322,26 @@ public class ReviewDetail extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+
+        //태그 기준 설정 및 출력
+
+        if(tag_array[0] > length/2 &&  tag_array[0] != 0) tagShow1.setImageResource(R.drawable.restroom);
+        System.out.println("태그1: " + tag_array[0]);
+        if(tag_array[1] > length/2 &&  tag_array[1] != 0) tagShow2.setImageResource(R.drawable.parking);
+        System.out.println("태그2: " + tag_array[1]);
+        if(tag_array[2] > length/2 &&  tag_array[2] != 0) tagShow3.setImageResource(R.drawable.elevator);
+        System.out.println("태그3: " + tag_array[2]);
+        if(tag_array[3] > length/2 &&  tag_array[3] != 0) tagShow4.setImageResource(R.drawable.slope);
+        System.out.println("태그4: " + tag_array[3]);
+        if(tag_array[4] > length/2 &&  tag_array[4] != 0) tagShow5.setImageResource(R.drawable.table);
+        System.out.println("태그5: " + tag_array[4]);
+        if(tag_array[5] > length/2 &&  tag_array[5] != 0) tagShow6.setImageResource(R.drawable.assistant);
+        System.out.println("태그6: " + tag_array[5]);
+
+        total_star = total_star/length;
+        ratingBar.setRating((float)total_star);
+
 
 
     }

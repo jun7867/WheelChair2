@@ -1,6 +1,7 @@
 package com.example.mjkim.wheelchair2;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,7 @@ public class NameSearchActivity extends AppCompatActivity {
     ImageButton menu_button;
     int i, save = 0;
     //public static ArrayList<ReviewList> reviewlist;       // 네이버 지역 리스트
-    public static ArrayList<NaverLocationList> reviewlist;
+    public static ArrayList<NaverLocationList> nameList;    // reviewlist -> nameList 수정(희석)
     ArrayList<NaverLocationList> naverLocationLists = new ArrayList<NaverLocationList>();
     private NaverLocationSearch naverLocationSearch;
     private NaverLocationAdapter adapter;            // 리스트뷰의 네이버지역검색 아답터
@@ -67,7 +68,7 @@ public class NameSearchActivity extends AppCompatActivity {
 
         naverLocationSearch = new NaverLocationSearch();
         naverLocationLists = new ArrayList<NaverLocationList>();
-        reviewlist = new ArrayList<NaverLocationList>();
+        nameList = new ArrayList<NaverLocationList>();
 
 
 
@@ -75,21 +76,29 @@ public class NameSearchActivity extends AppCompatActivity {
 
 
         try {
-            reviewlist = naverLocationSearch.execute(e1.getText().toString()).get();
+            nameList = naverLocationSearch.execute(e1.getText().toString()).get();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if(reviewlist.isEmpty()) {
+        if(nameList.isEmpty()) {
             Toast.makeText(NameSearchActivity.this, "검색 결과가 없습니다",
                     Toast.LENGTH_SHORT).show();
         }
 
-        ListView lv = (ListView) findViewById(R.id.review_location_list);
 
 
-        adapter = new NaverLocationAdapter(NameSearchActivity.this, reviewlist, save);
-        lv.setAdapter(adapter);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ListView lv = (ListView) findViewById(R.id.review_location_list);
+                adapter = new NaverLocationAdapter(NameSearchActivity.this, nameList, save);
+                lv.setAdapter(adapter);
+            }
+        }, 1000);
+
+
+
 
         //System.out.println("샘플: " + firebaseJson.json);
 

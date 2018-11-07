@@ -133,12 +133,12 @@ public class CertainReviewDetail extends AppCompatActivity {
         final boolean TagT5 = intent.getExtras().getBoolean("Tag5");
         final boolean TagT6 = intent.getExtras().getBoolean("Tag6");
 
-        if(TagT1 == true) tagShow1.setImageResource(R.drawable.tag_checked_1);
-        if(TagT2 == true) tagShow2.setImageResource(R.drawable.tag_checked_2);
-        if(TagT3 == true) tagShow3.setImageResource(R.drawable.tag_checked_3);
-        if(TagT4 == true) tagShow4.setImageResource(R.drawable.tag_checked_4);
-        if(TagT5 == true) tagShow5.setImageResource(R.drawable.tag_checked_5);
-        if(TagT6 == true) tagShow6.setImageResource(R.drawable.tag_checked_6);
+        if(TagT1 == true) tagShow1.setImageResource(R.drawable.restroom);
+        if(TagT2 == true) tagShow2.setImageResource(R.drawable.parking);
+        if(TagT3 == true) tagShow3.setImageResource(R.drawable.elevator);
+        if(TagT4 == true) tagShow4.setImageResource(R.drawable.slope);
+        if(TagT5 == true) tagShow5.setImageResource(R.drawable.table);
+        if(TagT6 == true) tagShow6.setImageResource(R.drawable.assistant);
 
         emailT.setText(email);
         nameT.setText(name);

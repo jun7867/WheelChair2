@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="#6ec1f7"
+        android:background="@color/colorAccent"
         android:gravity="center"
         android:onClick="searchClick"
         android:text="검색" />

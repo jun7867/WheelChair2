@@ -1,6 +1,5 @@
 package com.example.mjkim.wheelchair2.Login;
 
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 import com.example.mjkim.wheelchair2.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -21,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 // 회원가입하는 액티비티
-public class EmailActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     private EditText email;
     private EditText name;
     private EditText password;
@@ -33,7 +31,7 @@ public class EmailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_email);
+        setContentView(R.layout.activity_sign_in);
         email = (EditText) findViewById(R.id.signupActivity_edittext_email);
         name = (EditText) findViewById(R.id.signupActivity_edittext_name);
         password = (EditText) findViewById(R.id.signupActivity_edittext_password);
@@ -82,21 +80,21 @@ public class EmailActivity extends AppCompatActivity {
                             try {
                                 throw task.getException();
                             } catch(FirebaseAuthWeakPasswordException e) {
-                                Toast.makeText(EmailActivity.this,"비밀번호가 간단해요" ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this,"비밀번호가 간단합니다" ,Toast.LENGTH_SHORT).show();
                             } catch(FirebaseAuthInvalidCredentialsException e) {
-                                Toast.makeText(EmailActivity.this,"email 형식에 맞지 않습니다" ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this,"이메일 형식에 맞지 않습니다" ,Toast.LENGTH_SHORT).show();
                             } catch(FirebaseAuthUserCollisionException e) {
-                                Toast.makeText(EmailActivity.this,"이미 존재하는 email 입니다." ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this,"이미 존재하는 계정 입니다." ,Toast.LENGTH_SHORT).show();
                             } catch(Exception e) {
-                                Toast.makeText(EmailActivity.this,"다시 확인해주세요" ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this,"다시 확인해주세요" ,Toast.LENGTH_SHORT).show();
                             }
                         }else {
 
                             currentUser = mAuth.getCurrentUser();
 
-                            Toast.makeText(EmailActivity.this, "가입 성공  ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "가입 성공  ", Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(EmailActivity.this, LoginScreen.class));
+                            startActivity(new Intent(SignInActivity.this, LoginScreen.class));
                             finish();
                         }
                     }
