@@ -57,6 +57,7 @@ public class FirstScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_screen);
 
+
         menu_button = (ImageButton)findViewById(R.id.menu_b);
 
         menu_button.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +88,8 @@ public class FirstScreen extends AppCompatActivity {
   //      BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
   //      navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
+
     }
 //    //로그인 되어있으면 currentUser 변수에 유저정보 할당. 아닌경우 login 페이지로 이동!
 //    @Override
@@ -102,12 +105,6 @@ public class FirstScreen extends AppCompatActivity {
 
 
     public void onClick(View view){
-            if(view.getId()== R.id.surround_b){
-                // 아직 준비가 안됨
-//            Intent intent=new Intent(this,FindNearLocationActivity.class);
-//            startActivity(intent);
-                Toast.makeText(FirstScreen.this, "준비중인 기능입니다", Toast.LENGTH_LONG).show();
-            }
             if(view.getId()== R.id.name_b){
                 Intent intent=new Intent(this,NameSearchActivity.class);
                 startActivity(intent);

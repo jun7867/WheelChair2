@@ -26,7 +26,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:background="@color/colorAccent"
+                    android:background="#ffaf43"
                     android:visibility="visible"
                     app:srcCompat="@drawable/back_arrow" />
 
@@ -35,7 +35,7 @@
                     android:layout_width="235dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
+                    android:background="#ffaf43"
                     android:gravity="center"
                     android:text="리뷰"
                     android:textSize="30dp" />
@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:background="@color/colorAccent"
+                    android:background="#ffaf43"
                     app:srcCompat="@drawable/menu" />
 
 
@@ -69,56 +69,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
 
                 <ImageView
                     android:id="@+id/tag_done_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="15dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/tag_done_1" />
+                    app:srcCompat="@drawable/restroom_dimmed" />
 
                 <ImageView
                     android:id="@+id/tag_done_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="15dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/tag_done_2" />
+                    app:srcCompat="@drawable/parking_dimmed" />
 
                 <ImageView
                     android:id="@+id/tag_done_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="15dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/tag_done_3" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                    app:srcCompat="@drawable/elevator_dimmed" />
 
                 <ImageView
                     android:id="@+id/tag_done_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="15dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/tag_done_4" />
+                    app:srcCompat="@drawable/slope_dimmed" />
 
                 <ImageView
                     android:id="@+id/tag_done_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="15dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/tag_done_5" />
+                    app:srcCompat="@drawable/table_dimmed" />
 
                 <ImageView
                     android:id="@+id/tag_done_6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="15dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/tag_done_6" />
+                    app:srcCompat="@drawable/assistant_dimmed" />
             </LinearLayout>
 
             <RatingBar

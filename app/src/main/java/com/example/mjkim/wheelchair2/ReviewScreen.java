@@ -130,7 +130,6 @@ public class ReviewScreen extends AppCompatActivity {
 
         back_button = (ImageButton)findViewById(R.id.backButton);
         menu_button = (ImageButton)findViewById(R.id.menuButton);
-        map_search = (Button)findViewById(R.id.current_b);
         picture1 = (ImageView)findViewById(R.id.picture1);
         picture2 = (ImageView)findViewById(R.id.picture2);
         picture3 = (ImageView)findViewById(R.id.picture3);
@@ -158,7 +157,7 @@ public class ReviewScreen extends AppCompatActivity {
         menu_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){ openMenuTab(); }});
-        map_search.setOnClickListener(new View.OnClickListener() {
+        address_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { openMapSearch();
             }
