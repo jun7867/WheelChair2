@@ -45,6 +45,20 @@
         android:ems="10"
         android:hint="비밀번호를 입력하세요"
         android:inputType="textPassword" />
+<LinearLayout
+    android:paddingLeft="12dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:text="로그인 정보 기억하기"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox" />
+</LinearLayout>
+
 
     <ImageButton
         android:id="@+id/login_b2"

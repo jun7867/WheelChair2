@@ -1,12 +1,14 @@
 package com.example.mjkim.wheelchair2.Login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -62,9 +64,16 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
     EditText emailTxt; //이메일 텍스트
     EditText pwTxt; // 비밀번호 텍스트
     ImageButton loginEmail;
-    LoginButton loginButton;
+//    LoginButton loginButton;
+    ImageButton loginButton;
     CallbackManager mCallbackManager;
     public static int save = 0;
+    private CheckBox checkBox;
+    private boolean saveLoginData;
+    private SharedPreferences appData;
+    private String id;
+    private String pwd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +90,29 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
         findPass=(Button)findViewById(R.id.findpass_b);
 //        SignInButton googleSign=(SignInButton)findViewById(R.id.google_sign);
 
+        // 설정값 불러오기
+        appData = getSharedPreferences("appData", MODE_PRIVATE);
+        load();
 
+        emailTxt = (EditText) findViewById(R.id.id_text);
+        pwTxt = (EditText) findViewById(R.id.pass_text);
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
+        loginButton = (ImageButton) findViewById(R.id.login_b2);
+
+        // 이전에 로그인 정보를 저장시킨 기록이 있다면
+        if (saveLoginData) {
+            emailTxt.setText(id);
+            pwTxt.setText(pwd);
+            checkBox.setChecked(saveLoginData);
+        }
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 로그인 성공시 저장 처리, 예제는 무조건 저장
+                save();
+            }
+        });
 
         //로그인 버튼을 눌렀을때.
         loginEmail.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +220,30 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
             }
         };
     }
+
+    private void save() {
+        // SharedPreferences 객체만으론 저장 불가능 Editor 사용
+        SharedPreferences.Editor editor = appData.edit();
+
+        // 에디터객체.put타입( 저장시킬 이름, 저장시킬 값 )
+        // 저장시킬 이름이 이미 존재하면 덮어씌움
+        editor.putBoolean("SAVE_LOGIN_DATA", checkBox.isChecked());
+        editor.putString("ID", emailTxt.getText().toString().trim());
+        editor.putString("PWD", pwTxt.getText().toString().trim());
+
+        // apply, commit 을 안하면 변경된 내용이 저장되지 않음
+        editor.apply();
+    }
+
+    // 설정값을 불러오는 함수
+    private void load() {
+        // SharedPreferences 객체.get타입( 저장된 이름, 기본값 )
+        // 저장된 이름이 존재하지 않을 시 기본값
+        saveLoginData = appData.getBoolean("SAVE_LOGIN_DATA", false);
+        id = appData.getString("ID", "");
+        pwd = appData.getString("PWD", "");
+    }
+
     public void loginStart(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

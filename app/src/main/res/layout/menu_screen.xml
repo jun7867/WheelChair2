@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:gravity="fill_vertical"
-        android:text="  튜토리얼"
+        android:text="  설명서"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"
