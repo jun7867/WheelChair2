@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.mjkim.wheelchair2.R;
@@ -21,6 +22,7 @@ public class UserImformationActivity extends AppCompatActivity {
     TextView uid;
     private FirebaseAuth auth;
     Button logout, my_review;
+    ImageButton back_button;
     FirebaseUser currentUser; //로그인 된 유저정보 변수
     FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -37,6 +39,7 @@ public class UserImformationActivity extends AppCompatActivity {
         my_review=(Button)findViewById(R.id.my_review_b);
         name.setText(auth.getCurrentUser().getDisplayName());
         email.setText(auth.getCurrentUser().getEmail());
+        back_button = (ImageButton) findViewById(R.id.back_b);
 
 //        proId.setText(auth.getCurrentUser().getProviderId());
 //        uid.setText(auth.getCurrentUser().getUid());
@@ -61,6 +64,13 @@ public class UserImformationActivity extends AppCompatActivity {
                 Intent intent =new Intent(UserImformationActivity.this,MyReview.class);
                 startActivity(intent);
 
+            }
+        });
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

@@ -7,6 +7,22 @@
     android:orientation="vertical"
     tools:context=".MenuScreen"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            app:srcCompat="@drawable/logo" />
+
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/id_text"
@@ -29,6 +45,20 @@
         android:ems="10"
         android:hint="비밀번호를 입력하세요"
         android:inputType="textPassword" />
+<LinearLayout
+    android:paddingLeft="12dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:text="로그인 정보 기억하기"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox" />
+</LinearLayout>
+
 
     <ImageButton
         android:id="@+id/login_b2"
@@ -79,7 +109,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/or" />
+        android:visibility="visible"
+        app:srcCompat="@drawable/line" />
 
     <!--<com.google.android.gms.common.SignInButton-->
         <!--android:id="@+id/google_sign"-->
@@ -96,22 +127,24 @@
 
     <Button
         android:id="@+id/login_btn_google"
-        android:padding="10dp"
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:background="#f2c9c9"
-        android:text="구글로 로그인하기"/>
+        android:padding="10dp"
+        android:text="구글로 로그인하기"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/no_login"
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#84c0eaef"
+        android:layout_marginBottom="15dp"
         android:layout_marginTop="10dp"
+        android:background="#84c0eaef"
+        android:padding="10dp"
         android:text="로그인 없이 사용하기"
-        android:layout_marginBottom="15dp"/>
+        android:visibility="invisible" />
 
 
 
