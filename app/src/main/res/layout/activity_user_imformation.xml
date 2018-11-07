@@ -5,18 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Login.UserImformationActivity"
-    android:layout_margin="10dp">
+    tools:context=".Login.UserImformationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/colorAccent"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/back_arrow" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            app:srcCompat="@drawable/logo" />
+
+        <ImageButton
+            android:id="@+id/back_b"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#ffaf43"
+            android:visibility="visible"
+            app:srcCompat="@drawable/arrow2" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="이름: "
-            android:textSize="30dp"/>
+            android:textSize="30dp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/nameId"
@@ -31,12 +67,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이메일 : "
-        android:textSize="30dp"/>
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디 : "
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/emailId"
@@ -50,15 +88,19 @@
 
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로그아웃"
-        android:id="@+id/logout"/>
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/logout_button" />
 
     <Button
         android:id="@+id/my_review_b"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="내 리뷰 보기" />
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="@drawable/myreview_button" />
 
 </LinearLayout>
