@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
@@ -84,14 +85,6 @@ public class ReviewDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_detail);
 
-        // 제일 위부터 보기
-        scrollView = new ScrollView(this);
-        scrollView.findViewById(R.id.scroll_view);
-//        scrollView.smoothScrollTo(0,0);
-//        scrollView.scrollBy(0,200);
-        scrollView.scrollTo(0,600);
-//        scrollView.fullScroll(ScrollView.FOCUSABLES_TOUCH_MODE);
-//        scrollView.smoothScrollTo(0,0);
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +152,6 @@ public class ReviewDetail extends AppCompatActivity {
 
 
 
-
         //해당 장소의 리뷰들을 리스트로 저장하고 JSON 파싱을한다
 
         double total_star = 0;
@@ -169,9 +161,6 @@ public class ReviewDetail extends AppCompatActivity {
 
             reviewLists = new ArrayList<ReviewList>();
             int num = 0;
-
-
-
 
 
 
@@ -255,7 +244,20 @@ public class ReviewDetail extends AppCompatActivity {
         NaverBlogAdapter.select = 1;
 
         ListView blogListView = (ListView) findViewById(R.id.short_blog_list);
+        // 동적으로 리스트뷰 높이 할당
+        if(blogList.size() == 0) {
+            System.out.println("bull1");
+            blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
 
+        }
+        else if(blogList.size() == 1) {
+            System.out.println("bull2");
+            blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
+        }
+        else if(blogList.size() == 2) {
+            System.out.println("bull3");
+            blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 850));
+        }
 
         blogAdapter = new NaverBlogAdapter(ReviewDetail.this, blogList);
         blogListView.setAdapter(blogAdapter);
@@ -267,8 +269,18 @@ public class ReviewDetail extends AppCompatActivity {
         WatchReviewAdapter.select = 1;
 
         ListView reviewListView = (ListView) findViewById(R.id.short_review_list);
-
-
+        if(reviewLists.size() == 0) {
+            System.out.println("sibal1");
+            reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
+        }
+        else if(reviewLists.size() == 1) {
+            System.out.println("sibal2");
+            reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
+        }
+        else if(reviewLists.size() == 2) {
+            System.out.println("sibal3");
+            reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 850));
+        }
         reviewAdapter = new WatchReviewAdapter(ReviewDetail.this, reviewLists);
         reviewListView.setAdapter(reviewAdapter);
 

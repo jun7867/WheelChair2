@@ -40,6 +40,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.internal.api.FirebaseNoSignedInUserException;
 
 public class LoginScreen extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
@@ -78,7 +79,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
         login_btn_google= (Button) findViewById(R.id.login_btn_google);
         findId=(Button)findViewById(R.id.findid_b);
         findPass=(Button)findViewById(R.id.findpass_b);
-       // SignInButton googleSign=(SignInButton)findViewById(R.id.google_sign);
+//        SignInButton googleSign=(SignInButton)findViewById(R.id.google_sign);
 
 
 
@@ -114,7 +115,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
         createUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginScreen.this,EmailActivity.class);
+                Intent intent=new Intent(LoginScreen.this,SignInActivity.class);
                 startActivity(intent);
             }
         });
@@ -196,19 +197,20 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.On
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthInvalidUserException e) {
-                        Toast.makeText(LoginScreen.this, "존재하지 않는 id 입니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginScreen.this, "존재하지 않는 계정입니다 ", Toast.LENGTH_SHORT).show();
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         Toast.makeText(LoginScreen.this, "이메일 형식이 맞지 않습니다", Toast.LENGTH_SHORT).show();
                     } catch (FirebaseNetworkException e) {
-                        Toast.makeText(LoginScreen.this, "Firebase NetworkException", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginScreen.this, "네트워크 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(LoginScreen.this, "Exception", Toast.LENGTH_SHORT).show();
                     }
+
+
                 } else {
 
                     save = 1;
                     currentUser = mAuth.getCurrentUser();
-
                     Toast.makeText(LoginScreen.this, "로그인 성공", Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(LoginScreen.this, FirstScreen.class));
