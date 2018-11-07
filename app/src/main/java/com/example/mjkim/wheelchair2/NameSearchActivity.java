@@ -66,6 +66,7 @@ public class NameSearchActivity extends AppCompatActivity {
 
     public void onSearch(View v) {
 
+        FirebaseJson.reviewJson.clear();
         naverLocationSearch = new NaverLocationSearch();
         naverLocationLists = new ArrayList<NaverLocationList>();
         nameList = new ArrayList<NaverLocationList>();

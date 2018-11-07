@@ -100,8 +100,14 @@ public class FirebaseJson {
 
             try{
                 JSONObject jsonObj = new JSONObject(json);
-                review_num = jsonObj.getJSONObject(name).length();
-                reviewJson.add(num,new ReviewJson(name, review_num, jsonObj.getString(name), jsonObj.getJSONObject(name).names()));
+                if(jsonObj.has(name)) {
+                    review_num = jsonObj.getJSONObject(name).length();
+                    reviewJson.add(num, new ReviewJson(name, review_num, jsonObj.getString(name), jsonObj.getJSONObject(name).names()));
+                }
+                else
+                {
+                    reviewJson.add(num,new ReviewJson(null, 0, null, null));
+                }
             }catch (Exception e) {
                 e.printStackTrace();
             }
