@@ -36,7 +36,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
 
 
-        FirebaseJson.reviewJson.clear();
+
         String result = getJson(strings[0]);
 
         String name;
