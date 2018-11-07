@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.mjkim.wheelchair2.R;
@@ -37,6 +38,17 @@ public class SignInActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.signupActivity_edittext_password);
         signup = (Button) findViewById(R.id.signupActivity_button_signup);
         mAuth = FirebaseAuth.getInstance();
+
+        ImageButton back_button;
+
+        back_button = (ImageButton)findViewById(R.id.back_b);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
