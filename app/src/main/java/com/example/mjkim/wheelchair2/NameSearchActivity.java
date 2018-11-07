@@ -1,6 +1,7 @@
 package com.example.mjkim.wheelchair2;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -85,14 +86,24 @@ public class NameSearchActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
 
-        ListView lv = (ListView) findViewById(R.id.review_location_list);
 
 
-        adapter = new NaverLocationAdapter(NameSearchActivity.this, reviewlist, save);
-        lv.setAdapter(adapter);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ListView lv = (ListView) findViewById(R.id.review_location_list);
+                adapter = new NaverLocationAdapter(NameSearchActivity.this, reviewlist, save);
+                lv.setAdapter(adapter);
+            }
+        }, 1000);
+
+
+
 
         //System.out.println("샘플: " + firebaseJson.json);
 
     }
+
+
 
 }

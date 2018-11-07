@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#65b7ed</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#5dcdff</color>
+    <color name="colorAccent">#ffaf43</color>
     <color name="menu_tab">#bbbbbb</color>
+    <color name="transparent">#00ffaf43</color>
 </resources>
