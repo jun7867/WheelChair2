@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mjkim.wheelchair2">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -36,12 +37,12 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".GoogleMapActivity" />
         <activity android:name=".PictogramActivity" />
-        <activity android:name=".FindNearLocationActivity" />
         <activity android:name=".ReviewSearch" />
         <activity android:name=".ReviewDetail" />
         <activity android:name=".BlogSearch" />
         <activity android:name=".Login.LoginScreen" />
-        <activity android:name=".Login.EmailActivity" />
+        <activity android:name=".Login.SignInActivity" />
+        <activity android:name=".FindNearLocationActivity" />
         <activity android:name=".WatchLocationActivity" />
 
         <meta-data
@@ -84,7 +85,6 @@
 
         <activity android:name=".CertainReviewDetail" />
         <activity android:name=".Login.MyReview"></activity>
-        <activity android:name=".CertainReviewDetail" />
         <activity android:name=".ImageShowActivity"></activity>
     </application>
 

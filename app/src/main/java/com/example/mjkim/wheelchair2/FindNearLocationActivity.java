@@ -11,9 +11,12 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -107,6 +110,7 @@ public class FindNearLocationActivity extends NMapActivity{
     private NGeoPoint mGeoPoint;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,6 +167,23 @@ public class FindNearLocationActivity extends NMapActivity{
 
         mMapViewerResourceProvider = new NMapViewerResourceProvider(this);
         mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
+
+
+//        // 권한받는 방법 2
+//        if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(FindNearLocationActivity.this,
+//                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+//                    1);
+//        }
+//        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(FindNearLocationActivity.this,
+//                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                    1);
+//        }
+
+
+
+
 
 
         // 기본 위치(포항시청) + 기다리는 멘트
@@ -294,9 +315,9 @@ public class FindNearLocationActivity extends NMapActivity{
 //        //마시멜로 이상이면 권한 요청하기
 //        if(Build.VERSION.SDK_INT >= 23){
 //            //권한이 없는 경우
-//            if(ContextCompat.checkSelfPermission(NaverMapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-//                    ContextCompat.checkSelfPermission(NaverMapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-//                ActivityCompat.requestPermissions(NaverMapActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION , Manifest.permission.ACCESS_FINE_LOCATION} , 1);
+//            if(ContextCompat.checkSelfPermission(FindNearLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+//                    ContextCompat.checkSelfPermission(FindNearLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+//                ActivityCompat.requestPermissions(FindNearLocationActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION , Manifest.permission.ACCESS_FINE_LOCATION} , 1);
 //            }
 //            //권한이 있는 경우
 //            else{
@@ -317,10 +338,12 @@ public class FindNearLocationActivity extends NMapActivity{
     }
 
 
+
     //내 주변으로 검색 기능 메소드
     //1. 내 위치 찾는다 - 되지만 반복해서 내 위치로 돌아감, 갱신을 없애야 함
     //2. 내 위치 주변 리뷰 쓰인 곳을 데이터베이스에서 NaverLocationList 형태로 가져와 어레이리스트에 담는다. - 해야함
     //3. 어레이리스트 안에 있는 장소들을 모두 마커를 달고 띄운다. - 아마 될 듯
+//    @RequiresApi(api = Build.VERSION_CODES.M)
     private NGeoPoint findNearLocation() {
         // create overlay manager
         mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
@@ -403,6 +426,7 @@ public class FindNearLocationActivity extends NMapActivity{
         poiDataOverlay.showAllPOIdata(11);
         poiDataOverlay.setOnStateChangeListener(onPOIdataStateChangeListener);  //좌표 클릭시 말풍선 리스너
 
+        System.out.println("myLocation : " + mMapLocationManager.getMyLocation());
         return mMapLocationManager.getMyLocation();
 
 
@@ -675,6 +699,7 @@ public class FindNearLocationActivity extends NMapActivity{
 
 
     //이미지버튼 누르면 현재위치로 이동하는 이벤트
+//    @RequiresApi(api = Build.VERSION_CODES.M)
     public void gpsClick(View v) {
 //        if (mMapController != null) {
 //            mMapController.animateTo(myLocation);
