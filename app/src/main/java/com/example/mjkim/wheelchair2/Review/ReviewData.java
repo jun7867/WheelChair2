@@ -23,6 +23,7 @@ public class ReviewData {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         reviewList.setEmail(user.getEmail());
         reviewList.setName(user.getDisplayName());
+        reviewList.setLocation_name(name);
 
         DatabaseReference usersRef = databaseReference.child("review lists");
 

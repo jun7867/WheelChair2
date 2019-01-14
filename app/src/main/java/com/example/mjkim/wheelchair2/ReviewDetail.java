@@ -52,6 +52,7 @@ public class ReviewDetail extends AppCompatActivity {
     String address = "";
     private String name;
     private String review_name;
+    private String reviewer_name;
     int mapx, mapy;
     private double rating;
     private Boolean tag1;
@@ -61,7 +62,6 @@ public class ReviewDetail extends AppCompatActivity {
     private Boolean tag5;
     private Boolean tag6;
     private String review;
-    private String reviewer_name;
     private String email;
     private double location_mapx;
     private double location_mapy;
@@ -183,7 +183,7 @@ public class ReviewDetail extends AppCompatActivity {
                     JSONObject jsonObj = obj.getJSONObject(IDs.getString(i));
                     date = jsonObj.getString("date");
                     review_name = jsonObj.getString("review_name");
-                    System.out.println("제묵: " + review_name);
+                    System.out.println("제목: " + review_name);
                     rating = jsonObj.getDouble("rating");
                     total_star += rating;
                     System.out.println("점수: " + rating);
@@ -285,7 +285,7 @@ public class ReviewDetail extends AppCompatActivity {
                 reviewAdapter = new WatchReviewAdapter(ReviewDetail.this, reviewLists);
                 reviewListView.setAdapter(reviewAdapter);
             }
-        }, 1000);
+        }, 900);
 
 
 

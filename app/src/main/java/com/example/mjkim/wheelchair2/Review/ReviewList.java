@@ -89,7 +89,7 @@ public class ReviewList {
     }
 
     public String getLocation_name() {
-        return imageUrl4;
+        return location_name;
     }
 
     public void setLocation_name(String location_name) {
