@@ -21,7 +21,7 @@ public class WatchReviewList {
 
     public String getPostdate() { return postdate; }
 
-    public String getBloogername() { return reviewerName; }
+    public String getBloggername() { return reviewerName; }
 
 
 

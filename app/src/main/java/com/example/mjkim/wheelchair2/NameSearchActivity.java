@@ -26,7 +26,7 @@ public class NameSearchActivity extends AppCompatActivity {
     ImageButton menu_button;
     int i, save = 0;
     //public static ArrayList<ReviewList> reviewlist;       // 네이버 지역 리스트
-    public static ArrayList<NaverLocationList> nameList;    // reviewlist -> nameList 수정(희석)
+    public static ArrayList<NaverLocationList> locationLists;    // reviewlist -> LocationList 수정(희석)
     ArrayList<NaverLocationList> naverLocationLists = new ArrayList<NaverLocationList>();
     private NaverLocationSearch naverLocationSearch;
     private NaverLocationAdapter adapter;            // 리스트뷰의 네이버지역검색 아답터
@@ -66,9 +66,10 @@ public class NameSearchActivity extends AppCompatActivity {
 
     public void onSearch(View v) {
 
+        FirebaseJson.reviewJson.clear();
         naverLocationSearch = new NaverLocationSearch();
         naverLocationLists = new ArrayList<NaverLocationList>();
-        nameList = new ArrayList<NaverLocationList>();
+        locationLists = new ArrayList<NaverLocationList>();
 
 
 
@@ -76,12 +77,12 @@ public class NameSearchActivity extends AppCompatActivity {
 
 
         try {
-            nameList = naverLocationSearch.execute(e1.getText().toString()).get();
+            locationLists = naverLocationSearch.execute(e1.getText().toString()).get();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if(nameList.isEmpty()) {
+        if(locationLists.isEmpty()) {
             Toast.makeText(NameSearchActivity.this, "검색 결과가 없습니다",
                     Toast.LENGTH_SHORT).show();
         }
@@ -92,12 +93,14 @@ public class NameSearchActivity extends AppCompatActivity {
             @Override
             public void run() {
                 ListView lv = (ListView) findViewById(R.id.review_location_list);
-                adapter = new NaverLocationAdapter(NameSearchActivity.this, nameList, save);
+                adapter = new NaverLocationAdapter(NameSearchActivity.this, locationLists, save);
                 lv.setAdapter(adapter);
             }
         }, 1000);
 
-
+//        ListView lv = (ListView) findViewById(R.id.review_location_list);
+//        adapter = new NaverLocationAdapter(NameSearchActivity.this, locationLists, save);
+//        lv.setAdapter(adapter);
 
 
         //System.out.println("샘플: " + firebaseJson.json);

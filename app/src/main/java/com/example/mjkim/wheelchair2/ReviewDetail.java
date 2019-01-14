@@ -2,6 +2,7 @@ package com.example.mjkim.wheelchair2;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -20,6 +21,7 @@ import com.example.mjkim.wheelchair2.NameSearch.FirebaseJson;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogAdapter;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogList;
 import com.example.mjkim.wheelchair2.NaverSearch.NaverBlogSearch;
+import com.example.mjkim.wheelchair2.NaverSearch.NaverLocationAdapter;
 import com.example.mjkim.wheelchair2.Review.ReviewList;
 import com.example.mjkim.wheelchair2.WatchReview.MoreReviewActivity;
 import com.example.mjkim.wheelchair2.WatchReview.WatchReviewAdapter;
@@ -50,6 +52,7 @@ public class ReviewDetail extends AppCompatActivity {
     String address = "";
     private String name;
     private String review_name;
+    private String reviewer_name;
     int mapx, mapy;
     private double rating;
     private Boolean tag1;
@@ -59,7 +62,6 @@ public class ReviewDetail extends AppCompatActivity {
     private Boolean tag5;
     private Boolean tag6;
     private String review;
-    private String reviewer_name;
     private String email;
     private double location_mapx;
     private double location_mapy;
@@ -181,7 +183,7 @@ public class ReviewDetail extends AppCompatActivity {
                     JSONObject jsonObj = obj.getJSONObject(IDs.getString(i));
                     date = jsonObj.getString("date");
                     review_name = jsonObj.getString("review_name");
-                    System.out.println("제묵: " + review_name);
+                    System.out.println("제목: " + review_name);
                     rating = jsonObj.getDouble("rating");
                     total_star += rating;
                     System.out.println("점수: " + rating);
@@ -199,7 +201,7 @@ public class ReviewDetail extends AppCompatActivity {
                     if(tag6 == true) tag_array[5]  = tag_array[5] +  1;
                     review = jsonObj.getString("review");
                     System.out.println("리뷰: " + review);
-                    reviewer_name = jsonObj.getString("name");
+                    //reviewer_name = jsonObj.getString("name");
                     email = jsonObj.getString("email");
                     location_mapx = jsonObj.getInt("mapx");
                     System.out.println("MAPX: " + location_mapx);
@@ -246,16 +248,13 @@ public class ReviewDetail extends AppCompatActivity {
         ListView blogListView = (ListView) findViewById(R.id.short_blog_list);
         // 동적으로 리스트뷰 높이 할당
         if(blogList.size() == 0) {
-            System.out.println("bull1");
             blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
 
         }
         else if(blogList.size() == 1) {
-            System.out.println("bull2");
             blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
         }
         else if(blogList.size() == 2) {
-            System.out.println("bull3");
             blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 850));
         }
 
@@ -270,19 +269,24 @@ public class ReviewDetail extends AppCompatActivity {
 
         ListView reviewListView = (ListView) findViewById(R.id.short_review_list);
         if(reviewLists.size() == 0) {
-            System.out.println("sibal1");
             reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
         }
         else if(reviewLists.size() == 1) {
-            System.out.println("sibal2");
             reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
         }
         else if(reviewLists.size() == 2) {
-            System.out.println("sibal3");
             reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 850));
         }
-        reviewAdapter = new WatchReviewAdapter(ReviewDetail.this, reviewLists);
-        reviewListView.setAdapter(reviewAdapter);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ListView reviewListView = (ListView) findViewById(R.id.short_review_list);
+                reviewAdapter = new WatchReviewAdapter(ReviewDetail.this, reviewLists);
+                reviewListView.setAdapter(reviewAdapter);
+            }
+        }, 900);
+
 
 
 

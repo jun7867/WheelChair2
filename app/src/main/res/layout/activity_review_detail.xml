@@ -167,6 +167,7 @@
                     android:layout_weight="5"
                     android:paddingRight="10dp"
                     android:text="도로명 주소"
+                    android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -220,7 +221,7 @@
                     android:layout_weight="5"
                     android:background="#00ffffff"
                     android:gravity="top|bottom|left"
-                    android:text="리뷰 작성하기"
+                    android:text="장소 등록하기"
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
 

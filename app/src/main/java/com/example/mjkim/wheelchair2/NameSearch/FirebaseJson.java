@@ -1,9 +1,6 @@
 package com.example.mjkim.wheelchair2.NameSearch;
 
-import android.support.annotation.NonNull;
-
 import com.example.mjkim.wheelchair2.Review.ReviewJson;
-import com.example.mjkim.wheelchair2.Review.ReviewList;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -12,12 +9,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 
 public class FirebaseJson {
 
@@ -55,7 +49,7 @@ public class FirebaseJson {
     public void getFullJson(){
 
 
-        System.out.println("데이터베이스: "+ databaseReference.getKey());
+//        System.out.println("데이터베이스: "+ databaseReference.getKey());
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -76,9 +70,9 @@ public class FirebaseJson {
                         e.printStackTrace();
                     }
 
-                    System.out.println("전체 제이슨: " + fullReviewJson.getReview_json_string());
-                    System.out.println("이름들: " +  fullReviewJson.getReview_json_userID());
-                    //System.out.println("Sample: " + full);
+//                    System.out.println("전체 제이슨: " + fullReviewJson.getReview_json_string());
+//                    System.out.println("이름들: " +  fullReviewJson.getReview_json_userID());
+
                 }
 
             }
@@ -89,6 +83,7 @@ public class FirebaseJson {
             }
         });
 
+//        return fullReviewJson.getReview_json_string();
     }
 
     public void readData(DataSnapshot dataSnapshot, String name, int num){
@@ -100,8 +95,14 @@ public class FirebaseJson {
 
             try{
                 JSONObject jsonObj = new JSONObject(json);
-                review_num = jsonObj.getJSONObject(name).length();
-                reviewJson.add(num,new ReviewJson(name, review_num, jsonObj.getString(name), jsonObj.getJSONObject(name).names()));
+                if(jsonObj.has(name)) {
+                    review_num = jsonObj.getJSONObject(name).length();
+                    reviewJson.add(num, new ReviewJson(name, review_num, jsonObj.getString(name), jsonObj.getJSONObject(name).names()));
+                }
+                else
+                {
+                    reviewJson.add(num,new ReviewJson(null, 0, null, null));
+                }
             }catch (Exception e) {
                 e.printStackTrace();
             }
