@@ -71,6 +71,7 @@ public class NaverLocationSearch extends AsyncTask<String, Void, ArrayList<Naver
 
 
                 JSONObject obj = items.getJSONObject(i);
+                System.out.println("Json" + obj);
                 name = obj.getString("title");
                 name = Html.fromHtml(name).toString();
                 firebaseJson.getJson(name,num);

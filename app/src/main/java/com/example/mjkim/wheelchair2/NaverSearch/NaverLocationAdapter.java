@@ -3,6 +3,7 @@ package com.example.mjkim.wheelchair2.NaverSearch;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,7 +101,7 @@ public class NaverLocationAdapter extends BaseAdapter {
             JSONArray IDs = FirebaseJson.reviewJson.get(position).getReview_json_userID();
             System.out.println("아이디: " + IDs);
             String location_name = FirebaseJson.reviewJson.get(position).getLocation_name();
-            System.out.println("이름: " + location_name);
+            System.out.println("장소: " + location_name);
 
             try{
                 JSONObject obj = new JSONObject(json);
@@ -197,7 +198,12 @@ public class NaverLocationAdapter extends BaseAdapter {
         layout_view.setOnClickListener(new View.OnClickListener(){
 
            public void onClick(View v){
-
+//               new Handler().postDelayed(new Runnable() {
+//                   @Override
+//                   public void run() {
+//                       GoIntent(position);
+//                   }
+//               }, 2000);
                GoIntent(position);
 
            }
@@ -212,6 +218,8 @@ public class NaverLocationAdapter extends BaseAdapter {
 
     public void GoIntent(int a){
         Intent intent;
+
+
 
         // 이름으로 검색에서 리스트 뷰를 누르면 장소 정보를 자세히본다.
         // 리뷰 작성하기에서 리스트 뷰를 누르면 리뷰 작성으로 간다.

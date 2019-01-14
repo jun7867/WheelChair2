@@ -90,12 +90,12 @@
             android:layout_above="@+id/progressBar"
             android:layout_weight="1" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            tools:visibility="visible" />
+        <!--<ProgressBar-->
+            <!--android:id="@+id/progressBar"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:visibility="invisible"-->
+            <!--tools:visibility="visible" />-->
 
     </LinearLayout>
 </LinearLayout>

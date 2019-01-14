@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:background="#ffffaf43"
             android:gravity="center"
-            android:text="리뷰 작성"
+            android:text="장소 등록"
             android:textSize="30dp" />
 
         <ImageButton

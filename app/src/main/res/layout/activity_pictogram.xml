@@ -42,26 +42,97 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_gravity="center"
-        android:text="장애인 픽토그램" />
-
-
-
-    <GridView
-        android:id="@+id/gridview1"
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnWidth="100dp"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
-        android:numColumns="auto_fit"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/init_screen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/pictogram_toilet" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </LinearLayout>
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:text="장애인 픽토그램" />-->
+
+
+
+    <!--<GridView-->
+        <!--android:id="@+id/gridview1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:columnWidth="100dp"-->
+        <!--android:horizontalSpacing="10dp"-->
+        <!--android:verticalSpacing="10dp"-->
+        <!--android:numColumns="auto_fit"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:gravity="center"/>-->
 
 
 </LinearLayout>
