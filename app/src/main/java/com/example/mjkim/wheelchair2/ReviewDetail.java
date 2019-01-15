@@ -87,6 +87,14 @@ public class ReviewDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_detail);
 
+        // 제일 위부터 보기
+        scrollView = new ScrollView(this);
+        scrollView.findViewById(R.id.scroll_view);
+//        scrollView.smoothScrollTo(0,0);
+//        scrollView.scrollBy(0,200);
+        scrollView.scrollTo(0,600);
+//        scrollView.fullScroll(ScrollView.FOCUSABLES_TOUCH_MODE);
+//        scrollView.smoothScrollTo(0,0);
 
         back_button = (ImageButton)findViewById(R.id.back_b);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -217,6 +225,9 @@ public class ReviewDetail extends AppCompatActivity {
                     imageUrl8 = jsonObj.getString("imageUrl8");
                     imageUrl9 = jsonObj.getString("imageUrl9");
 
+                    System.out.println("지역 이름1 " + intent.getExtras().getString("NAME"));
+                    System.out.println("지역 이름2 " + location_name);
+
 
 
                     if(intent.getExtras().getString("NAME").equals(location_name)) {
@@ -248,13 +259,16 @@ public class ReviewDetail extends AppCompatActivity {
         ListView blogListView = (ListView) findViewById(R.id.short_blog_list);
         // 동적으로 리스트뷰 높이 할당
         if(blogList.size() == 0) {
+            System.out.println("bull1");
             blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
 
         }
         else if(blogList.size() == 1) {
+            System.out.println("bull2");
             blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
         }
         else if(blogList.size() == 2) {
+            System.out.println("bull3");
             blogListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 850));
         }
 
@@ -269,12 +283,15 @@ public class ReviewDetail extends AppCompatActivity {
 
         ListView reviewListView = (ListView) findViewById(R.id.short_review_list);
         if(reviewLists.size() == 0) {
+
             reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
         }
         else if(reviewLists.size() == 1) {
+
             reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
         }
         else if(reviewLists.size() == 2) {
+
             reviewListView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 850));
         }
 

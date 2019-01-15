@@ -2,6 +2,8 @@ package com.example.mjkim.wheelchair2.Review;
 
 public class ReviewList {
 
+
+    private String key;
     private double rating;
     private Boolean tag1;
     private Boolean tag2;
@@ -26,6 +28,10 @@ public class ReviewList {
     private String imageUrl9;
     private String date;
     private String review_name;
+
+    public String getKey() { return key; }
+
+    public void setKey(String key) { this.key = key; }
 
     public String getImageName() {
         return imageName;
@@ -216,6 +222,39 @@ public class ReviewList {
                       Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy, String date,
                       String imageUrl1, String imageUrl2, String imageUrl3,String imageUrl4,String imageUrl5,String imageUrl6,
                       String imageUrl7,String imageUrl8,String imageUrl9){
+        this.location_name = location_name;
+        this.review_name = review_name;
+        this.rating = rating;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
+        this.tag4 = tag4;
+        this.tag5 = tag5;
+        this.tag6 = tag6;
+        this.review = review;
+        this.name = name;
+        this.email = email;
+        this.mapx = mapx;
+        this.mapy = mapy;
+        this.date = date;
+        this.imageUrl1 = imageUrl1;
+        this.imageUrl2 = imageUrl2;
+        this.imageUrl3 = imageUrl3;
+        this.imageUrl4 = imageUrl4;
+        this.imageUrl5 = imageUrl5;
+        this.imageUrl6 = imageUrl6;
+        this.imageUrl7 = imageUrl7;
+        this.imageUrl8 = imageUrl8;
+        this.imageUrl9 = imageUrl9;
+
+
+    }
+
+    public ReviewList(String key, String location_name, String review_name, double rating, Boolean tag1, Boolean tag2, Boolean tag3,
+                      Boolean tag4, Boolean tag5, Boolean tag6, String review, String name, String email, double mapx, double mapy, String date,
+                      String imageUrl1, String imageUrl2, String imageUrl3,String imageUrl4,String imageUrl5,String imageUrl6,
+                      String imageUrl7,String imageUrl8,String imageUrl9){
+        this.key=key;
         this.location_name = location_name;
         this.review_name = review_name;
         this.rating = rating;
