@@ -1,5 +1,5 @@
-
 package com.example.mjkim.wheelchair2.Login;
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
@@ -25,6 +26,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 import com.google.firebase.storage.StorageReference;
 
@@ -72,6 +75,7 @@ public class MyReview extends AppCompatActivity {
     private String date;
     private String phone = "";
     private String address = "";
+    private String email = "";
 
     final Context context;
 
@@ -109,6 +113,15 @@ public class MyReview extends AppCompatActivity {
                         key=dataSnapshot.getKey();
                         System.out.println("삭제삭제"+key);
                         location_name = myreview.getLocation_name();
+                         //myreview.getLocation_name();
+                        System.out.println("yeeeeeee1 : " + location_name);
+//                        name = intent.getExtras().getString("NAME");
+//                        address_name.setText(intent.getExtras().getString("ROAD_ADDRESS"));
+//                        address = intent.getExtras().getString("ROAD_ADDRESS");
+//                        phone_number.setText(intent.getExtras().getString("TELEPHONE"));
+//                        phone = intent.getExtras().getString("TELEPHONE");
+//                        mapx = intent.getExtras().getInt("MAPX");
+//                        mapy = intent.getExtras().getInt("MAPY");
                         date = myreview.getDate();
                         review_name = myreview.getReview_name();
                         rating = myreview.getRating();
@@ -119,6 +132,8 @@ public class MyReview extends AppCompatActivity {
                         tag5 = myreview.getTag5();
                         tag6 = myreview.getTag6();
                         review = myreview.getReview();
+                        System.out.println("yeeeeeee3 : " + review);
+                        email = myreview.getEmail();
                         imageUrl1 = myreview.getImageUrl1();
                         imageUrl2 = myreview.getImageUrl2();
                         imageUrl3 = myreview.getImageUrl3();
@@ -154,6 +169,7 @@ public class MyReview extends AppCompatActivity {
                         reviewList.setImageUrl9(imageUrl9);
 
 
+                        //System.out.println("reviewList : " + reviewList.getLocation_name());
                         reviewList.setLocation_name(location_name);
                         reviewLists.add(totalLocationCount, reviewList);
 
@@ -163,6 +179,9 @@ public class MyReview extends AppCompatActivity {
                         review_count = (TextView) findViewById(R.id.review_count);
                         review_count.setText(Integer.toString(totalLocationCount));
 
+
+
+                        System.out.println(dataSnapshot.getKey() + " was " + myreview.getEmail() +myreview.getDate()+"\n"+myreview.getReview()+ " meters tall.");
                     }
 
                     @Override
@@ -212,6 +231,8 @@ public class MyReview extends AppCompatActivity {
         });
 
 
+
+
         // 리뷰 어댑터 끼우기
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -223,7 +244,13 @@ public class MyReview extends AppCompatActivity {
 
 
             }
-        }, 3000);
+        }, 2700);
+
+
+
+
+
+
 
 
         ImageButton back_button;
@@ -253,4 +280,5 @@ public class MyReview extends AppCompatActivity {
         Intent intent = new Intent(this, MenuScreen.class);
         startActivity(intent);
     }
+
 }
