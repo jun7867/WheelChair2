@@ -101,16 +101,12 @@ public class SignInActivity extends AppCompatActivity {
                                 Toast.makeText(SignInActivity.this,"다시 확인해주세요" ,Toast.LENGTH_SHORT).show();
                             }
                         }else {
-
                             currentUser = mAuth.getCurrentUser();
-
                             Toast.makeText(SignInActivity.this, "가입 성공  ", Toast.LENGTH_SHORT).show();
-
                             startActivity(new Intent(SignInActivity.this, LoginScreen.class));
                             finish();
                         }
                     }
                 });
     }
-
 }

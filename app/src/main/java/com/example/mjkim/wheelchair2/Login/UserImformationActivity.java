@@ -33,16 +33,11 @@ public class UserImformationActivity extends AppCompatActivity {
         auth= FirebaseAuth.getInstance();
         name=(TextView)findViewById(R.id.nameId);
         email=(TextView)findViewById(R.id.emailId);
-//        proId=(TextView)findViewById(R.id.providerId);
-//        uid=(TextView)findViewById(R.id.uid);
         logout=(Button)findViewById(R.id.logout);
         my_review=(Button)findViewById(R.id.my_review_b);
         name.setText(auth.getCurrentUser().getDisplayName());
         email.setText(auth.getCurrentUser().getEmail());
         back_button = (ImageButton) findViewById(R.id.back_b);
-
-//        proId.setText(auth.getCurrentUser().getProviderId());
-//        uid.setText(auth.getCurrentUser().getUid());
 
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -53,17 +48,14 @@ public class UserImformationActivity extends AppCompatActivity {
                 finish();
                 Intent intent =new Intent(UserImformationActivity.this,LoginScreen.class);
                 startActivity(intent);
-
             }
         });
 
         my_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent =new Intent(UserImformationActivity.this,MyReview.class);
                 startActivity(intent);
-
             }
         });
 
