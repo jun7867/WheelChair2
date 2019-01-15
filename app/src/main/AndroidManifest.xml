@@ -84,8 +84,10 @@
         </provider>
 
         <activity android:name=".CertainReviewDetail" />
-        <activity android:name=".Login.MyReview"></activity>
-        <activity android:name=".ImageShowActivity"></activity>
+        <activity android:name=".Login.MyReview" />
+        <activity android:name=".ImageShowActivity" />
+        <activity android:name=".Cancle_Dialog_Activity"></activity>
+
     </application>
 
 </manifest>

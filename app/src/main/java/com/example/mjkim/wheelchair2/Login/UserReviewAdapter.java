@@ -2,7 +2,9 @@ package com.example.mjkim.wheelchair2.Login;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +17,29 @@ import com.example.mjkim.wheelchair2.CertainReviewDetail;
 import com.example.mjkim.wheelchair2.R;
 import com.example.mjkim.wheelchair2.Review.ReviewList;
 import com.example.mjkim.wheelchair2.ReviewDetail;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class UserReviewAdapter extends BaseAdapter {
+import static com.facebook.FacebookSdk.getApplicationContext;
 
+public class UserReviewAdapter extends BaseAdapter {
+    private DatabaseReference mDatabase;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private LayoutInflater mInflater;
     private Activity m_activity;
     private ArrayList<ReviewList> arr;
-    public UserReviewAdapter(Activity act, ArrayList<ReviewList> arr_item) {
+    private int my_review_index;
+    Context context;
+    Activity activity;
+    public UserReviewAdapter(Activity act, ArrayList<ReviewList> arr_item,Context context, Activity activity,int my_review_index) {
         this.m_activity = act;
         arr = arr_item;
         mInflater = (LayoutInflater)m_activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.context=context;
+        this.activity=activity;
+        this.my_review_index=my_review_index;
     }
 
     @Override
@@ -51,8 +64,32 @@ public class UserReviewAdapter extends BaseAdapter {
 
         }
 
-        Button correctButton = (Button)convertView.findViewById(R.id.correct_button);
-        Button deleteButton = (Button)convertView.findViewById(R.id.delete_button);
+        Button correctButton = (Button) convertView.findViewById(R.id.correct_button);
+        Button deleteButton = (Button) convertView.findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener confirm = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        System.out.println("삭제테스트");
+
+                        delete(position);
+                    }
+                };
+                DialogInterface.OnClickListener cancle = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                       //취소되었을때
+                    }
+                };
+                new AlertDialog.Builder(activity) // Adapter에서 쓰려면 사용하려는 activity에서 받아와야한다.
+                        .setTitle("삭제하시겠습니까?")
+                        .setPositiveButton("삭제", confirm)
+                        .setNegativeButton("취소", cancle)
+                        .show();
+            }
+        });
 
         TextView locationName = (TextView)convertView.findViewById(R.id.location_name);
         TextView title = (TextView)convertView.findViewById(R.id.postname);
@@ -64,6 +101,7 @@ public class UserReviewAdapter extends BaseAdapter {
         //int resId=  m_activity.getResources().getIdentifier(arr.get(position)., "drawable", m_activity.getPackageName());
 
         //imView.setBackgroundResource(resId);
+
 
         locationName.setText(arr.get(position).getLocation_name());
         title.setText(arr.get(position).getReview_name());
@@ -94,6 +132,13 @@ public class UserReviewAdapter extends BaseAdapter {
 
     }
 
+    private void delete(int a) {
+        mDatabase = database.getReference();
+        mDatabase.child("review lists").child(arr.get(a).getLocation_name()).child(arr.get(a).getKey()).setValue(null);
+        System.out.println("\n 삭제테스트 1: "+ arr.get(a).getKey()+"  ");
+        my_review_index--;
+
+    }
 
 
     public void GoIntent(int a){
