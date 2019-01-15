@@ -42,6 +42,7 @@
         <activity android:name=".BlogSearch" />
         <activity android:name=".Login.LoginScreen" />
         <activity android:name=".Login.SignInActivity" />
+        <activity android:name=".CorrectionScreen"/>
         <activity android:name=".FindNearLocationActivity" />
         <activity android:name=".WatchLocationActivity" />
 
