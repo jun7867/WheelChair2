@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:background="#ffffaf43"
             android:gravity="center"
-            android:text="장소 등록"
+            android:text="후기 수정"
             android:textSize="30dp" />
 
         <ImageButton
@@ -155,7 +155,7 @@
                 android:layout_margin="5dp"
                 android:ems="10"
                 android:gravity="top"
-                android:hint="리뷰 제목"
+                android:hint="후기 제목"
                 android:inputType="none"
                 android:maxWidth="1dp"
                 android:paddingLeft="10dp"
@@ -421,14 +421,13 @@
                     android:textSize="20dp" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageView4"
+            <TextView
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/review_line2" />
+                android:layout_margin="20dp"
+                android:text="후기 작성"
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/review_text"
@@ -437,7 +436,7 @@
                 android:layout_margin="5dp"
                 android:ems="10"
                 android:gravity="top"
-                android:hint="리뷰 작성하는 부분입니다"
+                android:hint="후기 작성하는 부분입니다"
                 android:inputType="none"
                 android:maxWidth="1dp"
                 android:paddingLeft="10dp"

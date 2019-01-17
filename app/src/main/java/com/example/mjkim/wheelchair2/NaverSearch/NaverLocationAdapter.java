@@ -68,7 +68,6 @@ public class NaverLocationAdapter extends BaseAdapter {
     public long getItemId(int position){ return position; }
 
     @Override
-
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){

@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:background="#ffffaf43"
             android:gravity="center"
-            android:text="내가 등록한 장소"
+            android:text="내가 등록한 후기"
             android:textSize="30dp" />
 
         <ImageButton
@@ -50,21 +50,28 @@
 
 
         <TextView
-            android:paddingLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="등록한 장소 갯수 : "
+            android:paddingLeft="15dp"
+            android:text="등록한 후기 갯수 : "
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/review_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:id="@+id/review_count" />
+            android:textSize="20dp" />
 
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/line" />
 
 
     <LinearLayout
