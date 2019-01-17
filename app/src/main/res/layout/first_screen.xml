@@ -23,11 +23,11 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="wrap_content"
+            android:layout_width="235dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#ffaf43"
-            app:srcCompat="@drawable/logo" />
+            android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/menu_b"
@@ -48,7 +48,7 @@
         <ImageButton
             android:id="@+id/name_b"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="1"
@@ -56,12 +56,12 @@
             android:onClick="onClick"
             android:scaleType="fitCenter"
             android:visibility="visible"
-            app:srcCompat="@drawable/new_name" />
+            app:srcCompat="@drawable/search_name_button" />
 
         <ImageButton
             android:id="@+id/review_b"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="1"
@@ -69,7 +69,7 @@
             android:onClick="onClick"
             android:scaleType="fitCenter"
             android:visibility="visible"
-            app:srcCompat="@drawable/new_review" />
+            app:srcCompat="@drawable/write_review_button" />
 
         <!--<android.support.design.widget.NavigationView-->
         <!--android:layout_width="match_parent"-->
